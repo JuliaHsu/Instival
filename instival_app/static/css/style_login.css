@@ -1,0 +1,128 @@
+body {
+  padding-top: 15px;
+  font-size: 12px
+}
+.main {
+  max-width: 320px;
+  margin: 0 auto;
+}
+.login-or {
+  position: relative;
+  font-size: 18px;
+  color: #aaa;
+  margin-top: 10px;
+          margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.span-or {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: -2px;
+  margin-left: -25px;
+  background-color: #fff;
+  width: 50px;
+  text-align: center;
+}
+.hr-or {
+  background-color: #cdcdcd;
+  height: 1px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+h3 {
+  text-align: center;
+  line-height: 300%;
+}
+
+.facebook {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 160px;
+  height:50px;
+  padding-top: 10px;
+  border: 0px solid #178bb6;
+  border-radius: 8px;
+  background: #3b5998;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight:700;
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+.facebook:hover,
+.facebook:focus {
+  background: #37528c;
+  color: #ffffff;
+  text-decoration: none;
+}
+.facebook:active {
+  background: #1ca4d6;
+}
+.facebook:before{
+  content:  "\0000a0";
+  display: inline-block;
+  height: 45px;
+  width: 45px;
+  line-height: 24px;
+  margin: 0 4px -6px -4px;
+  position: relative;
+  padding-left: 10px;
+  top: -10px;
+  left: -10px;
+  background: url("http://i.imgur.com/0bcxkOD.png") no-repeat center center #37528c;
+  background-size: 13px 24px;
+	-webkit-border-radius: 8px 0px 0px 8px;
+	-moz-border-radius: 8px 0px 0px 8px;
+	-o-border-radius: 8px 0px 0px 8px;
+	-ms-border-radius: 8px 0px 0px 8px;
+	border-radius: 8px 0px 0px 8px;
+}
+
+.google {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  width: 160px;
+  height: 50px;
+  padding-top: 10px;
+  border: 0px solid #178bb6;
+  border-radius: 8px;
+  background: #d34836;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight:700;
+  color: #ffffff;
+  text-decoration: none;
+}
+.google:hover,
+.google:focus {
+  background: #c74534;
+  color: #ffffff;
+  text-decoration: none;
+}
+.google:active {
+  background: #1ca4d6;
+}
+.google:before{
+  content:  "\0000a0";
+  display: inline-block;
+  height: 45px;
+  width: 45px;
+  line-height: 24px;
+  margin: 0 4px -6px -4px;
+  position: relative;
+  padding-left: 10px;
+  top: -10px;
+  left: -15px;
+  background: url("http://i.imgur.com/GxFF74f.png") no-repeat center center #c74534;
+  background-size: 24px 24px;
+	-webkit-border-radius: 8px 0px 0px 8px;
+	-moz-border-radius: 8px 0px 0px 8px;
+	-o-border-radius: 8px 0px 0px 8px;
+	-ms-border-radius: 8px 0px 0px 8px;
+	border-radius: 8px 0px 0px 8px;
+}

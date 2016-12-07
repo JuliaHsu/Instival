@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Instival</title>
+
+ 	<!-- Bootstrap Core CSS -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="static/css/style_index.css" rel="stylesheet">
+    <link href="static/css/style_login.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<!--Navbar-->
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                	<span class="sr-only">Toggle navigation</span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+            	</button>
+            	<!--Logo-->
+            	<a class="navbar-brand" href="index.html" style="margin-left: 3px;">LOGO</a>
+			</div>
+			
+			<!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> 
+			    
+    			<!--Login Button-->
+      			<button id="btn_sign" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px;">Sign in</button>
+    			
+    			<!--Search-->
+    			<form class="navbar-form" role="search" style="display:block;text-align:center;">
+    				<div class="form-group">
+      					<input type="text" class="form-control" style="width: 250px;" placeholder="Search Festival">
+       				</div>
+       				<div class="form-group">
+      					<input type="text" class="form-control" style="width: 250px;" placeholder="Search Country">
+       				</div>
+       				<input type="button" class="btn btn btn-default" value="Search" onclick="location.href='festival_each.html'">
+    				<!--<button type="submit" class="btn btn-default" onClick="self.location.href='body/location.html">Search</button>-->
+      			</form>
+            </div>
+  		    <!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!--Navbar-->
+	
+	<!-- Full Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill">
+                    <img class="img-responsive" src="img/christmas.jpg">
+                </div>
+                <div class="carousel-caption">
+                    <a href="personal.html" style="text-decoration:none;color:white;">
+                        <h2>Merry Christmas, wanna share your christmas today?</h2>
+                    </a>
+                    </div>
+                </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('img/christmas_bg.jpg');"></div>
+                <div class="carousel-caption">
+                    <a href="personal.html" style="text-decoration:none;color:white;">
+                        <h2>Merry Christmas, wanna share your christmas today?</h2>
+                    </a>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the third background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('img/christmas_bg2.jpg');"></div>
+                <div class="carousel-caption">
+                    <a href="personal.html" style="text-decoration:none;color:white;">
+                        <h2>Merry Christmas, wanna share your christmas today?</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+    </header>
+    
+    <!-- Wrapper for Slides(instant) -->
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <img class="img-responsive img-center" src="img/christmas＿sq4.jpg">
+      </div>
+    
+      <div class="mySlides fade">
+        <img class="img-responsive img-center" src="img/christmas＿sq2.jpg">
+      </div>
+    
+      <div class="mySlides fade">
+        <img class="img-responsive img-center" src="img/christmas＿sq3.jpg">
+      </div>
+    </div>
+    <br>
+    
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span> 
+      <span class="dot" onclick="currentSlide(2)"></span> 
+      <span class="dot" onclick="currentSlide(3)"></span> 
+    </div>
+    
+    
+    <!-- Projects Row -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
+                <a href="festival_each.html" class="portfolio-link">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <h3>Christmas</h3>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img class="img-thumbnail img-responsive img-center" src="img/christmas_1.jpg" alt="">
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
+                <a href="festival_each.html" class="portfolio-link">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <h3>Constitution Day</h3>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img class="img-thumbnail img-responsive img-center" src="img/constitution.jpg" alt="">
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
+                <a href="#" class="portfolio-link">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <h3>Festival</h3>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img class="img-thumbnail img-responsive img-center" src="http://placehold.it/1500x1500" alt="">
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
+                <a href="#" class="portfolio-link">
+                    <div class="portfolio-hover">
+                        <div class="portfolio-hover-content">
+                            <h3>Festival</h3>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img class="img-thumbnail img-responsive img-center" src="http://placehold.it/600x600" alt="">
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+    <br><br><br><br>
+   
+	
+	<iframe class="signIn_full" id="sign_full" src="login.html" height="0" width="0" frameborder="0" >
+    </iframe>
+	<a id="closeImg" href="index.html">X</a>
+	
+	<!-- jQuery -->
+    <script src="bootstrap/js/jquery-3.1.1.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    
+    <!-- Instant photos pop up -->
+    <script src="static/js/index_instant.js"></script>
+    
+    <script>
+    $(document).ready(function() {
+        $('body').on('click', '#btn_sign', function() {
+            $('#sign_full').addClass('animated zoomIn');
+            document.getElementById("sign_full").style.width = "800px";
+            document.getElementById("sign_full").style.height = "600px";
+            document.getElementById("closeImg").style.visibility="visible";
+            var stateObj = { foo: "login.html" };
+            window.history.pushState(stateObj, "page 2", "login.html");
+    
+            $('body').css("background-color","#fff");
+            $('body').css("background-color","rgba(255, 255, 255, 0.6)");
+             
+            // hide scroll
+        });
+    });
+    </script>
+    
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+    
+</body>
+
+</html>
