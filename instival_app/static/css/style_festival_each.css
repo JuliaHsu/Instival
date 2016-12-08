@@ -2,16 +2,50 @@ p.intro_more{
 	display: none;
 }
 
-.carousel{
-float:right;
-position:fixed;
-right:2px;
-bottom:5px;
-z-index:20;
-border:2px solid #69c;
-height:200px !important;
-width:200px;
+.nav-tabs {
+  border-bottom: 1px solid #ccc;
+  position: relative;
 }
+
+.nav-tabs > li {
+  margin-bottom: 0;
+  position: initial;
+}
+
+.nav-tabs > li > a {
+  border: none;
+  color: #999;
+  margin: 0;
+  font-size: 1.5em;
+}
+
+ .nav-tabs > li > a:hover {
+  background: transparent;
+}
+
+.nav-tabs > li.active > a {
+  border: none;
+  color: #E91E63 !important;
+  background: transparent;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  border-width: 0;
+}
+
+.nav-tabs > li#magic-line {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100px;
+  height: 2px;
+  background: #E91E63;
+}
+
+
+
 
 
 .item,
@@ -810,3 +844,5 @@ body {
 .img_middle{
   vertical-align: middle;
 }
+
+

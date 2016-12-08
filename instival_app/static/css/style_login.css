@@ -11,7 +11,7 @@ body {
   font-size: 18px;
   color: #aaa;
   margin-top: 10px;
-          margin-bottom: 10px;
+  margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -60,7 +60,7 @@ h3 {
   text-decoration: none;
 }
 .facebook:active {
-  background: #1ca4d6;
+  background: #37528c;
 }
 .facebook:before{
   content:  "\0000a0";
@@ -105,7 +105,7 @@ h3 {
   text-decoration: none;
 }
 .google:active {
-  background: #1ca4d6;
+  background: #c74534;
 }
 .google:before{
   content:  "\0000a0";
