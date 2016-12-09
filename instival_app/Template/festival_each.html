@@ -328,14 +328,12 @@
       $(".intro_more").slideToggle("slow");
     });
     $('body').on('click','#img_pre',function(){
-
         $('#img_full').addClass('animated zoomIn');
         document.getElementById("img_full").style.width = "800px";
         document.getElementById("img_full").style.height = "600px";
         document.getElementById("closeImg").style.visibility="visible";
        var stateObj = { page: "fullFestivalPic" };
         window.history.pushState(stateObj, "", "fullFestivalPic.html");
-
         $('body').css("background-color","#fff");
         $('body').css("background-color","rgba(255, 255, 255, 0.6)");
          
@@ -349,7 +347,6 @@
   
     // });
     
-
   });
   
   </script>

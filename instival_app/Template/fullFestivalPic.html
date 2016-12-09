@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -12,6 +13,15 @@
   
 </head>
 <body>
+	{% for post in posts %}
+	<div>
+		<h3>
+			{{post.festival_id}}
+			{{post.content}}
+		</h3>
+		{{posts}}
+	</div>
+	{% endfor %}
 	
 	<div class="wrapper_inner">
 	<div class="gallery ">
