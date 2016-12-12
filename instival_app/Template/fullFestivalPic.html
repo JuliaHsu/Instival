@@ -1,13 +1,15 @@
+
+{% load staticfiles %}
 <!DOCTYPE html>
 
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../static/css/style_festival_each.css">
-	<link rel="stylesheet" href="../assets/bootstrap/css/bootstrap-social.css">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style_festival_each.css' %}" >
+
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>
   
@@ -28,7 +30,7 @@
 		<div class="">
 			<div class="gallery_item_full ">
           		<div class="box">
-            		<img src="../img/christmas＿sq2.jpg"/>
+            		<img src="{% static 'img/christmas＿sq2.jpg' %}"/>
                 <div class="heart"><i class="fa fa-heart"></i></div>
             		<div class="row">
             			<div class="col-lg-4">
@@ -57,7 +59,7 @@
             		
             		<div id="comments">
             			<section>
-            				<img src="../img/profilePic.jpg" alt=""/>
+            				<img src="{% static 'img/profilePic.jpg' %}" alt=""/>
 					     	<article>
 					       		<h4>
 					        		John Doe
@@ -68,7 +70,7 @@
 					     	</article>
 					      
 					     	<!-- 2-->
-				        	 <img src="../img/profilePic.jpg" />
+				        	 <img src="{% static 'img/profilePic.jpg' %}" />
 					     	<article>
 						       	<h4>
 						        	Jane Doe
@@ -101,8 +103,8 @@
 	</div>
 		
 	</div>
-	<script src="../bootstrap/js/jquery-3.1.1.js"></script>
-  	<script src="../bootstrap/js/bootstrap.min.js"></script>
+	<script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
+  	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   
 	<script>
 		$(document).ready(function() {

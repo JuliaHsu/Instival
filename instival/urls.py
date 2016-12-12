@@ -17,9 +17,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
-from instival_database import views
+
 admin.autodiscover();
 urlpatterns = [
    url(r'^admin/', include(admin.site.urls)),
-   url(r'^$', views.festival_each_post_gallery),
+    url(r'^festival_each/',include('instival_database.urls')),
 ]
