@@ -15,41 +15,43 @@
   
 </head>
 <body>
-	{% for post in posts %}
-	<div>
-		<h3>
-			{{post.festival_id}}
-			{{post.content}}
-		</h3>
-		{{posts}}
-	</div>
-	{% endfor %}
+	
+
+	<!--<div>-->
+	<!--	<h3>-->
+	<!--		{{post.festival_id}}-->
+	<!--		{{post.content}}-->
+	<!--	</h3>-->
+		
+	<!--	<img src="{{post.picture}}"/>-->
+	<!--</div>-->
+
 	
 	<div class="wrapper_inner">
 	<div class="gallery ">
 		<div class="">
 			<div class="gallery_item_full ">
           		<div class="box">
-            		<img src="{% static 'img/christmas＿sq2.jpg' %}"/>
+            		<img src="{{post.picture}}"/>
                 <div class="heart"><i class="fa fa-heart"></i></div>
             		<div class="row">
             			<div class="col-lg-4">
-            				<h3>Christmas, Taiwan</h3>
+            				<h3>{post.festival_id.name}, {{post.location}}</h3>
             			</div>
             		
             		</div>
             	   <div class="row">
                     <div class="col-lg-4">
-                      <h5 class="postName">Posted by: <a target="_blank" href="personal.html">John Doe</a></h5>
+                      <h5 class="postName">Posted by: <a target="_blank" href="personal.html">{{post.user_id.name}}</a></h5>
                     </div>
                     <div class="col-lg-2">
                       <h5>
-                        <!-- <img src="img/profilePic.jpg" class="img-circle"> -->
+                         <!--<img src="img/profilePic.jpg" class="img-circle"> -->
                       </h5>
                     </div> 
                   </div>
             		<div>
-            			<p>description of picture</p>
+            			<p>{{post.content}}</p>
             		</div> 
             		
             		
@@ -69,7 +71,7 @@
 						       	</p>
 					     	</article>
 					      
-					     	<!-- 2-->
+					     	 2
 				        	 <img src="{% static 'img/profilePic.jpg' %}" />
 					     	<article>
 						       	<h4>
@@ -103,6 +105,7 @@
 	</div>
 		
 	</div>
+	
 	<script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
   	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   
@@ -112,6 +115,7 @@
           $('.heart').click(function() {
             $(this).toggleClass("liked");
           });
+        
     });
     
 	</script>

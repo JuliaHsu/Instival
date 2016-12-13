@@ -7,18 +7,18 @@ from .models import Profile
 from .models import Post
 from .models import Comment
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'passward')
+    list_display = ('name', 'email', 'password')
     
 class FestivalAdmin(admin.ModelAdmin):
     list_display =  ('name', 'location', 'date', 'introduction')
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user_id','self_introduction', 'past_post', 'post_number', 'like_id', 
-    'comment_id', 'profile_picture')
+    list_display = ('user_id','self_introduction', 'past_post_group', 'post_number', 'like_id_group', 
+    'comment_id_group', 'profile_picture')
 class PostAdmin(admin.ModelAdmin):
     list_display = ('date', 'festival_id', 'location', 'content', 'user_id',
-    'picture', 'like_number', 'like_id', 'comment_id')
+    'picture', 'like_number', 'like_id_group', 'comment_id_group')
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('post_id', 'user_id','content')
     

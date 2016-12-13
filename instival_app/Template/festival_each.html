@@ -1,12 +1,13 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Christmas</title>
   
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../static/css/style_festival_each.css">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style_festival_each.css' %}" >
   <link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>
  
 
@@ -99,6 +100,7 @@
     <!-- Gallery -->
     <div class="gallery">
       <!-- Gallery  item -->
+    	{% for post in posts %}
       <div class="gallery_item">
         <!-- Gallery  item preview -->
         <span class="gallery_item_preview">
@@ -108,192 +110,32 @@
               <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
             </svg>
             
-              <img src="../img/christmas＿sq.jpg">
+             <img src="{{post.picture}}"/>
               <!--<img src ="img/profilePic.jpg" class ="img-circle">-->
               <span>
                 <div class="row">
                   <div class="col-lg-2">
-                    <img class ="img-circle" src ="../img/profilePic.jpg" >
+                    <img class ="img-circle" src ="{% static 'img/profilePic.jpg' %}" >
                   </div>
                   <div class="col-lg-2 col-lg-offset-1">
-                    <h3>Name</h3>
+                    <h3>{{post.user_id.name}}</h3>
                   </div>
                 </div>
                 
                 
               </span>
+              <div>
+                <iframe class="gallery_item_full " id="{% url 'instival_database.views.post_detail' pk=post.pk %}" src="{% url 'instival_database.views.post_detail' pk=post.pk %}" height="0" width="0" frameborder="0" >
+    
+                </iframe>
+   
+              </div>
           </a>
         </span>  
       </div>
 
-      
-      <div class="gallery_item">
-        <!-- Gallery  item preview -->
-        <span class="gallery_item_preview">
-          <a href="#" id="img_pre">
-           
-            <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-              <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-            </svg>
-            
-              <img src="../img/christmas＿sq2.jpg" class="poPic">
-              <span>
-                <div class="row">
-                  <div class="col-lg-2">
-                    <img class ="img-circle" src ="../img/profilePic.jpg" >
-                  </div>
-                  <div class="col-lg-2 col-lg-offset-1">
-                    <h3>Name</h3>
-                  </div>
-                </div>
-              </span>
-          </a>
-        </span>  
-      </div>
-
-      <div class="gallery_item">
-        <!-- Gallery  item preview -->
-        <span class="gallery_item_preview">
-          <a href="#" id="img_pre">
-           
-            <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-              <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-            </svg>
-            
-              <img src="../img/christmas＿sq3.jpg" class="poPic">
-              <span>
-                <div class="row">
-                  <div class="col-lg-2">
-                    <img class ="img-circle" src ="../img/profilePic.jpg" >
-                  </div>
-                  <div class="col-lg-2 col-lg-offset-1">
-                    <h3>Name</h3>
-                  </div>
-                </div>
-              </span>
-          </a>
-        </span>  
-      </div>
-
-      <div class="gallery_item">
-        <!-- Gallery  item preview -->
-        <span class="gallery_item_preview">
-          <a href="#" id="img_pre">
-           
-            <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-              <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-            </svg>
-            
-              <img src="../img/christmas＿sq4.jpg" class="poPic">
-              <span>
-                <div class="row">
-                  <div class="col-lg-2">
-                    <img class ="img-circle" src ="../img/profilePic.jpg" >
-                  </div>
-                  <div class="col-lg-2 col-lg-offset-1">
-                    <h3>Name</h3>
-                  </div>
-                </div>
-              </span>
-          </a>
-        </span>  
-      </div>
-
-      <div class="gallery_item">
-        <!-- Gallery  item preview -->
-        <span class="gallery_item_preview">
-          <a href="#" id="img_pre">
-           
-            <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-              <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-            </svg>
-            
-              <img src="../img/christmas＿sq5.jpg" class="poPic">
-              <span>
-                <div class="row">
-                  <div class="col-lg-2">
-                    <img class ="img-circle" src ="../img/profilePic.jpg" >
-                  </div>
-                  <div class="col-lg-2 col-lg-offset-1">
-                    <h3>Name</h3>
-                  </div>
-                </div>
-              </span>
-          </a>
-        </span>  
-      </div>
-
-      <div class="gallery_item">
-        <!-- Gallery  item preview -->
-        <span class="gallery_item_preview">
-          <a href="#" id="img_pre">
-           
-            <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-              <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-            </svg>
-            
-              <img src="../img/christmas＿sq.jpg" class="poPic">
-              <span>
-                <div class="row">
-                  <div class="col-lg-2">
-                    <img class ="img-circle" src ="../img/profilePic.jpg" >
-                  </div>
-                  <div class="col-lg-2 col-lg-offset-1">
-                    <h3>Name</h3>
-                  </div>
-                </div>
-              </span>
-          </a>
-        </span>  
-      </div>
-
-      <div class="gallery_item">
-        <!-- Gallery  item preview -->
-        <span class="gallery_item_preview">
-          <a href="#" id="img_pre">
-           
-            <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-              <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-            </svg>
-            
-              <img src="../img/christmas＿sq2.jpg" class="poPic">
-              <span>
-                <div class="row">
-                  <div class="col-lg-2">
-                    <img class ="img-circle" src ="../img/profilePic.jpg" >
-                  </div>
-                  <div class="col-lg-2 col-lg-offset-1">
-                    <h3>Name</h3>
-                  </div>
-                </div>
-              </span>
-          </a>
-        </span>  
-      </div>
-
-      <div class="gallery_item">
-        <!-- Gallery  item preview -->
-        <span class="gallery_item_preview">
-          <a href="#" id="img_pre">
-           
-            <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-              <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-            </svg>
-            
-              <img src="../img/christmas＿sq3.jpg" class="poPic">
-              <span>
-                 <div class="row">
-                  <div class="col-lg-2">
-                    <img class ="img-circle" src ="../img/profilePic.jpg" >
-                  </div>
-                  <div class="col-lg-2 col-lg-offset-1">
-                    <h3>Name</h3>
-                  </div>
-                </div>
-              </span>
-          </a>
-        </span>  
-      </div>
+    
+      {% endfor %}
 
     </div>
   </div>
@@ -301,20 +143,13 @@
 
 <!-- slide -->
   
-  <!-- iframe -->
-  <div>
-    <iframe class="gallery_item_full " id="img_full" src="fullFestivalPic.html" height="0" width="0" frameborder="0" >
-    
-    </iframe>
-   
-  </div>
-
-   <a id="closeImg" href="festival_each.html">X</a>
+   <!--iframe -->
+  
+   <a id="closeImg" href="">X</a>
         
 
-  <script src='../bootstrap/js/jquery-3.1.1.js'></script>
-  <script src="../bootstrap/js/bootstrap.min.js"></script>
-  <script src="../static/js/festival_each_intro.js"></script>
+  <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   
 
 
@@ -328,12 +163,20 @@
       $(".intro_more").slideToggle("slow");
     });
     $('body').on('click','#img_pre',function(){
-        $('#img_full').addClass('animated zoomIn');
-        document.getElementById("img_full").style.width = "800px";
-        document.getElementById("img_full").style.height = "600px";
+      var url = $('iframe',this).attr('src');
+      
+      
+     
+     
+        $('iframe').addClass('animated zoomIn');
+        document.getElementById(url).style.width = "800px";
+        document.getElementById(url).style.height = "600px";
         document.getElementById("closeImg").style.visibility="visible";
-       var stateObj = { page: "fullFestivalPic" };
-        window.history.pushState(stateObj, "", "fullFestivalPic.html");
+        
+       
+      
+      // var stateObj = { page: "fullFestivalPic" };
+      //   window.history.pushState(stateObj, "", "fullFestivalPic.html");
         $('body').css("background-color","#fff");
         $('body').css("background-color","rgba(255, 255, 255, 0.6)");
          
@@ -351,6 +194,6 @@
   
   </script>
   
-<script type="" src="../static/js/festival_each.js"></script>
+<script type="" src="{% static 'js/festival_each.js' %}"></script>
 </body>
 </html>

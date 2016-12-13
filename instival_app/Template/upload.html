@@ -49,7 +49,12 @@
                         <div id="f_text" style="display:none">                        
                         <!-- Festival_other textbox -->
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" >
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    {{form.as_p}}
+                                    
+                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" >
+                                </form>
                             </div>
                         </div>
                     </div>    
