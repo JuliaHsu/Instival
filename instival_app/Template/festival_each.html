@@ -101,6 +101,7 @@
     <div class="gallery">
       <!-- Gallery  item -->
     	{% for post in posts %}
+    	{% ifequal post.festival_id.name "Christmas" %}
       <div class="gallery_item">
         <!-- Gallery  item preview -->
         <span class="gallery_item_preview">
@@ -134,7 +135,7 @@
         </span>  
       </div>
 
-    
+      {% endifequal %}
       {% endfor %}
 
     </div>

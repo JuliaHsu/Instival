@@ -23,5 +23,5 @@ urlpatterns = [
    url(r'^admin/', include(admin.site.urls)),
     # url(r'^fullFestivalPic/',include('instival_database.app_urls')),
      url(r'^festival_each/',include('instival_database.app_urls')),
-     url(r'^login/', include('login.app_urls')),
+    #  url(r'^login/', include('login.app_urls')),
 ]
