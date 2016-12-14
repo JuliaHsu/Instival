@@ -24,4 +24,5 @@ urlpatterns = [
     # url(r'^fullFestivalPic/',include('instival_database.app_urls')),
      url(r'^festival_each/',include('instival_database.app_urls')),
     #  url(r'^login/', include('login.app_urls')),
+    url(r'^upload/',include('instival_database.app_urls')),
 ]
