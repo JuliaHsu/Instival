@@ -45,6 +45,6 @@ class Post(models.Model):
 
       
 class Comment(models.Model):
-    post_id = models.ForeignKey(Post)
+    post_id = models.ForeignKey(Post,related_name='comments')
     user_id = models.ForeignKey(User)
     content = models.TextField
