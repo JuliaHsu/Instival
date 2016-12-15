@@ -45,6 +45,15 @@ class Post(models.Model):
 
       
 class Comment(models.Model):
-    post_id = models.ForeignKey(Post,related_name='comments')
+    post = models.ForeignKey(Post,related_name='comments')
     user_id = models.ForeignKey(User)
-    content = models.TextField
+    content = models.TextField()
+    approved_comment = models.BooleanField(default=False)
+
+    
+
+
+    def __str__(self):
+        return self.content
+    
+  
