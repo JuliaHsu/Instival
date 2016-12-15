@@ -39,3 +39,7 @@ def add_comment_to_post(request, pk):
     else:
         form = CommentForm()
     return render(request, 'post_detail.html', {'form': form})
+    
+#login
+def login(request):
+    return render(request, 'login.html', {})
