@@ -12,7 +12,21 @@ def festival_each_post_gallery(request):
     return render(request,'festival_each.html', {'posts':posts})
 def post_detail(request,pk):
     post = get_object_or_404(Post,pk=pk)
-    return render(request, 'fullFestivalPic.html',{'post':post})
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return  render(request, 'fullFestivalPic.html',{'post':post})
+    else:
+         form = CommentForm()
+    context = {
+            'post' : post,
+            'form' : form,
+        }
+    return render(request, 'fullFestivalPic.html', context)
+    # return render(request, 'fullFestivalPic.html',{'post':post})
     
 # def upload(request):
 #     if request.method == 'GET':
@@ -35,7 +49,7 @@ def add_comment_to_post(request, pk):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
-            return redirect('post_detail.html', pk=post.pk)
+            return  render(request, 'fullFestivalPic.html',{'post':post})
     else:
-        form = CommentForm()
-    return render(request, 'post_detail.html', {'form': form})
+         form = CommentForm()
+    return render(request, 'add_comment_to_post.html', {'form': form})

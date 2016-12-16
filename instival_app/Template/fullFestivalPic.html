@@ -58,9 +58,11 @@
             			 
             		
             		
-            		{% for comment in post.comments.all %}
+            		
             		<div id="comments">
+            			
             			<section>
+            			{% for comment in post.comments.all %}	
             				<img src="{% static 'img/profilePic.jpg' %}" alt=""/>
 					     	<article>
 					       		<h4>
@@ -70,17 +72,19 @@
 						         	{{comment.content|linebreaks}}
 						       	</p>
 					     	</article>
-					      {% empty %}
+					     	<br>
+					     	{% empty %}
     							<p>No comments here yet :(</p>
-            		{% endfor %}
-                
-            		</section>
+            			 	
+                		{% endfor %}
+            			</section>
+            		
             			<div class="row">
                   	<div class="col-lg-4">
-                    	 <form method="POST" class="post-form">{% csrf_token %}
-									        {{ form.as_p }}
-									        <button type="submit" class="save btn btn-default">Submmit</button>
-									    </form>
+             			<form method="POST" class="post-form">{% csrf_token %}
+        					{{ form.as_p }}
+        				<button type="submit" class="save btn btn-default">Send</button>
+						
                 		</div>
             			</div>
             		
@@ -104,7 +108,25 @@
           $('.heart').click(function() {
             $(this).toggleClass("liked");
           });
+         
+    //     $('body').on('click','#add_comment',function(){
+    // 	var url = $(this).attr("href");
+      
+    //     alert(url );
+    // 	var stateObj = { page: url };
+    // 	window.history.pushState(stateObj, "", url);
+     
+     
+       
         
+       
+      
+      
+       
+         
+    //   // hide scroll
+      
+    // });
     });
     
 	</script>

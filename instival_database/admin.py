@@ -20,7 +20,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('date', 'festival_id', 'location', 'content', 'user_id',
     'picture', 'like_number', 'like_id_group', 'comment_id_group')
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('post_id', 'user_id','content')
+    list_display = ('post', 'user_id','content')
     
 admin.site.register(User,UserAdmin)
 admin.site.register(Festival,FestivalAdmin)
