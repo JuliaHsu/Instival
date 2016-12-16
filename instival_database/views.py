@@ -42,4 +42,6 @@ def add_comment_to_post(request, pk):
     
 #login
 def login(request):
-    return render(request, 'login.html', {})
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    
