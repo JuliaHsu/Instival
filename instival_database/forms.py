@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Post,Comment
+from .models import Post,Comment,User
 
 class PostForm(forms.ModelForm):
         class Meta:
@@ -11,3 +11,8 @@ class CommentForm(forms.ModelForm):
     class Meta: 
         model = Comment
         fields=['post','user_id','content',]
+        
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields =['name','email','password']

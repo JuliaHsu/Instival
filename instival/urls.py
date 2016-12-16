@@ -17,12 +17,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
+from instival_database.views import post_document
 
 admin.autodiscover();
 urlpatterns = [
    url(r'^admin/', include(admin.site.urls)),
     # url(r'^fullFestivalPic/',include('instival_database.app_urls')),
      url(r'^festival_each/',include('instival_database.app_urls')),
-    #  url(r'^login/', include('login.app_urls')),
-    # url(r'^upload/',include('instival_database.app_urls')),
+    # url(r'^login/', createAccount),
+     url(r'^post/',post_document),
 ]
