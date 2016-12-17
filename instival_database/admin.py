@@ -10,7 +10,7 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'password')
     
 class FestivalAdmin(admin.ModelAdmin):
-    list_display =  ('name', 'location', 'date', 'introduction')
+    list_display =  ('id','name', 'location', 'date', 'introduction')
 
 
 class ProfileAdmin(admin.ModelAdmin):

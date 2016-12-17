@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Christmas</title>
+  <title> {{festival.name}}</title>
   
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
@@ -55,11 +55,16 @@
     <!-- /.container -->
   </nav>
     <!--Festival-->
+    
   <section id="festival_intro" >
     <div class="container">
       <div class="row">
           <div class="col-lg-12 text-center">
-            <h1 class="section-heading">Christmas</h1>
+            
+            <h1 class="section-heading">
+              
+                {{festival.name}}
+              </h1>
           </div>
           <div class="row">
             <div class="col-lg-4">
@@ -67,7 +72,7 @@
                     
             <div class="col-lg-4 text-center">
                 <button class="introduction">Introduction:<br></button>
-                <p class="intro_more">Christmas
+                <p class="intro_more">{{festival.introduction}}
                 </p>
             </div>
           </div>
@@ -101,7 +106,7 @@
     <div class="gallery">
       <!-- Gallery  item -->
     	{% for post in posts %}
-    	{% ifequal post.festival_id.name "Christmas" %}
+    	
       <div class="gallery_item">
         <!-- Gallery  item preview -->
         <span class="gallery_item_preview">
@@ -135,19 +140,16 @@
         </span>  
       </div>
 
-      {% endifequal %}
+      
       {% endfor %}
 
     </div>
   </div>
 </div>
+<a id="closeImg" href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}" >X</a>
 
-<!-- slide -->
   
-   <!--iframe -->
-  
-   <a id="closeImg" href="{% url 'instival_database.views.festival_each_post_gallery' %}" >X</a>
-        
+   
 
   <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
   <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
@@ -166,9 +168,6 @@
     $('body').on('click','#img_pre',function(){
       var url = $('iframe',this).attr('src');
       
-      
-     
-     
         $('iframe').addClass('animated zoomIn');
         document.getElementById(url).style.width = "800px";
         document.getElementById(url).style.height = "600px";
@@ -181,9 +180,10 @@
         $('body').css("background-color","#fff");
         $('body').css("background-color","rgba(255, 255, 255, 0.6)");
          
-      // hide scroll
+      
       
     });
+   
     
     
      

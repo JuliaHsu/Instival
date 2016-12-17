@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,12 +13,12 @@
     <title>Instival</title>
 
  	<!-- Bootstrap Core CSS -->
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
     <!-- Custom CSS -->
-    <link href="../static/css/style_index.css" rel="stylesheet">
-    <link href="../static/css/style_login.css" rel="stylesheet">
+    <link href="{% static 'css/style_index.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style_login.css' %}" rel="stylesheet">
 
 </head>
 
@@ -75,7 +76,7 @@
             <div class="item active">
                 <!-- Set the first background image using inline CSS below. -->
                 <div class="fill">
-                    <img class="img-responsive" src="../img/christmas.jpg">
+                    <img class="img-responsive" src="{% static 'img/christmas.jpg' %}">
                 </div>
                 <div class="carousel-caption">
                     <a href="personal.html" style="text-decoration:none;color:white;">
@@ -94,7 +95,7 @@
             </div>
             <div class="item">
                 <!-- Set the third background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('../img/christmas_bg2.jpg');"></div>
+                <div class="fill" style="background-image:url('{% static 'img/christmas_bg2.jpg' %}');"></div>
                 <div class="carousel-caption">
                     <a href="personal.html" style="text-decoration:none;color:white;">
                         <h2>Merry Christmas, wanna share your christmas today?</h2>
@@ -114,19 +115,19 @@
     </header>
     
     <!-- Wrapper for Slides(instant) -->
-    <div class="slideshow-container">
-      <div class="mySlides fade">
-        <img class="img-responsive img-center" src="../img/christmas＿sq4.jpg">
-      </div>
+    <!--<div class="slideshow-container">-->
+    <!--  <div class="mySlides fade">-->
+    <!--    <img class="img-responsive img-center" src="{% static 'img/christmas＿sq4.jpg' %}">-->
+    <!--  </div>-->
     
-      <div class="mySlides fade">
-        <img class="img-responsive img-center" src="../img/christmas＿sq2.jpg">
-      </div>
+    <!--  <div class="mySlides fade">-->
+    <!--    <img class="img-responsive img-center" src="../img/christmas＿sq2.jpg">-->
+    <!--  </div>-->
     
-      <div class="mySlides fade">
-        <img class="img-responsive img-center" src="../img/christmas＿sq3.jpg">
-      </div>
-    </div>
+    <!--  <div class="mySlides fade">-->
+    <!--    <img class="img-responsive img-center" src="../img/christmas＿sq3.jpg">-->
+    <!--  </div>-->
+    <!--</div>-->
     <br>
     
     <div style="text-align:center">
@@ -139,53 +140,20 @@
     <!-- Projects Row -->
     <div class="container">
         <div class="row">
+            {% for festival in festivals %}
             <div class="col-lg-6 col-sm-6 text-center portfolio-item">
-                <a href="festival_each.html" class="portfolio-link">
+                <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}" class="portfolio-link">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content">
-                            <h3>Christmas</h3>
+                            <h3>{{festival.name}}</h3>
                         </div>
                     </div>
                     <div class="box">
-                        <img class="img-thumbnail img-responsive img-center" src="../img/christmas_1.jpg" alt="">
+                        <img class="img-thumbnail img-responsive img-center" src="{% static 'img/christmas_1.jpg' %}" alt="">
                     </div>
                 </a>
             </div>
-            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
-                <a href="festival_each.html" class="portfolio-link">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <h3>Constitution Day</h3>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <img class="img-thumbnail img-responsive img-center" src="../img/constitution.jpg" alt="">
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
-                <a href="#" class="portfolio-link">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <h3>Festival</h3>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <img class="img-thumbnail img-responsive img-center" src="http://placehold.it/1500x1500" alt="">
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
-                <a href="#" class="portfolio-link">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <h3>Festival</h3>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <img class="img-thumbnail img-responsive img-center" src="http://placehold.it/600x600" alt="">
-                    </div>
-                </a>
+            {% endfor %}
             </div>
         </div>
         <!-- /.row -->
@@ -198,13 +166,13 @@
 	<a id="closeImg" href="index.html">X</a>
 	
 	<!-- jQuery -->
-    <script src="../bootstrap/js/jquery-3.1.1.js"></script>
+    <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     
     <!-- Instant photos pop up -->
-    <script src="../static/js/index_instant.js"></script>
+    <script src="{% static 'js/index_instant.js' %}"></script>
     
     <script>
     $(document).ready(function() {
