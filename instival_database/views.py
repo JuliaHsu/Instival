@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponseRedirect
-from .models import Post
-from .forms import PostForm
+from .models import Post,User
+from .forms import PostForm,UserForm
 from .forms import CommentForm
 
 
@@ -44,5 +44,17 @@ def add_comment_to_post(request, pk):
     return render(request, 'post_detail.html', {'form': form})
     
 
-
+def createAccount(request):
+    
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            n=form.data.get("name")
+            e=form.data.get("email")
+            p=form.data.get("password")
+            p2=form.data.get("password2")
+            if p==p2:
+                User.objects.create(name=n,email=e,password=p)
+    
+    return render(request, 'signup.html')
 
