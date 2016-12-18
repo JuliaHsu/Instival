@@ -24,8 +24,9 @@ def post_document(request):
             post.user_id = u
             f=form.data.get("festival")
             post.festival_id = Festival.objects.get(name = f)
+            p=form.data.get("picture")
+            post.picture=p
             post.date = timezone.now()
-            post.picture = "http://placehold.it/1000x1000"
             post.like_id_group = ""
             post.comment_id_group = ""
             post.like_number = 0

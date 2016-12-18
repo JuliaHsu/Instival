@@ -26,7 +26,7 @@ $(function () {
         var context = canvas.getContext('2d');
         var img = new Image();
         img.onload = function () {
-            $('#btnSubmit').show();
+            $('#btnNext').show();
             canvas.height = width;
             canvas.width = width;
             context.drawImage(img, x1, y1, width, height, 0, 0, width, height);
@@ -34,6 +34,7 @@ $(function () {
             $('#imgCropped').val(canvas.toDataURL());
             var dataURL = canvas.toDataURL();
             document.getElementById("saveimage").src = dataURL;
+            document.getElementById("get_dataURL").value = dataURL;
         };
         
         img.src = $('#Image1').attr("src");
@@ -46,3 +47,9 @@ function SetCoordinates(c) {
     $('#imgHeight').val(c.h);
     $('#btnCrop').show();
 };
+
+function showNext(){
+    document.getElementById("photo").style.display = 'none'
+    document.getElementById("document").style.display = ''
+};
+

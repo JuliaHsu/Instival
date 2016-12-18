@@ -14,110 +14,144 @@
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/style_festival_each.css' %}">
     <link rel="stylesheet" href="{% static 'css/style_upload.css' %}">
+    	<link rel="stylesheet" href="{% static 'css/jquery.Jcrop.min.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/style_upload_photo.css' %}">
      <link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>
 </head>
 
 
 <body>
-	
+     <form method="POST">
+        {% csrf_token %}
+        
     <div class="wrapper_inner">
     	<div class="gallery ">
-          		<div class="box">
-          		    <form method="POST">
-                        {% csrf_token %}
+      		<div class="box">
+      		    <div id="photo"  style="">
+      		    <!-- load image -->
+                <input type="file" id="FileUpload1" accept=".jpg,.png,.gif" />
+            
+                <img  id="Image1" src="" alt="" style="display: none" />
+                
+                <br/>
+                <!-- crop button-->
+                <input type="button" id="btnCrop" value="Crop" style="display: none" />
+                <br/>
+                <br/>
+                <!-- canvas and save image-->
+                <canvas id="canvas" style="display: none" ></canvas>
+                <img id="saveimage"   />
+                <input type="text"  name = "picture" value=""  style="display: none" id="get_dataURL"  >
+            
+                <br/>
+                <br/>
+                <input type="button" id="btnCrop" value="Crop" style="display: none" />
+                <input type="hidden" name="imgX1" id="imgX1" />
+                <input type="hidden" name="imgY1" id="imgY1" />
+                <input type="hidden" name="imgWidth" id="imgWidth" />
+                <input type="hidden" name="imgHeight" id="imgHeight" />
+                <input type="hidden" name="imgCropped" id="imgCropped" />
+                <input type="button" id="btnNext" value="Next" style="display: none" onclick="showNext()">
+            </div>
+            
+            
+            <div id="document" style="display:none">
 
-                	<div class="col-xs-6 col-sm-3">
-                	    
-                        <!-- festival dropdown -->
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" 
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="1">
-                                Festival
-                                <span class="caret"></span>
-                            </button>
-                            <ul  class="dropdown-menu" aria-labelledby="dropdownMenu1" >
-                                <li><a href="#" >Christmas</a></li>
-                                <li><a href="#" >Halloween</a></li>
-                                <li><a href="#" >New Year's Eve</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#" >Other Festival</a></li>
-                            </ul>
+            	<div class="col-xs-6 col-sm-3">
+            	    
+                    <!-- festival dropdown -->
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="1">
+                            Festival
+                            <span class="caret"></span>
+                        </button>
+                        <ul  class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+                            <li><a href="#" >Christmas</a></li>
+                            <li><a href="#" >Halloween</a></li>
+                            <li><a href="#" >New Year's Eve</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" >Other Festival</a></li>
+                        </ul>
+                        
+                    </div><!-- festival dropdown-->
+                </div> 
+                
+            
+                
+                <div class="col-xs-6 col-sm-3">    
+                    <div id="f_text" style="display:none">                        
+                    <!-- Festival_other textbox -->
+                        <div class="input-group">
                             
-                        </div><!-- festival dropdown-->
-                    </div> 
+                                
+                                <input type="text" class="form-control" name = "festival"  id="input_festival" placeholder="" aria-describedby="basic-addon1" >
+                            
+                        </div>
+                    </div>
+                </div>    
                     
+                                            
+                                            
+                <div class="col-xs-6 col-sm-3">
+                    <!-- Country dropdown -->
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle"  type="button" id="dropdownMenu1" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="2">
+                            Country
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">Taiwan</a></li>
+                            <li><a href="#">USA</a></li>
+                            <li><a href="#">Japan</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Other Country</a></li>
+                        </ul>
+                    </div><!-- Country dropdown -->
+                </div>
+                
+                
+                <div class="col-xs-6 col-sm-3">   
+                    <div id="c_text" style="display:none">                     
+                    <!-- Country_other textbox -->
+                    
+                        <div class="input-group">
+                            <input type="text"  name = "location" value="" id="input_country" class="form-control" >
+                        </div>
+                    </div>
+                </div>
+                                    
+                <hr>
+                <br/><br/>
                 
                     
-                    <div class="col-xs-6 col-sm-3">    
-                        <div id="f_text" style="display:none">                        
-                        <!-- Festival_other textbox -->
-                            <div class="input-group">
-                                
-                                    
-                                    <input type="text" class="form-control" name = "festival"  id="input_festival" placeholder="" aria-describedby="basic-addon1" >
-                                
-                            </div>
-                        </div>
-                    </div>    
-                        
-                                                
-                                                
-                    <div class="col-xs-6 col-sm-3">
-                        <!-- Country dropdown -->
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle"  type="button" id="dropdownMenu1" 
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="2">
-                                Country
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="#">Taiwan</a></li>
-                                <li><a href="#">USA</a></li>
-                                <li><a href="#">Japan</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Other Country</a></li>
-                            </ul>
-                        </div><!-- Country dropdown -->
-                    </div>
-                    
-                    
-                    <div class="col-xs-6 col-sm-3">   
-                        <div id="c_text" style="display:none">                     
-                        <!-- Country_other textbox -->
-                        
-                            <div class="input-group">
-                                <input type="text"  name = "location" value="" id="input_country" class="form-control" >
-                            </div>
+                    <!-- document -->
+                    <div class="row control-group">
+                        <div class="form-group col-md-8 col-md-offset-2 floating-label-form-group controls">
+                                <textarea rows="5" name="content" class="form-control" placeholder="Message" id="content" required data-validation-required-message="Please enter a message."></textarea>
+                               
                         </div>
                     </div>
                                         
-                    <hr>
-                    <br/><br/>
+                    <br/>
                     
-                        
-                        <!-- document -->
-                        <div class="row control-group">
-                            <div class="form-group col-md-8 col-md-offset-2 floating-label-form-group controls">
-                                    <textarea rows="5" name="content" class="form-control" placeholder="Message" id="content" required data-validation-required-message="Please enter a message."></textarea>
-                                   
-                            </div>
-                        </div>
-                                            
-                        <br/>
-                        
-                        <input type="submit" value="Submit">
-                    </form>
-
+                    <input type="submit" value="Submit">
+                
                 </div>
-    	</div>
+            </div>
+	    </div>
 	</div>
+	
+	</form>
 	
         
         
   <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
   <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'js/upload.js' %}"></script>
-
+    <script type="text/javascript" src="{% static 'js/jquery.Jcrop.min.js' %}"></script>
+    <script src="{% static 'js/upload_photo.js' %}"></script>
     
 </body>
 
