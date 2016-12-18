@@ -19,7 +19,8 @@
     <!-- Custom CSS -->
     <link href="{% static 'css/style_index.css' %}" rel="stylesheet">
     <link href="{% static 'css/style_login.css' %}" rel="stylesheet">
-
+    <link href="{% static 'css/iframe.css' %}" rel="stylesheet">
+     <link href="{% static 'css/jquery.qtip.min.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -63,57 +64,34 @@
 	<!--Navbar-->
 	
 	<!-- Full Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
+   <img src="{% static 'img/map2.png' %}" id="mapka" usemap="#statesMap">
 
-        <!-- Wrapper for Slides -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <!-- Set the first background image using inline CSS below. -->
-                <div class="fill">
-                    <img class="img-responsive" src="{% static 'img/christmas.jpg' %}">
-                </div>
-                <div class="carousel-caption">
-                    <a href="personal.html" style="text-decoration:none;color:white;">
-                        <h2>Merry Christmas, wanna share your christmas today?</h2>
-                    </a>
-                    </div>
-                </div>
-            <div class="item">
-                <!-- Set the second background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('../img/christmas_bg.jpg');"></div>
-                <div class="carousel-caption">
-                    <a href="personal.html" style="text-decoration:none;color:white;">
-                        <h2>Merry Christmas, wanna share your christmas today?</h2>
-                    </a>
-                </div>
-            </div>
-            <div class="item">
-                <!-- Set the third background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('{% static 'img/christmas_bg2.jpg' %}');"></div>
-                <div class="carousel-caption">
-                    <a href="personal.html" style="text-decoration:none;color:white;">
-                        <h2>Merry Christmas, wanna share your christmas today?</h2>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="icon-next"></span>
-        </a>
-
-    </header>
+<map name="statesMap" id="statesMap">
+    <area alt="TW" title="TW" href="#" coords="768,196,6" shape="circle" >
+    <area alt="USA" title="USA" href="#" coords="120,141,45" shape="circle">
     
+</map>
+    
+   
+    <div id="statesMap-USA" class="tooltip-content">
+        {% for festival in festivals %}
+        
+        <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}">{{festival.name}}</a>
+        <br>
+        {% endfor %}
+    </div>
+    
+    
+    
+
+
+   
+
+
+ 
+
+
+
     <!-- Wrapper for Slides(instant) -->
     <!--<div class="slideshow-container">-->
     <!--  <div class="mySlides fade">-->
@@ -153,6 +131,7 @@
                     </div>
                 </a>
             </div>
+            
             {% endfor %}
             </div>
         </div>
@@ -165,6 +144,7 @@
     </iframe>
 	<a id="closeImg" href="index.html">X</a>
 	
+	
 	<!-- jQuery -->
     <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
 
@@ -174,6 +154,8 @@
     <!-- Instant photos pop up -->
     <script src="{% static 'js/index_instant.js' %}"></script>
     
+    <script type="" src="{% static 'js/jquery.rwdImageMaps.min.js' %}"></script>
+    <script src="{% static 'js/jquery.qtip.min.js' %}"></script>
     <script>
     $(document).ready(function() {
         $('body').on('click', '#btn_sign', function() {
@@ -189,6 +171,38 @@
              
             // hide scroll
         });
+        
+   
+    
+    
+    $('area[alt]').each(function () {
+        var elem = $(this),
+            map = elem.parent(),
+            image = $('img[usemap="#'+map.attr('name')+'"]');
+        
+        elem.qtip({
+            content: {
+                text: $('#statesMap-' + elem.attr('alt')), // Attempt to grab content from #statesMap-<State> elements first
+                attr: 'alt' // No content? Grab the content from the 'alt' attribute
+            },
+            position: {
+                viewport: image
+            },
+            show: {
+                event: 'click',
+                solo: true
+            },
+            hide: {
+                // Allow the user to hover on the tooltip
+                fixed: true,
+                delay: 200
+            },
+          style: {
+               classes: 'qtip-yellow qtip-shadow'
+            }
+        });
+    });
+    
     });
     </script>
     

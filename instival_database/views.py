@@ -9,7 +9,7 @@ from django.db.models import Q
 pk_url_kwarg = 'post_pk'
 # Create your views here.
 def showHomePage(request):
-    time_thresholdAfter = datetime.now() + timedelta(days=14)
+    time_thresholdAfter = datetime.now() + timedelta(days=20)
     time_thresholdBefore = datetime.now() - timedelta(days=14)
     festivals = Festival.objects.filter(Q(date__lt=time_thresholdAfter) | Q(date__lt=time_thresholdBefore) )
     
@@ -23,6 +23,10 @@ def festival_each_post_gallery(request,pk):
         'festival':festival,
     }
     return render(request,'festival_each.html',content)
+    
+def country_album(request):
+   
+    return render(request,'festival_each.html',{})
     
 def post_detail(request,pk):
     # pk_url_kwarg = 'post_id'

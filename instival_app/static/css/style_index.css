@@ -2,6 +2,7 @@
 html,
 body {
   height: 100%;
+  padding-top:70px;
 }
 
 .carousel,
@@ -162,4 +163,8 @@ body {
 
 #closeImg:hover {
   color: #F88484;
+}
+
+#map{
+  margin:0px auto;
 }
