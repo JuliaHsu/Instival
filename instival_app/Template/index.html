@@ -63,14 +63,17 @@
 	</nav>
 	<!--Navbar-->
 	
-	<!-- Full Page Image Background Carousel Header -->
-   <img src="{% static 'img/map2.png' %}" id="mapka" usemap="#statesMap">
+	
+	<div class="map_div">
+	    <img src="{% static 'img/map2.png' %}" id="world_map" usemap="#statesMap">
 
-<map name="statesMap" id="statesMap">
-    <area alt="TW" title="TW" href="#" coords="768,196,6" shape="circle" >
-    <area alt="USA" title="USA" href="#" coords="120,141,45" shape="circle">
+        <map name="statesMap" id="statesMap">
+            <area alt="TW" title="TW" href="#" coords="768,196,6" shape="circle" >
+            <area alt="USA" title="USA" href="#" coords="120,141,45" shape="circle">
     
-</map>
+        </map>
+	</div>
+   
     
    
     <div id="statesMap-USA" class="tooltip-content">
