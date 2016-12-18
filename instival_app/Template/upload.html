@@ -23,6 +23,8 @@
     <div class="wrapper_inner">
     	<div class="gallery ">
           		<div class="box">
+          		    <form method="POST">
+                        {% csrf_token %}
 
                 	<div class="col-xs-6 col-sm-3">
                 	    
@@ -34,7 +36,7 @@
                                 <span class="caret"></span>
                             </button>
                             <ul  class="dropdown-menu" aria-labelledby="dropdownMenu1" >
-                                <li><a href="#" >Chrismas</a></li>
+                                <li><a href="#" >Christmas</a></li>
                                 <li><a href="#" >Halloween</a></li>
                                 <li><a href="#" >New Year's Eve</a></li>
                                 <li role="separator" class="divider"></li>
@@ -52,7 +54,7 @@
                             <div class="input-group">
                                 
                                     
-                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" >
+                                    <input type="text" class="form-control" name = "festival"  id="input_festival" placeholder="" aria-describedby="basic-addon1" >
                                 
                             </div>
                         </div>
@@ -63,7 +65,7 @@
                     <div class="col-xs-6 col-sm-3">
                         <!-- Country dropdown -->
                         <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" 
+                            <button class="btn btn-default dropdown-toggle"  type="button" id="dropdownMenu1" 
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="2">
                                 Country
                                 <span class="caret"></span>
@@ -84,7 +86,7 @@
                         <!-- Country_other textbox -->
                         
                             <div class="input-group">
-                                <input type="text" id="input_country" class="form-control" placeholder="" aria-describedby="basic-addon1">
+                                <input type="text"  name = "location" value="" id="input_country" class="form-control" >
                             </div>
                         </div>
                     </div>
@@ -92,12 +94,11 @@
                     <hr>
                     <br/><br/>
                     
-                        <form method="POST">
-                                        {% csrf_token %}
+                        
                         <!-- document -->
                         <div class="row control-group">
                             <div class="form-group col-md-8 col-md-offset-2 floating-label-form-group controls">
-                                    <textarea rows="5" class="form-control" placeholder="Message" id="content" required data-validation-required-message="Please enter a message."></textarea>
+                                    <textarea rows="5" name="content" class="form-control" placeholder="Message" id="content" required data-validation-required-message="Please enter a message."></textarea>
                                    
                             </div>
                         </div>

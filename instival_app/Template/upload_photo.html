@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,10 @@
 	<meta charset="UTF-8">
 	<title>upload_photo</title>
 	
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../static/css/jquery.Jcrop.min.css" type="text/css" />
-    <link rel="stylesheet" href="../static/css/style_upload_photo.css">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'static/css/jquery.Jcrop.min.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'static/css/style_upload_photo.css' %}">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' type='text/css'>
 
 <body>
@@ -46,8 +47,8 @@
 		
 	</div>
 
-    <script type="text/javascript" src="../static/js/jquery-3.1.1.js"></script>
-    <script type="text/javascript" src="../static/js/jquery.Jcrop.min.js"></script>
-    <script src="../static/js/upload_photo.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-3.1.1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.Jcrop.min.js' %}"></script>
+    <script src="{% static 'js/upload_photo.js' %}"></script>
 </body>
 </html>

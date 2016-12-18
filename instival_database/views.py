@@ -1,8 +1,9 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponseRedirect
-from .models import Post,User
+from .models import Post,User,Festival
 from .forms import PostForm,UserForm
 from .forms import CommentForm
+from django.utils import timezone
 
 
 # Create your views here.
@@ -15,17 +16,18 @@ def post_detail(request,pk):
     return render(request, 'fullFestivalPic.html',{'post':post})
     
 def post_document(request):
+    u=User.objects.get(name ='Julia2')
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user_id = request.User
-            post.festival_id = request.Festival
+            post.user_id = u
+            f=form.data.get("festival")
+            post.festival_id = Festival.objects.get(name = f)
             post.date = timezone.now()
-            post.location = "Taiwan"
-            post.picture = "http://placehold.it/600x600"
-            post.like_id_group = "123"
-            post.comment_id_group = "123"
+            post.picture = "http://placehold.it/1000x1000"
+            post.like_id_group = ""
+            post.comment_id_group = ""
             post.like_number = 0
             post.save()
     return render(request, 'upload.html', {})
