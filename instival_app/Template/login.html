@@ -27,7 +27,6 @@
 <body>
   <!--Facebook Login-->
   <script>
-  
   window.fbAsyncInit = function() {
   FB.init({
     appId      : '389702174703368',
@@ -61,6 +60,7 @@
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
+      //get_my_profile();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -97,11 +97,26 @@
 
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
-    if (response.status === 'connected') {
-      var accessToken = response.authResponse.accessToken;
-    } 
   });
 
+  function login() {
+    FB.login(function(response) {
+        if (response.authResponse) {
+            // 連結成功, 狀態為 connected
+            alert('登入成功');
+            alert('UserID' + response.authResponse.userID);
+            FB.api('/me', function(response) {
+              alert('UserName' + response.name);
+              alert('UserEmail' + response.email);
+            });
+            console.log(response.authResponse)
+        } else {
+            // 取消登入
+            alert('登入失敗');
+        }
+        
+    });
+}
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
@@ -109,9 +124,27 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
+      console.log('Successful login for: ' + response.id);
+      console.log('Successful login for: ' + response.email);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+        'Thanks for logging in, ' + response.name + response.email + '!';
     });
+    
+    FB.api('/me', {fields:"id,name,email"}, function(response) {
+            // Insert your code here
+            userId = response.id;
+            name = response.name;
+            email = response.email;
+            
+            $.get('/getuserid/', {
+              name:name,
+              email:email,
+              userId:userId
+            }, function(data) {
+              
+            });
+            console.log(userId + " " + name + " " + email)
+      });
   }
   </script>
   <!--Facebook Login-->
@@ -196,7 +229,7 @@
     
     var get_my_profile = function() {
       
-      FB.api('/me', function(response) {
+      FB.api('/me',{fields:"id,name,email"}, function(response) {
         userId = response.id;
         name = response.name;
         email = response.email;

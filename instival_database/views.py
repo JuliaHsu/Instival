@@ -50,29 +50,19 @@ def getuserid(request):
         name = request.GET['name']
         email = request.GET['email']
         userId = request.GET['userId']
-        
-        if User.objects.filter(user_id = userId).exists():
+        print(userId)
+        if User.objects.filter(userId = userId).exists():
             print name + " is using"
-            user = User.objects.filter(user_id = userId)[0]
+            user = User.objects.filter(userId = userId)[0]
             user.save()
         else:
             User.objects.create (
+                userId = userId,
                 name = name,
                 email = email
             )
-            
+        
     return HttpResponseRedirect(userId)
 
-# def getuser(request):
-#     if request.method == 'POST':
-#         form = UserForm(request.POST)
-#          if form.is_valid():
-#             n=form.data.get("name")
-#             e=form.data.get("email")
-#             p=form.data.get("password")
-#             p2=form.data.get("password2")
-#             if p==p2:
-#                 User.objects.create(name=n,email=e,password=p)
-    
-#     return render(request, 'login.html')
+
             
