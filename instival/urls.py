@@ -19,13 +19,11 @@ from django.contrib import admin
 from django.conf.urls import include
 from instival_database import views
 
+
 admin.autodiscover();
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    # url(r'^fullFestivalPic/',include('instival_database.app_urls')),
-    
-    url(r'^index/',include('instival_database.index_url'))
-   
-    #  url(r'^login/', include('login.app_urls')),
-    # url(r'^upload/',include('instival_database.app_urls')),
+    url(r'^index/',include('instival_database.index_url')),
+    url(r'^signup/', views.createAccount),
+    url(r'^post/',views.post_document),
 ]

@@ -2,7 +2,13 @@
 #world_map{
   display:block; 
   margin:auto;
+  
 }
+
+img #world_map, map area{
+    outline: none;
+}
+
 .tooltip-content {
     display: none;
     font-size:14px; 

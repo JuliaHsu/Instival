@@ -331,7 +331,7 @@ body {
 .gallery_item_full img {
   display: block;
   margin:auto;
-  max-width: 500px;
+  max-width: 600px;
 }
 
 .gallery_item_full .img-circle{
