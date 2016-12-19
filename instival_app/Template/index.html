@@ -109,11 +109,21 @@
    
     
    
-    <div id="statesMap-USA" class="tooltip-content">
+    <div id="statesMap-UnitedStatesofAmerica" class="tooltip-content">
+        <h4>United States of America</h4>
         {% for festival in festivals %}
         
         <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}">{{festival.name}}</a>
-        <br>
+        <br><br>
+        {% endfor %}
+    </div>
+    
+    <div id="statesMap-Taiwan" class="tooltip-content">
+        <h4>Taiwan</h4>
+        {% for festival in festivals %}
+        
+        <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}">{{festival.name}}</a>
+        <br><br>
         {% endfor %}
     </div>
   
