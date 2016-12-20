@@ -15,18 +15,7 @@
   
 </head>
 <body>
-	
 
-	<!--<div>-->
-	<!--	<h3>-->
-	<!--		{{post.festival_id}}-->
-	<!--		{{post.content}}-->
-	<!--	</h3>-->
-		
-	<!--	<img src="{{post.picture}}"/>-->
-	<!--</div>-->
-
-	
 	<div class="wrapper_inner">
 	<div class="gallery ">
 		<div class="">
@@ -42,7 +31,7 @@
             		</div>
             	   <div class="row">
                     <div class="col-lg-4">
-                      <h5 class="postName">Posted by: <a target="_blank" href="personal.html">{{post.user_id.name}}</a></h5>
+                      <h5 class="postName">Posted by: <a target="_blank" href="{% url 'instival_database.views.showPersonal'%}">{{post.user_id.name}}</a></h5>
                     </div>
                     <div class="col-lg-2">
                       <h5>
@@ -60,41 +49,34 @@
             		
             		
             		<div id="comments">
+            			
             			<section>
+            			{% for comment in post.comments.all %}	
             				<img src="{% static 'img/profilePic.jpg' %}" alt=""/>
 					     	<article>
 					       		<h4>
-					        		John Doe
+					        		{{comment.user_id.name}}
 					       		</h4>
 						       	<p>
-						         	Nice Picture! bla bla bla bla bla bla 
+						         	{{comment.content|linebreaks}}
 						       	</p>
 					     	</article>
-					      
-					     	 2
-				        	 <img src="{% static 'img/profilePic.jpg' %}" />
-					     	<article>
-						       	<h4>
-						        	Jane Doe
-						       	</h4>
-						       	<p>
-						         	Nice picture!
-						       	</p>
-					     	</article>
-
-                <div class="row">
-                  <div class="col-lg-4">
-                    <form action="demo_form.asp" id="comment_text_box">
-                      <input type="text" name="comment" class="form-control" placeholder="comment...">
-                    </form> 
-                  </div>
-                  <div class="col-lg-4">
-                    <input type="button" value="Submit" id="comment_submit">
-                  </div>
-                </div>
-            		</section>
-            			
-            		</div>
+					     	<br>
+					     	{% empty %}
+    							<p>No comments here yet :(</p>
+            			 	
+                		{% endfor %}
+            			</section>
+            		
+            			<div class="row">
+                  	<div class="col-lg-4">
+             			<form method="POST" class="post-form">{% csrf_token %}
+        					{{ form.as_p }}
+        				<button type="submit" class="save btn btn-default">Send</button>
+						
+                		</div>
+            			</div>
+            		
             		
 
             		 
@@ -115,7 +97,25 @@
           $('.heart').click(function() {
             $(this).toggleClass("liked");
           });
+         
+    //     $('body').on('click','#add_comment',function(){
+    // 	var url = $(this).attr("href");
+      
+    //     alert(url );
+    // 	var stateObj = { page: url };
+    // 	window.history.pushState(stateObj, "", url);
+     
+     
+       
         
+       
+      
+      
+       
+         
+    //   // hide scroll
+      
+    // });
     });
     
 	</script>

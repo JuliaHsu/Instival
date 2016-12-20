@@ -1,5 +1,7 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     
 
@@ -12,13 +14,13 @@
     <title>Name</title>
 
  	<!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../static/css/style_festival_each.css">
-	<link rel="stylesheet" href="../static/css/style_personal_menu.css">
-    <link rel="stylesheet" href="../static/css/style_personal.css">
- 	<link rel="stylesheet" href="../static/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style_festival_each.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style_personal_menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_personal.css' %}">
+ 	<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
 
 </head>
 
@@ -35,7 +37,7 @@
                 	<span class="icon-bar"></span>
             	</button>
             	<!--Logo-->
-            	<a class="navbar-brand" href="index.html" style="margin-left: 3px;">LOGO</a>
+            	<a class="navbar-brand" href="{% url 'instival_database.views.showHomePage'%}" style="margin-left: 3px;">LOGO</a>
 			</div>
 			
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -69,8 +71,8 @@
     		<li>
     			<div class="link"><i class="fa fa-paint-brush"></i>Profile<i class="fa fa-chevron-down"></i></div>
     			<ul class="submenu">
-    				<li><a href="./personal.html">Home</a></li>
-    				<li><a href="./calendar.html">Calendar</a></li>
+    				<li><a href="{% url 'instival_database.views.showPersonal'%}">Home</a></li>
+    				<li><a href="{% url 'instival_database.views.showCalendar'%}">Calendar</a></li>
     			</ul>
     		</li>
     		<!--li>
@@ -115,7 +117,7 @@
                 <div class="media">
                     <div class="media-left">
                         <span class="media_item_preview">
-                            <img src="../img/profilePic.jpg" class="img-responsive img-circle" >
+                            <img src="{% static 'img/profilePic.jpg' %}" class="img-responsive img-circle" >
                         </span>
                     </div>
         </div>
@@ -123,7 +125,7 @@
         </div>
     	<div class="col-xs-3 col-md-3">    
                     <div class="media-body">
-                        <h1 class="media-heading">John Doe</h4>
+                        <h1 class="media-heading">Julia2</h4>
                         <p>Lorem ipsum...</p>
                     </div>
         </div>
@@ -148,7 +150,7 @@
                         <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
                         </svg>
                         
-                        <img src="../img/add.png">
+                        <img src="{% static 'img/add.png' %}">
                         
                         <span>
                             <h3>Post</h3>
@@ -168,7 +170,7 @@
                         <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
                         </svg>
                         
-                        <img src="../img/thanksgiving_sq.jpg">
+                        <img src="{% static 'img/thanksgiving_sq.jpg' %}">
                         
                         <span>
                             <h3>Thanksgiving</h3>
@@ -188,7 +190,7 @@
                         <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
                         </svg>
                         
-                        <img src="../img/halloween_sq.jpg">
+                        <img src="{% static 'img/halloween_sq.jpg' %}">
                         
                         <span>
                             <h3>Halloween</h3>
@@ -208,7 +210,7 @@
                         <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
                         </svg>
                         
-                        <img src="../img/moonFestival_sq.jpg">
+                        <img src="{% static 'img/moonFestival_sq.jpg' %}">
                         
                         <span>
                             <h3>Moon Festival</h3>
@@ -228,7 +230,7 @@
                         <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
                         </svg>
                         
-                        <img src="../img/patrick_sq.jpg">
+                        <img src="{% static 'img/patrick_sq.jpg' %}">
                         
                         <span>
                             <h3>Sant Patrick</h3>
@@ -248,7 +250,7 @@
                         <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
                         </svg>
                         
-                        <img src="../img/newYear_sq.jpg">
+                        <img src="{% static 'img/newYear_sq.jpg' %}">
                         
                         <span>
                             <h3>New Year's Eve</h3>
@@ -268,7 +270,7 @@
                         <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
                         </svg>
                         
-                        <img src="../img/christmas＿sq2.jpg">
+                        <img src="{% static 'img/christmas＿sq2.jpg' %}">
                         
                         <span>
                             <h3>Christmas</h3>
@@ -283,15 +285,14 @@
     
     
     <div>
-        <iframe class="gallery_item_full " id="img_full" src="upload_photo.html" height="0" width="0" frameborder="0" ></iframe>
-        <iframe class="gallery_item_full " id="img_full_pic" src="fullFestivalPic.html" height="0" width="0" frameborder="0" ></iframe>
-
+        <iframe class="gallery_item_full " id="img_full" src="{% url 'instival_database.views.post_document'%}" height="0" width="0" frameborder="0" ></iframe>
+        <iframe class="gallery_item_full " id="img_full_pic" src="{% url 'instival_database.views.post_detail' pk=1 %}" height="0" width="0" frameborder="0" ></iframe>
     </div>
-    <a id="closeImg" href="personal.html">X</a>
+    <a id="closeImg" href="{% url 'instival_database.views.showPersonal'%}">X</a>
     
-    <script src='../bootstrap/js/jquery-3.1.1.js'></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-    <script src="../static/js/personal_menu.js"></script>
+    <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/personal_menu.js' %}"></script>
     <script>
         $('body').on('click','#upload',function(){
     
@@ -299,8 +300,8 @@
             document.getElementById("img_full").style.width = "800px";
             document.getElementById("img_full").style.height = "600px";
             document.getElementById("closeImg").style.visibility="visible";
-            var stateObj = { foo: "upload_photo.html" };
-            window.history.pushState(stateObj, "page 2", "upload_photo.html");
+            var stateObj = { foo: "{% url 'instival_database.views.post_document'%}" };
+            window.history.pushState(stateObj, "page 2", "{% url 'instival_database.views.post_document'%}");
     
             $('body').css("background-color","#fff");
             $('body').css("background-color","rgba(255, 255, 255, 0.6)");
@@ -313,8 +314,8 @@
             document.getElementById("img_full_pic").style.width = "800px";
             document.getElementById("img_full_pic").style.height = "600px";
             document.getElementById("closeImg").style.visibility="visible";
-            var stateObj = { foo: "fullFestivalPic.html" };
-            window.history.pushState(stateObj, "page 2", "fullFestivalPic.html");
+            var stateObj = { foo: "{% url 'instival_database.views.post_detail' pk=1 %}" };
+            window.history.pushState(stateObj, "page 2", "{% url 'instival_database.views.post_detail' pk=1 %}");
     
             $('body').css("background-color","#fff");
             $('body').css("background-color","rgba(255, 255, 255, 0.6)");

@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +13,14 @@
     <title>Instival</title>
 
  	<!-- Bootstrap Core CSS -->
-    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
     <!-- Custom CSS -->
-    <link href="../static/css/style_index.css" rel="stylesheet">
-    <link href="../static/css/style_login.css" rel="stylesheet">
-
+    <link href="{% static 'css/style_index.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style_login.css' %}" rel="stylesheet">
+    <link href="{% static 'css/iframe.css' %}" rel="stylesheet">
+     <link href="{% static 'css/jquery.qtip.min.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -34,7 +36,7 @@
                 	<span class="icon-bar"></span>
             	</button>
             	<!--Logo-->
-            	<a class="navbar-brand" href="index.html" style="margin-left: 3px;">LOGO</a>
+            	<a class="navbar-brand" href="{% url 'instival_database.views.showHomePage'%}" style="margin-left: 3px;">LOGO</a>
 			</div>
 			
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,72 +63,70 @@
 	</nav>
 	<!--Navbar-->
 	
-	<!-- Full Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
+	
+	<div class="map_div">
+	    <img src="{% static 'img/map2.png' %}" id="world_map" usemap="#statesMap" hidefocus="true" >
 
-        <!-- Wrapper for Slides -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <!-- Set the first background image using inline CSS below. -->
-                <div class="fill">
-                    <img class="img-responsive" src="../img/christmas.jpg">
-                </div>
-                <div class="carousel-caption">
-                    <a href="personal.html" style="text-decoration:none;color:white;">
-                        <h2>Merry Christmas, wanna share your christmas today?</h2>
-                    </a>
-                    </div>
-                </div>
-            <div class="item">
-                <!-- Set the second background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('../img/christmas_bg.jpg');"></div>
-                <div class="carousel-caption">
-                    <a href="personal.html" style="text-decoration:none;color:white;">
-                        <h2>Merry Christmas, wanna share your christmas today?</h2>
-                    </a>
-                </div>
-            </div>
-            <div class="item">
-                <!-- Set the third background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('../img/christmas_bg2.jpg');"></div>
-                <div class="carousel-caption">
-                    <a href="personal.html" style="text-decoration:none;color:white;">
-                        <h2>Merry Christmas, wanna share your christmas today?</h2>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <map name="statesMap" id="statesMap">
+            <area shape="poly" coords="71,40,104,45,103,47,71,75,30,75,32,80,16,75,15,69,38,59,27,60,30,58,28,56,48,53,43,48,44,46,72,71,23,76,157,109,168,114,161,117,175,117,177,121,165,135,170,133,181,121,182,122,177,135,178,136,228,116,193,145,171,190,169,191,165,190,161,175,116,189,111,175,104,177,98,168,76,111,79,111,78,116" href="#" alt="UnitedStatesofAmerica" title="UnitedStatesofAmerica"/>
 
-        <!-- Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="icon-next"></span>
-        </a>
+<area shape="poly" coords="68,166,113,177,122,215,148,204,128,227,79,181,75,170,74,168,73,169,79,196,133,218" href="#" alt="Mexico" title="Mexico"/>
 
-    </header>
+<area shape="poly" coords="134,217,140,226,129,231,129,223,133,218" href="#" alt="Guatemala" title="Guatemala"/>
+
+<area shape="poly" coords="142,223,155,228,143,233,138,229,139,224" href="#" alt="Honduras" title="Honduras"/>
+
+<area shape="poly" coords="154,227,153,241,144,233" href="#" alt="Nicaragua" title="Nicaragua"/>
+
+<area shape="poly" coords="147,240,154,243,156,249,153,247" href="#" alt="CostaRica" title="CostaRica"/>
+
+<area shape="poly" coords="163,245,171,246,172,251,169,254,155,246" href="#" alt="Panama" title="Panama"/>
+
+<area shape="poly" coords="353,9,386,13,371,34,358,35,368,40,368,42,304,70,297,27,280,26,286,23,287,23,277,20,374,14,355,37,360,39,354,41,354,42,362,40" href="#" alt="Greenland" title="Greenland"/>
+
+<area shape="poly" coords="287,9,305,11,305,12,237,20,240,15,248,13,259,20,255,18,255,17,274,14,270,10,179,25,185,25,191,29,189,30,230,25,253,29,252,31,228,29,199,26,202,27,199,30,158,30,193,36,193,42,158,43,162,39,148,38,148,37,221,31,226,34,223,34,213,37,206,32,209,34,211,38,201,40,200,35,232,32,233,33,235,38,243,33,272,54,268,58,243,41,232,44,227,54,179,76,180,77,201,102,201,101,226,66,244,72,244,77,254,74,266,101,181,131,191,125,77,103,82,74,75,72,72,72,209,45,207,40,215,39,214,45,219,48,217,49,226,43,222,41,225,36,169,34,165,35,232,36,232,41,233,36,225,40,167,42,170,42,141,52,128,54,128,55,133,55,132,58,147,53,205,55,194,61,148,65,143,68,153,66,140,66,139,68,136,71,134,69,131,70,180,83,260,92,157,94,157,100,157,103,256,94" href="#" alt="Canada" title="Canada"/>
+
+<area shape="poly" coords="671,99,734,116,646,110,650,107,671,106" href="#" alt="Mongolia" title="Mongolia"/>
+
+<area shape="poly" coords="726,94,772,113,774,116,756,141,748,137,742,143,758,150,753,158,709,204,697,193,699,187,637,170,640,155,618,144,643,110,717,130,717,122,735,116,732,116,720,114,770,123" href="#" alt="China" title="China"/>
+
+<area shape="poly" coords="768,191,768,201,765,200" href="#" alt="Taiwan" title="Taiwan"/>
+
+<area shape="poly" coords="770,131,772,146,767,148,763,146,760,139" href="#" alt="NorthKorea" title="NorthKorea"/>
+
+<area shape="poly" coords="771,145,781,158,774,159,773,158" href="#" alt="SouthKorea" title="SouthKorea"/>
+
+<area shape="poly" coords="798,122,811,129,802,136,802,137,812,155,812,156,791,170,787,169,787,161,804,150,797,161,800,163,795,164" href="#" alt="Japan" title="Japan"/>
+
+<area shape="poly" coords="771,214,774,231,769,227,780,232,785,236,790,258,786,259,779,245,778,239,767,244" href="#" alt="Philippines" title="Philippines"/>
+
+<area shape="poly" coords="839,316,808,409,809,391,799,398,741,397,746,355,791,327,797,330,822,322,818,332,831,338,831,339,815,419,824,419,825,420,817,429,815,429" href="#" alt="Australia" title="Australia"/>
+
+<area shape="poly" coords="621,22,648,29,639,35,849,54,849,59,828,54,823,58,839,65,812,74,815,77,825,101,823,103,805,65,790,68,790,77,762,78,757,90,782,131,770,127,772,112,727,96,723,96,725,107,669,99,670,106,590,88,570,93,573,103,572,104,535,109,543,136,512,124,518,107,482,81,488,64,507,50,508,53,506,55,487,51,499,61,509,59,508,53,565,47,566,46,561,39,564,35,571,36,579,50,572,53,583,51,574,39,590,37,586,34,585,40,567,46,585,46,589,50,590,50,501,60,484,73,690,89,690,92,683,100,687,100,544,101,547,101" href="#" alt="Rusia" title="Rusia"/>
+        </map>
+        
+	</div>
+   
     
-    <!-- Wrapper for Slides(instant) -->
-    <div class="slideshow-container">
-      <div class="mySlides fade">
-        <img class="img-responsive img-center" src="../img/christmas＿sq4.jpg">
-      </div>
-    
-      <div class="mySlides fade">
-        <img class="img-responsive img-center" src="../img/christmas＿sq2.jpg">
-      </div>
-    
-      <div class="mySlides fade">
-        <img class="img-responsive img-center" src="../img/christmas＿sq3.jpg">
-      </div>
+   
+    <div id="statesMap-UnitedStatesofAmerica" class="tooltip-content">
+        <h4>United States of America</h4>
+        {% for festival in festivals %}
+        
+        <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}">{{festival.name}}</a>
+        <br><br>
+        {% endfor %}
     </div>
+    
+    <div id="statesMap-Taiwan" class="tooltip-content">
+        <h4>Taiwan</h4>
+        {% for festival in festivals %}
+        
+        <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}">{{festival.name}}</a>
+        <br><br>
+        {% endfor %}
+    </div>
+  
     <br>
     
     <div style="text-align:center">
@@ -139,53 +139,21 @@
     <!-- Projects Row -->
     <div class="container">
         <div class="row">
+            {% for festival in festivals %}
             <div class="col-lg-6 col-sm-6 text-center portfolio-item">
-                <a href="festival_each.html" class="portfolio-link">
+                <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}" class="portfolio-link">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content">
-                            <h3>Christmas</h3>
+                            <h3>{{festival.name}}</h3>
                         </div>
                     </div>
                     <div class="box">
-                        <img class="img-thumbnail img-responsive img-center" src="../img/christmas_1.jpg" alt="">
+                        <img class="img-thumbnail img-responsive img-center" src="{% static 'img/christmas_1.jpg' %}" alt="">
                     </div>
                 </a>
             </div>
-            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
-                <a href="festival_each.html" class="portfolio-link">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <h3>Constitution Day</h3>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <img class="img-thumbnail img-responsive img-center" src="../img/constitution.jpg" alt="">
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
-                <a href="#" class="portfolio-link">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <h3>Festival</h3>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <img class="img-thumbnail img-responsive img-center" src="http://placehold.it/1500x1500" alt="">
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
-                <a href="#" class="portfolio-link">
-                    <div class="portfolio-hover">
-                        <div class="portfolio-hover-content">
-                            <h3>Festival</h3>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <img class="img-thumbnail img-responsive img-center" src="http://placehold.it/600x600" alt="">
-                    </div>
-                </a>
+            
+            {% endfor %}
             </div>
         </div>
         <!-- /.row -->
@@ -195,17 +163,20 @@
 	
 	<iframe class="signIn_full" id="sign_full" src="login.html" height="0" width="0" frameborder="0" >
     </iframe>
-	<a id="closeImg" href="index.html">X</a>
+	<a id="closeImg" href="{% url 'instival_database.views.showHomePage'%}">X</a>
+	
 	
 	<!-- jQuery -->
-    <script src="../bootstrap/js/jquery-3.1.1.js"></script>
+    <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     
     <!-- Instant photos pop up -->
-    <script src="../static/js/index_instant.js"></script>
+    <script src="{% static 'js/index_instant.js' %}"></script>
     
+    <script type="" src="{% static 'js/jquery.rwdImageMaps.min.js' %}"></script>
+    <script src="{% static 'js/jquery.qtip.min.js' %}"></script>
     <script>
     $(document).ready(function() {
         $('body').on('click', '#btn_sign', function() {
@@ -213,14 +184,46 @@
             document.getElementById("sign_full").style.width = "800px";
             document.getElementById("sign_full").style.height = "600px";
             document.getElementById("closeImg").style.visibility="visible";
-            var stateObj = { foo: "login.html" };
-            window.history.pushState(stateObj, "page 2", "login.html");
+            var stateObj = { foo: "{% url 'instival_database.views.showLogin'%}" };
+            window.history.pushState(stateObj, "page 2", "{% url 'instival_database.views.showLogin'%}");
     
             $('body').css("background-color","#fff");
             $('body').css("background-color","rgba(255, 255, 255, 0.6)");
              
             // hide scroll
         });
+        
+   
+    
+    
+    $('area[alt]').each(function () {
+        var elem = $(this),
+            map = elem.parent(),
+            image = $('img[usemap="#'+map.attr('name')+'"]');
+        
+        elem.qtip({
+            content: {
+                text: $('#statesMap-' + elem.attr('alt')), // Attempt to grab content from #statesMap-<State> elements first
+                attr: 'alt' // No content? Grab the content from the 'alt' attribute
+            },
+            position: {
+                viewport: image
+            },
+            show: {
+                event: 'click',
+                solo: true
+            },
+            hide: {
+                // Allow the user to hover on the tooltip
+                fixed: true,
+                delay: 200
+            },
+          style: {
+               classes: 'qtip-yellow qtip-shadow'
+            }
+        });
+    });
+    
     });
     </script>
     

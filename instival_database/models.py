@@ -16,6 +16,8 @@ class Festival(models.Model):
     location = models.CharField(max_length=30)
     date = models.DateTimeField(null=True)
     introduction = models.TextField(blank=True)
+    def __str__(self):
+        return self.name 
     
 class Profile(models.Model):
     user_id = models.ForeignKey(User)
@@ -40,11 +42,23 @@ class Post(models.Model):
     def publish(self):
         self.date = timezone.now()
         self.save()
-    
+   
    
 
       
 class Comment(models.Model):
-    post_id = models.ForeignKey(Post)
+    post = models.ForeignKey(Post,related_name='comments')
     user_id = models.ForeignKey(User)
-    content = models.TextField
+    content = models.TextField()
+    approved_comment = models.BooleanField(default=False)
+
+    def approve(self):
+        self.approved_comment = True
+        self.save()
+
+
+
+    def __str__(self):
+        return self.content
+    
+  

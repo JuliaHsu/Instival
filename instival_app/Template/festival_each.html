@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Christmas</title>
+  <title> {{festival.name}}</title>
   
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
@@ -18,48 +18,55 @@
   <!-- google fonts-->
 
 
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-              <!--Logo-->
-        <a class="navbar-brand" href="index.html" style="margin-left: 3px;">LOGO</a> 
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <div class="col-lg-7 col-lg-offset-2">
-          <!--Search-->
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" style="width: 250px;" placeholder="Search Festival">
+  <!--Navbar-->
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                	<span class="sr-only">Toggle navigation</span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+                	<span class="icon-bar"></span>
+            	</button>
+            	<!--Logo-->
+            	<a class="navbar-brand" href="{% url 'instival_database.views.showHomePage'%}" style="margin-left: 3px;">LOGO</a>
+			</div>
+			
+			<!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> 
+			    
+    			<!--Login Button-->
+      			<button id="btn_sign" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px;">Sign in</button>
+    			
+    			<!--Search-->
+    			<form class="navbar-form" role="search" style="display:block;text-align:center;">
+    				<div class="form-group">
+      					<input type="text" class="form-control" style="width: 250px;" placeholder="Search Festival">
+       				</div>
+       				<div class="form-group">
+      					<input type="text" class="form-control" style="width: 250px;" placeholder="Search Country">
+       				</div>
+       				<input type="button" class="btn btn btn-default" value="Search" onclick="location.href='festival_each.html'">
+    				<!--<button type="submit" class="btn btn-default" onClick="self.location.href='body/location.html">Search</button>-->
+      			</form>
             </div>
-            <div class="form-group">
-              <input type="text" class="form-control" style="width: 250px;" placeholder="Search Country">
-            </div>
-            <button type="submit" class="btn btn-default">Search</button>
-          </form>
-        </div>
-            <!--Login Button-->
-        <button type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 3px;">Sign in</button> 
-      </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-  </nav>
-    <!--Festival-->
+  		    <!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!--Navbar-->
+	
+  <!--Festival-->
   <section id="festival_intro" >
     <div class="container">
       <div class="row">
           <div class="col-lg-12 text-center">
-            <h1 class="section-heading">Christmas</h1>
+            
+            <h1 class="section-heading">
+              
+                {{festival.name}}
+              </h1>
           </div>
           <div class="row">
             <div class="col-lg-4">
@@ -67,7 +74,7 @@
                     
             <div class="col-lg-4 text-center">
                 <button class="introduction">Introduction:<br></button>
-                <p class="intro_more">Christmas
+                <p class="intro_more">{{festival.introduction}}
                 </p>
             </div>
           </div>
@@ -101,7 +108,7 @@
     <div class="gallery">
       <!-- Gallery  item -->
     	{% for post in posts %}
-    	{% ifequal post.festival_id.name "Christmas" %}
+    	
       <div class="gallery_item">
         <!-- Gallery  item preview -->
         <span class="gallery_item_preview">
@@ -135,19 +142,16 @@
         </span>  
       </div>
 
-      {% endifequal %}
+      
       {% endfor %}
 
     </div>
   </div>
 </div>
+<a id="closeImg" href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}" >X</a>
 
-<!-- slide -->
   
-   <!--iframe -->
-  
-   <a id="closeImg" href="{% url 'instival_database.views.festival_each_post_gallery' %}" >X</a>
-        
+   
 
   <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
   <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
@@ -166,9 +170,6 @@
     $('body').on('click','#img_pre',function(){
       var url = $('iframe',this).attr('src');
       
-      
-     
-     
         $('iframe').addClass('animated zoomIn');
         document.getElementById(url).style.width = "800px";
         document.getElementById(url).style.height = "600px";
@@ -181,9 +182,10 @@
         $('body').css("background-color","#fff");
         $('body').css("background-color","rgba(255, 255, 255, 0.6)");
          
-      // hide scroll
+      
       
     });
+   
     
     
      
@@ -199,5 +201,6 @@
   </script>
   
 <script type="" src="{% static 'js/festival_each.js' %}"></script>
+
 </body>
 </html>
