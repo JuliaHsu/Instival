@@ -22,8 +22,14 @@ from instival_database import views
 
 admin.autodiscover();
 urlpatterns = [
+
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/',include('instival_database.index_url')),
     url(r'^signup/', views.createAccount),
     url(r'^post/',views.post_document),
+
+   
+     url(r'^login/', views.login),
+     url(r'^getuserid/$', views.getuserid, name='getuserid'),
+   
 ]
