@@ -63,21 +63,7 @@ def post_detail(request,pk):
     # return render(request, 'fullFestivalPic.html',{'post':post})
     
 
-def upload(request,pk):
-    if request.method == 'GET':
-        return render(request,"upload.html")
-    if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            user = User.objects.get(id)
-          #  f = Festival.objects.get(id)
-            new_post_text = form.data.get("content")
-            Post.objects.create(user_id = user ,location = "Taiwan",content = new_post_text,)
-            post = get_object_or_404(Post,pk=pk)
-            return redirect('views.post_detail', pk=post.pk) 
-        else:
-            form = PostForm(request.POST)
-            return render(request, 'upload.html', {'form': form})
+
             
 
 def post_document(request):
