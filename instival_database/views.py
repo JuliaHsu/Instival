@@ -32,7 +32,7 @@ def showCalendar(request):
     
 def festival_each_post_gallery(request,pk):
     festival=Festival.objects.get(pk=pk)
-    posts=Post.objects.filter(festival_id=pk).order_by('date')
+    posts=Post.objects.filter(festival_id=pk).order_by('-date')
     content ={
         'posts': posts,
         'festival':festival,
@@ -99,6 +99,7 @@ def add_comment_to_post(request, pk):
     return render(request, 'post_detail.html', {'form': form})
     
 
+
 def createAccount(request):
     
     if request.method == "POST":
@@ -113,4 +114,32 @@ def createAccount(request):
     
     return render(request, 'signup.html')
 
+
+
+#login
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    
+def getuserid(request):
+    if request.method == 'GET':
+        name = request.GET['name']
+        email = request.GET['email']
+        userId = request.GET['userId']
+        print(userId)
+        if User.objects.filter(userId = userId).exists():
+            print name + " is using"
+            user = User.objects.filter(userId = userId)[0]
+            user.save()
+        else:
+            User.objects.create (
+                userId = userId,
+                name = name,
+                email = email
+            )
+        
+    return HttpResponseRedirect(userId)
+
+
+            
 
