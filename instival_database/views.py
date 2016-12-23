@@ -17,6 +17,7 @@ def post_detail(request,pk):
     
 def post_document(request):
     u=User.objects.get(name ='Julia2')
+    festivals=Festival.objects.order_by('id')
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
@@ -31,7 +32,7 @@ def post_document(request):
             post.comment_id_group = ""
             post.like_number = 0
             post.save()
-    return render(request, 'upload.html', {})
+    return render(request, 'upload.html', {'festivals':festivals})
 
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)

@@ -5,3 +5,5 @@ textarea{/* Text Area 固定大小*/
  height:600px;
  resize:none;
 }
+
+.ifile {position:absolute;opacity:0;filter:alpha(opacity=0);}

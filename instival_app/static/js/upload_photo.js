@@ -1,6 +1,8 @@
 $(function () {
     $('#FileUpload1').change(function () {
+        
         $('#Image1').hide();
+        
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#Image1').show();
@@ -14,7 +16,9 @@ $(function () {
                 aspectRatio: 1
             });
         }
+        
         reader.readAsDataURL($(this)[0].files[0]);
+       
     });
  
     $('#btnCrop').click(function () {
@@ -46,6 +50,7 @@ function SetCoordinates(c) {
     $('#imgWidth').val(c.w);
     $('#imgHeight').val(c.h);
     $('#btnCrop').show();
+    
 };
 
 function showNext(){
@@ -53,3 +58,7 @@ function showNext(){
     document.getElementById("document").style.display = ''
 };
 
+function showCancel(){
+ document.getElementById('load').style.display ='none';
+ document.getElementById('cancel').style.display='';
+};
