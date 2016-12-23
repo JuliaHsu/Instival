@@ -68,7 +68,7 @@
 	    <img src="{% static 'img/map2.png' %}" id="world_map" usemap="#statesMap" hidefocus="true" >
 
         <map name="statesMap" id="statesMap">
-            <area shape="poly" coords="71,40,104,45,103,47,71,75,30,75,32,80,16,75,15,69,38,59,27,60,30,58,28,56,48,53,43,48,44,46,72,71,23,76,157,109,168,114,161,117,175,117,177,121,165,135,170,133,181,121,182,122,177,135,178,136,228,116,193,145,171,190,169,191,165,190,161,175,116,189,111,175,104,177,98,168,76,111,79,111,78,116" href="#" alt="UnitedStatesofAmerica" title="UnitedStatesofAmerica"/>
+            <area shape="poly" coords="71,40,104,45,103,47,71,75,30,75,32,80,16,75,15,69,38,59,27,60,30,58,28,56,48,53,43,48,44,46,72,71,23,76,157,109,168,114,161,117,175,117,177,121,165,135,170,133,181,121,182,122,177,135,178,136,228,116,193,145,171,190,169,191,165,190,161,175,116,189,111,175,104,177,98,168,76,111,79,111,78,116" href="#" alt="USA" title="USA"/>
 
 <area shape="poly" coords="68,166,113,177,122,215,148,204,128,227,79,181,75,170,74,168,73,169,79,196,133,218" href="#" alt="Mexico" title="Mexico"/>
 
@@ -108,25 +108,22 @@
 	</div>
    
     
-   
-    <div id="statesMap-UnitedStatesofAmerica" class="tooltip-content">
-        <h4>United States of America</h4>
-        {% for festival in festivals %}
+   {% for country in countries %}
+    <div id="statesMap-{{country.name}}" class="tooltip-content">
+        <h4>{{country.name}}</h4>
         
-        <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}">{{festival.name}}</a>
+        {% for festival_on_map in festivals_on_map %}
+            {% ifequal festival_on_map.location country.name %}
+        <a href="{% url 'instival_database.views.country_each_festival_album' name=country.name pk=festival_on_map.pk  %}">{{festival_on_map.name}}</a>
         <br><br>
+            {% endifequal %}
         {% endfor %}
-    </div>
+        
     
-    <div id="statesMap-Taiwan" class="tooltip-content">
-        <h4>Taiwan</h4>
-        {% for festival in festivals %}
-        
-        <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}">{{festival.name}}</a>
-        <br><br>
-        {% endfor %}
     </div>
-  
+    {% endfor %}
+    
+    
     <br>
     
     <div style="text-align:center">
@@ -136,7 +133,7 @@
     </div>
     
     
-    <!-- Projects Row -->
+    <!--album-->
     <div class="container">
         <div class="row">
             {% for festival in festivals %}

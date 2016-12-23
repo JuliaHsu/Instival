@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponseRedirect
-from .models import Post,User,Festival
+from .models import Post,User,Festival,Country
 
 from .forms import PostForm
 from .forms import CommentForm
@@ -18,21 +18,27 @@ def showHomePage(request):
     time_thresholdAfter = datetime.now() + timedelta(days=20)
     time_thresholdBefore = datetime.now() - timedelta(days=14)
     festivals = Festival.objects.filter(Q(date__lt=time_thresholdAfter) | Q(date__lt=time_thresholdBefore) )
+    countries = Country.objects.all()
+    today = datetime.now()
     
-    return render(request,'index.html',{'festivals':festivals})
+    festivals_on_map = Festival.objects.filter(date__month=today.month)
+    context={
+        'festivals':festivals,
+        'countries':countries,
+        'festivals_on_map': festivals_on_map,
+    }
+    return render(request,'index.html',context)
 
 def festival_each_post_gallery(request,pk):
     festival=Festival.objects.get(pk=pk)
-    posts=Post.objects.filter(festival_id=pk).order_by('date')
+    posts=Post.objects.filter(festival_id=pk).order_by('-date')
     content ={
         'posts': posts,
         'festival':festival,
     }
     return render(request,'festival_each.html',content)
     
-def country_album(request):
-   
-    return render(request,'festival_each.html',{})
+
     
 def post_detail(request,pk):
     # pk_url_kwarg = 'post_id'
@@ -99,4 +105,13 @@ def createAccount(request):
                 User.objects.create(name=n,email=e,password=p)
     
     return render(request, 'signup.html')
-
+def country_each_festival_album(request,name,pk):
+    festival=Festival.objects.get(pk=pk)
+    
+    posts=Post.objects.filter(Q(festival_id=pk) & Q(location=name))
+    
+    content ={
+        'posts': posts,
+        'festival':festival,
+    }
+    return render(request,'festival_each.html',content)

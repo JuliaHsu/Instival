@@ -6,6 +6,7 @@ from .models import  Festival
 from .models import Profile
 from .models import Post
 from .models import Comment
+from .models import Country
 class UserAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'password')
     
@@ -21,10 +22,14 @@ class PostAdmin(admin.ModelAdmin):
     'picture', 'like_number', 'like_id_group', 'comment_id_group')
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('post', 'user_id','content')
+ 
+class CountryAdmin(admin.ModelAdmin):
+    list_display = ('id','name')
     
 admin.site.register(User,UserAdmin)
 admin.site.register(Festival,FestivalAdmin)
 admin.site.register(Profile,ProfileAdmin)
 admin.site.register(Post,PostAdmin)
 admin.site.register(Comment,CommentAdmin)
+admin.site.register(Country, CountryAdmin)
 
