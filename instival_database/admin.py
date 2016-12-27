@@ -2,16 +2,20 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import User
-from .models import  Festival
+from .models import Festival
 from .models import Profile
 from .models import Post
 from .models import Comment
 from .models import Country
+from .models import Festival_Country
 class UserAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'password')
     
 class FestivalAdmin(admin.ModelAdmin):
-    list_display =  ('id','name', 'location', 'date', 'introduction')
+    list_display = ('name','date')
+    
+class Festival_CountryAdmin(admin.ModelAdmin):
+    list_display =  ('id', 'location', 'festival','introduction')
 
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -28,6 +32,7 @@ class CountryAdmin(admin.ModelAdmin):
     
 admin.site.register(User,UserAdmin)
 admin.site.register(Festival,FestivalAdmin)
+admin.site.register(Festival_Country,Festival_CountryAdmin)
 admin.site.register(Profile,ProfileAdmin)
 admin.site.register(Post,PostAdmin)
 admin.site.register(Comment,CommentAdmin)

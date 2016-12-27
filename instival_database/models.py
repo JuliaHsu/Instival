@@ -9,15 +9,21 @@ class User(models.Model):
     name = models.CharField(max_length=30)
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=20)
-    
-    
+
+class Country(models.Model):
+    name = models.CharField(max_length=30)
+
 class Festival(models.Model):
     name = models.CharField(max_length=30)
-    location = models.CharField(max_length=30)
-    date = models.DateTimeField(null=True)
+    date = models.DateTimeField(default=timezone.now)
+    
+    
+class Festival_Country(models.Model):
+    location = models.ForeignKey(Country)
+    festival = models.ForeignKey(Festival)
+    
     introduction = models.TextField(blank=True)
-    def __str__(self):
-        return self.name 
+   
     
 class Profile(models.Model):
     user_id = models.ForeignKey(User)
@@ -30,8 +36,8 @@ class Profile(models.Model):
     
 class Post(models.Model):
     date = models.DateTimeField(default=timezone.now)
-    festival_id = models.ForeignKey(Festival)
-    location = models.CharField(max_length=30)
+    festival_id = models.ForeignKey(Festival_Country)
+    location = models.ForeignKey(Country)
     content = models.TextField(blank=True)
     user_id = models.ForeignKey(User)
     picture = models.URLField(null=True)
@@ -61,7 +67,5 @@ class Comment(models.Model):
     def __str__(self):
         return self.content
 
-class Country(models.Model):
-    name = models.CharField(max_length=30)
-    
+
   

@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponseRedirect
-from .models import Post,User,Festival,Country
+from .models import Post,User,Festival,Country,Festival_Country
 
 from .forms import PostForm
 from .forms import CommentForm
@@ -20,8 +20,8 @@ def showHomePage(request):
     festivals = Festival.objects.filter(Q(date__lt=time_thresholdAfter) | Q(date__lt=time_thresholdBefore) )
     countries = Country.objects.all()
     today = datetime.now()
-    
-    festivals_on_map = Festival.objects.filter(date__month=today.month)
+     
+    festivals_on_map = Festival_Country.objects.filter(festival__date__month=today.month)
     context={
         'festivals':festivals,
         'countries':countries,
@@ -61,6 +61,7 @@ def post_detail(request,pk):
     
 def post_document(request):
     u=User.objects.get(name ='Julia2')
+    festivals=Festival.objects.order_by('id')
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
@@ -75,7 +76,7 @@ def post_document(request):
             post.comment_id_group = ""
             post.like_number = 0
             post.save()
-    return render(request, 'upload.html', {})
+    return render(request, 'upload.html', {'festivals':festivals})
 
 
 def add_comment_to_post(request, pk):
@@ -105,10 +106,11 @@ def createAccount(request):
                 User.objects.create(name=n,email=e,password=p)
     
     return render(request, 'signup.html')
-def country_each_festival_album(request,name,pk):
-    festival=Festival.objects.get(pk=pk)
     
-    posts=Post.objects.filter(Q(festival_id=pk) & Q(location=name))
+def country_each_festival_album(request,name,pk):
+    festival=Festival_Country.objects.get(pk=pk)
+    
+    posts=Post.objects.filter(Q(festival_id=pk) & Q(location__name=name))
     
     content ={
         'posts': posts,

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title> {{festival.name}}</title>
+  <title> {{festival.festival.name}}</title>
   
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
@@ -30,7 +30,7 @@
           <span class="icon-bar"></span>
         </button>
               <!--Logo-->
-        <a class="navbar-brand" href="index.html" style="margin-left: 3px;">LOGO</a> 
+        <a class="navbar-brand" href="{% url 'instival_database.views.showHomePage' %}" style="margin-left: 3px;">LOGO</a> 
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -63,7 +63,7 @@
             
             <h1 class="section-heading">
               
-                {{festival.name}}
+                {{festival.festival.name}}
               </h1>
           </div>
           <div class="row">
@@ -146,7 +146,7 @@
     </div>
   </div>
 </div>
-<a id="closeImg" href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}" >X</a>
+<a id="closeImg" href="#" >X</a>
 
   
    
@@ -162,24 +162,43 @@
   <script>
  
   $(document).ready(function() {
+    var url;
+    var iframe_url;
     $(".introduction").click(function() {
       $(".intro_more").slideToggle("slow");
     });
     $('body').on('click','#img_pre',function(){
-      var url = $('iframe',this).attr('src');
-      
+        url = document.location.href;
+        
+        iframe_url = $('iframe',this).attr('src');
+        
         $('iframe').addClass('animated zoomIn');
-        document.getElementById(url).style.width = "800px";
-        document.getElementById(url).style.height = "600px";
+        document.getElementById(iframe_url).style.width = "800px";
+        document.getElementById(iframe_url).style.height = "600px";
         document.getElementById("closeImg").style.visibility="visible";
         
        
       
-      var stateObj = { page: url };
-      window.history.pushState(stateObj, "", url);
+      var stateObj = { page: iframe_url };
+      window.history.pushState(stateObj, "", iframe_url);
         $('body').css("background-color","#fff");
         $('body').css("background-color","rgba(255, 255, 255, 0.6)");
          
+      
+      
+    });
+    $('body').on('click','#closeImg',function(){
+        
+        
+        
+        document.getElementById(iframe_url).style.width = "0px";
+        document.getElementById(iframe_url).style.height = "0px";
+        document.getElementById("closeImg").style.visibility="hidden";
+        
+        var stateObj = { page: url };
+        window.history.pushState(stateObj, "", url);
+      
+      
       
       
     });

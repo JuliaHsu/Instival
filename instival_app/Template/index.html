@@ -113,8 +113,9 @@
         <h4>{{country.name}}</h4>
         
         {% for festival_on_map in festivals_on_map %}
-            {% ifequal festival_on_map.location country.name %}
-        <a href="{% url 'instival_database.views.country_each_festival_album' name=country.name pk=festival_on_map.pk  %}">{{festival_on_map.name}}</a>
+        
+            {% ifequal festival_on_map.location.name country.name %}
+        <a href="{% url 'instival_database.views.country_each_festival_album' name=country.name pk=festival_on_map.pk  %}">{{festival_on_map.festival.name}}</a>
         <br><br>
             {% endifequal %}
         {% endfor %}
