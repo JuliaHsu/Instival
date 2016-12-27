@@ -30,7 +30,7 @@ def showHomePage(request):
     return render(request,'index.html',context)
 
 
-    return render(request,'index.html',{'festivals':festivals})
+    
     
 def showLogin(request):
     return render(request,'login.html',{})
@@ -44,7 +44,7 @@ def showCalendar(request):
 
 def festival_each_post_gallery(request,pk):
     festival=Festival.objects.get(pk=pk)
-    posts=Post.objects.filter(festival_id=pk).order_by('-date')
+    posts=Post.objects.filter(festival_id__festival=pk).order_by('-date')
     content ={
         'posts': posts,
         'festival':festival,
@@ -129,7 +129,7 @@ def createAccount(request):
 def country_each_festival_album(request,name,pk):
     festival=Festival_Country.objects.get(pk=pk)
     
-    posts=Post.objects.filter(Q(festival_id=pk) & Q(location__name=name))
+    posts=Post.objects.filter(Q(festival_id=pk))
     
     content ={
         'posts': posts,
