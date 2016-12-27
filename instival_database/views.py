@@ -29,6 +29,19 @@ def showHomePage(request):
     }
     return render(request,'index.html',context)
 
+
+    return render(request,'index.html',{'festivals':festivals})
+    
+def showLogin(request):
+    return render(request,'login.html',{})
+    
+def showPersonal(request):
+    return render(request,'personal.html',{})
+    
+def showCalendar(request):
+    return render(request,'calendar.html',{})
+    
+
 def festival_each_post_gallery(request,pk):
     festival=Festival.objects.get(pk=pk)
     posts=Post.objects.filter(festival_id=pk).order_by('-date')
@@ -59,6 +72,10 @@ def post_detail(request,pk):
     return render(request, 'fullFestivalPic.html', context)
     # return render(request, 'fullFestivalPic.html',{'post':post})
     
+
+
+            
+
 def post_document(request):
     u=User.objects.get(name ='Julia2')
     festivals=Festival.objects.order_by('id')
@@ -93,6 +110,7 @@ def add_comment_to_post(request, pk):
     return render(request, 'post_detail.html', {'form': form})
     
 
+
 def createAccount(request):
     
     if request.method == "POST":
@@ -106,6 +124,7 @@ def createAccount(request):
                 User.objects.create(name=n,email=e,password=p)
     
     return render(request, 'signup.html')
+
     
 def country_each_festival_album(request,name,pk):
     festival=Festival_Country.objects.get(pk=pk)
@@ -117,3 +136,35 @@ def country_each_festival_album(request,name,pk):
         'festival':festival,
     }
     return render(request,'festival_each.html',content)
+
+
+
+
+#login
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    
+def getuserid(request):
+    if request.method == 'GET':
+        name = request.GET['name']
+        email = request.GET['email']
+        userId = request.GET['userId']
+        print(userId)
+        if User.objects.filter(userId = userId).exists():
+            print name + " is using"
+            user = User.objects.filter(userId = userId)[0]
+            user.save()
+        else:
+            User.objects.create (
+                userId = userId,
+                name = name,
+                email = email
+            )
+        
+    return HttpResponseRedirect(userId)
+
+
+            
+
+

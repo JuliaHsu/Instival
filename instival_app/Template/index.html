@@ -36,7 +36,7 @@
                 	<span class="icon-bar"></span>
             	</button>
             	<!--Logo-->
-            	<a class="navbar-brand" href="index.html" style="margin-left: 3px;">LOGO</a>
+            	<a class="navbar-brand" href="{% url 'instival_database.views.showHomePage'%}" style="margin-left: 3px;">LOGO</a>
 			</div>
 			
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -161,7 +161,7 @@
 	
 	<iframe class="signIn_full" id="sign_full" src="login.html" height="0" width="0" frameborder="0" >
     </iframe>
-	<a id="closeImg" href="index.html">X</a>
+	<a id="closeImg" href="{% url 'instival_database.views.showHomePage'%}">X</a>
 	
 	
 	<!-- jQuery -->
@@ -182,8 +182,8 @@
             document.getElementById("sign_full").style.width = "800px";
             document.getElementById("sign_full").style.height = "600px";
             document.getElementById("closeImg").style.visibility="visible";
-            var stateObj = { foo: "login.html" };
-            window.history.pushState(stateObj, "page 2", "login.html");
+            var stateObj = { foo: "{% url 'instival_database.views.showLogin'%}" };
+            window.history.pushState(stateObj, "page 2", "{% url 'instival_database.views.showLogin'%}");
     
             $('body').css("background-color","#fff");
             $('body').css("background-color","rgba(255, 255, 255, 0.6)");

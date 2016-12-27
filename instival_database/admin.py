@@ -9,7 +9,10 @@ from .models import Comment
 from .models import Country
 from .models import Festival_Country
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'password')
+    list_display = ('userId', 'name', 'email', 'password')
+   
+
+
     
 class FestivalAdmin(admin.ModelAdmin):
     list_display = ('name','date')
@@ -17,14 +20,22 @@ class FestivalAdmin(admin.ModelAdmin):
 class Festival_CountryAdmin(admin.ModelAdmin):
     list_display =  ('id', 'location', 'festival','introduction')
 
+   
+
+
+ 
 
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user_id','self_introduction', 'past_post_group', 'post_number', 'like_id_group', 
     'comment_id_group', 'profile_picture')
+    
 class PostAdmin(admin.ModelAdmin):
     list_display = ('date', 'festival_id', 'location', 'content', 'user_id',
     'picture', 'like_number', 'like_id_group', 'comment_id_group')
+   
+    
 class CommentAdmin(admin.ModelAdmin):
+
     list_display = ('post', 'user_id','content')
  
 class CountryAdmin(admin.ModelAdmin):

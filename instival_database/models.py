@@ -6,12 +6,22 @@ from django.utils import timezone
 # Create your models here.
 
 class User(models.Model):
+    userId = models.CharField(max_length=20,null=True,blank=True)
     name = models.CharField(max_length=30)
     email = models.CharField(max_length=50)
-    password = models.CharField(max_length=20)
+
+    password = models.CharField(max_length=20,null=True,blank=True)
+    
+    def user(self) :
+        return "User"
 
 class Country(models.Model):
     name = models.CharField(max_length=30)
+
+
+    
+    
+    
 
 class Festival(models.Model):
     name = models.CharField(max_length=30)
@@ -25,6 +35,9 @@ class Festival_Country(models.Model):
     introduction = models.TextField(blank=True)
    
     
+    
+    
+    
 class Profile(models.Model):
     user_id = models.ForeignKey(User)
     self_introduction = models.TextField(blank=True)
@@ -33,6 +46,9 @@ class Profile(models.Model):
     like_id_group = models.TextField(blank=True)
     comment_id_group = models.TextField(blank=True)
     profile_picture = models.URLField(blank=True)
+    
+    def profile(self) :
+        return "Profile"
     
 class Post(models.Model):
     date = models.DateTimeField(default=timezone.now)
