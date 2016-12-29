@@ -1,5 +1,5 @@
-from django.shortcuts import render,get_object_or_404,redirect
-from django.http import HttpResponseRedirect
+from django.shortcuts import render,get_object_or_404,redirect,render_to_response
+from django.http import HttpResponseRedirect,HttpResponse
 from .models import Post,User,Festival,Country,Festival_Country
 
 from .forms import PostForm
@@ -12,7 +12,7 @@ from .forms import CommentForm
 from django.utils import timezone
 
 
-pk_url_kwarg = 'post_pk'
+
 # Create your views here.
 def showHomePage(request):
     time_thresholdAfter = datetime.now() + timedelta(days=20)
@@ -49,13 +49,19 @@ def festival_each_post_gallery(request,pk):
         'posts': posts,
         'festival':festival,
     }
-    return render(request,'festival_each.html',content)
+    return render(request,'festival_each_album.html',content)
     
 
     
 def post_detail(request,pk):
     # pk_url_kwarg = 'post_id'
     post = get_object_or_404(Post,pk=pk)
+    post_id = post.pk
+    global liked
+    liked=False
+    if request.session.get('has_liked_'+str(post_id), liked):
+        liked = True
+        print("liked {}_{}".format(liked, post_id))
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -68,13 +74,35 @@ def post_detail(request,pk):
     context = {
             'post' : post,
             'form' : form,
+            'liked':liked,
         }
     return render(request, 'fullFestivalPic.html', context)
-    # return render(request, 'fullFestivalPic.html',{'post':post})
-    
+   
 
 
-            
+def like_count_blog(request):
+    liked = False
+   
+    if request.method == 'GET':
+        post_id = request.GET['post_id']
+        post = Post.objects.get(id=int(post_id))
+        if request.session.get('has_liked_'+post_id, liked):
+            # request.session['has_liked_'+post_id] = False
+            print("unlike")
+            if post.like_number > 0:
+                likes = post.like_number - 1
+                try:
+                    del request.session['has_liked_'+post_id]
+                except KeyError:
+                    print("keyerror")
+        else:
+            print("like")
+            request.session['has_liked_'+post_id] = True
+            likes = post.like_number + 1
+           
+    post.like_number = likes
+    post.save()
+    return HttpResponse(likes, liked)
 
 def post_document(request):
     u=User.objects.get(name ='Julia2')

@@ -57,13 +57,17 @@ class Post(models.Model):
     content = models.TextField(blank=True)
     user_id = models.ForeignKey(User)
     picture = models.URLField(null=True)
-    like_number = models.DecimalField(max_digits=10,decimal_places=0,default=0)
+    like_number = models.PositiveIntegerField(default=0)
     like_id_group = models.TextField(blank=True)
     comment_id_group = models.TextField(blank=True)
     
     def publish(self):
         self.date = timezone.now()
         self.save()
+    @property
+    def total_likes(self):
+        return self.like_number.count()
+        
    
    
 
