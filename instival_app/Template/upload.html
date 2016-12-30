@@ -77,7 +77,7 @@
                         </button>
                         <ul  class="dropdown-menu" aria-labelledby="dropdownMenu1" >
                             {% for f_name in festivals %}
-                                <li><a href="#" >{{f_name.name}}</a></li>
+                                <li><a href="#" rel="{{f_name.id}}" >{{f_name.festival.name}}.{{f_name.location.name}}</a></li>
                             {% endfor %}
 
                             <!-- <li role="separator" class="divider"></li>
@@ -95,7 +95,7 @@
                         <div class="input-group">
                             
                                 
-                                <input type="text" class="form-control" name = "festival"  id="input_festival" placeholder="" aria-describedby="basic-addon1" >
+                                <input type="text" class="form-control" name = "getfestival"  id="input_festival" placeholder="" aria-describedby="basic-addon1" >
                             
                         </div>
                     </div>
@@ -112,9 +112,9 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Taiwan</a></li>
-                            <li><a href="#">USA</a></li>
-                            <li><a href="#">Japan</a></li>
+                            {% for c_name in Countrys %}
+                                <li><a href="#">{{c_name.name}}</a></li>
+                            {% endfor %}
                            <!-- <li role="separator" class="divider"></li>
                             <li><a href="#">Other Country</a></li> -->
                         </ul>
@@ -127,7 +127,7 @@
                     <!-- Country_other textbox -->
                     
                         <div class="input-group">
-                            <input type="text"  name = "location" value="" id="input_country" class="form-control" >
+                            <input type="text"  name = "getlocation" value="" id="input_country" class="form-control" >
                         </div>
                     </div>
                 </div>
