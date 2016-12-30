@@ -94,24 +94,37 @@ def post_detail(request,pk):
 
             
 
-def post_document(request):
-    u=User.objects.get(name ='Julia2')
-    festivals=Festival.objects.order_by('id')
+def post_document(request,user):
+    u=User.objects.get(id=user)
+    festivals=Festival_Country.objects.order_by('id')
+    Countrys=Country.objects.order_by('id')
+    
+    context = {
+        'users' : u,
+        'festivals' : festivals,
+        'Countrys' : Countrys,
+    }
+    
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.user_id = u
-            f=form.data.get("festival")
-            post.festival_id = Festival.objects.get(name = f)
+            f=form.data.get("getfestival")
+            f_f=Festival.objects.get(name =f.split('.')[0])
+            f_c=Country.objects.get(name =f.split('.')[1])
+            paa=Festival_Country.objects.get(festival=f_f,location=f_c)
+            post.festival_id = paa
             p=form.data.get("picture")
-            post.picture=p
+            c=form.data.get("getlocation")
+            post.location=Country.objects.get(name = c)
+            post.picture = p
             post.date = timezone.now()
             post.like_id_group = ""
             post.comment_id_group = ""
             post.like_number = 0
             post.save()
-    return render(request, 'upload.html', {'festivals':festivals})
+    return render(request, 'upload.html', context)
 
 
 def add_comment_to_post(request, pk):
