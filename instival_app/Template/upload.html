@@ -35,7 +35,7 @@
                   "	>
                 <input type="text" name="upfile" size="20" style = "display:none" readonly>
                 <input type="button" class="btn btn-default dropdown-toggle" id = "load" value="upload a photo" onclick="this.form.file.click(); showCancel()">
-                <input type="button" class="btn btn-default dropdown-toggle" id = "cancel" style = "display:none" value="cancel" onclick="window.location.href='{% url 'instival_database.views.post_document' %}'">
+                <input type="button" class="btn btn-default dropdown-toggle" id = "cancel" style = "display:none" value="cancel" onclick="window.location.href='{% url 'instival_database.views.post_document' user=users.id %}'">
               
                 <br/>
                 <br/>

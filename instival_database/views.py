@@ -29,14 +29,46 @@ def showHomePage(request):
     }
     return render(request,'index.html',context)
 
-
-    
-    
 def showLogin(request):
     return render(request,'login.html',{})
     
-def showPersonal(request):
-    return render(request,'personal.html',{})
+def showPersonal(request,user):
+    
+    # profiledataas=Users.objects.filter()
+    
+    # content ={
+    #     'profiledata': profiledatas,
+    # }
+    
+    users=User.objects.get(id=user)
+    posts=Post.objects.filter(user_id__id=user).order_by('-date')
+    content ={
+        'posts': posts,
+        'users':users,
+    }
+    
+    return render(request,'personal.html',content)
+    
+    ############################
+    
+def setProfile_view(request,user):
+    
+    # profiledataas=Users.objects.filter()
+    
+    # content ={
+    #     'profiledata': profiledatas,
+    # }
+    
+    users=User.objects.get(id=user)
+    posts=Post.objects.filter(user_id__id=user).order_by('-date')
+    content ={
+        'posts': posts,
+        'users':users,
+    }
+    
+    return render(request,'setProfile.html',content)
+    
+    ######################
     
 def showCalendar(request):
     return render(request,'calendar.html',{})
@@ -76,12 +108,13 @@ def post_detail(request,pk):
 
             
 
-def post_document(request):
-    u=User.objects.get(name ='Julia2')
+def post_document(request,user):
+    u=User.objects.get(id=user)
     festivals=Festival_Country.objects.order_by('id')
     Countrys=Country.objects.order_by('id')
     
     context = {
+        'users' : u,
         'festivals' : festivals,
         'Countrys' : Countrys,
     }
@@ -137,7 +170,8 @@ def createAccount(request):
     
     return render(request, 'signup.html')
 
-    
+   ############################################
+   
 def country_each_festival_album(request,name,pk):
     festival=Festival_Country.objects.get(pk=pk)
     
@@ -149,7 +183,7 @@ def country_each_festival_album(request,name,pk):
     }
     return render(request,'festival_each.html',content)
 
-
+    ##############################################
 
 
 #login

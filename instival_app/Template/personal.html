@@ -21,6 +21,8 @@
 	<link rel="stylesheet" href="{% static 'css/style_personal_menu.css' %}">
     <link rel="stylesheet" href="{% static 'css/style_personal.css' %}">
  	<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+ 	<link rel="stylesheet" type="text/css" href="../static/css/animate.css"/>
+ 	<link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -71,8 +73,8 @@
     		<li>
     			<div class="link"><i class="fa fa-paint-brush"></i>Profile<i class="fa fa-chevron-down"></i></div>
     			<ul class="submenu">
-    				<li><a href="{% url 'instival_database.views.showPersonal'%}">Home</a></li>
-    				<li><a href="{% url 'instival_database.views.showCalendar'%}">Calendar</a></li>
+    				<li><a href="{% url 'instival_database.views.showPersonal' user=7 %}">Home</a></li>
+    				<li><a href="{% url 'instival_database.views.setProfile_view' user=7 %}">Calendar</a></li>
     			</ul>
     		</li>
     		<!--li>
@@ -110,8 +112,9 @@
 	<!--introduction -->
 	<div class="row">
     	<div class="col-xs-2 col-md-2">
-    	</div>
-    	<div class="col-xs-2 col-md-2">
+	    </div>
+	    
+	    <div class="col-xs-2 col-md-2">
         	<div class="container">
             	<!-- Left-aligned -->
                 <div class="media">
@@ -120,14 +123,15 @@
                             <img src="{% static 'img/profilePic.jpg' %}" class="img-responsive img-circle" >
                         </span>
                     </div>
+                </div>
+            </div>
         </div>
-        </div>
-        </div>
+        
     	<div class="col-xs-3 col-md-3">    
-                    <div class="media-body">
-                        <h1 class="media-heading">Julia2</h4>
-                        <p>Lorem ipsum...</p>
-                    </div>
+            <div class="media-body">
+                <h1 class="media-heading">{{users.name}}</h4>
+                <p>Lorem ipsum...</p>
+            </div>
         </div>
     </div>
     <!--introduction -->
@@ -144,183 +148,108 @@
                 <div class="gallery_item">
                     <!-- Gallery  item preview -->
                     <span class="gallery_item_preview">
-                        <a href="#" id="upload">
+                        <a href="#" id="img_pre">
                         
-                        <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-                        <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-                        </svg>
-                        
-                        <img src="{% static 'img/add.png' %}">
-                        
-                        <span>
-                            <h3>Post</h3>
-                        </span>
-                        
+                            <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
+                                <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
+                            </svg>
+                                
+                            <img src="{% static 'img/add.png' %}">
+                            
+                            <span>
+                                <div class="row">
+                                    <div class="col-lg-2 col-lg-offset-1">
+                                        <h3>Post</h3>
+                                    </div>
+                                </div>
+                            </span>
+                            
+                            <div>
+                                <iframe class="gallery_item_full " id="{% url 'instival_database.views.post_document' user=users.id %}" src="{% url 'instival_database.views.post_document' user=users.id %}" height="0" width="0" frameborder="0" ></iframe>
+                            </div>
                         </a>
                     </span>  
                 </div>
                 
                 <!-- Gallery  item -->
-                <div class="gallery_item">
-                    <!-- Gallery  item preview -->
-                    <span class="gallery_item_preview">
-                        <a href="#" id="img_pre">
-                        
-                        <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-                        <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-                        </svg>
-                        
-                        <img src="{% static 'img/thanksgiving_sq.jpg' %}">
-                        
-                        <span>
-                            <h3>Thanksgiving</h3>
-                        </span>
-                        
-                        </a>
-                    </span>  
-                </div>
+                {% for post in posts %}
                 
-                <!-- Gallery  item -->
-                <div class="gallery_item">
-                    <!-- Gallery  item preview -->
-                    <span class="gallery_item_preview">
-                        <a href="#" id="img_pre">
-                        
-                        <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-                        <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-                        </svg>
-                        
-                        <img src="{% static 'img/halloween_sq.jpg' %}">
-                        
-                        <span>
-                            <h3>Halloween</h3>
-                        </span>
-                        
-                        </a>
-                    </span>  
-                </div>
+                    <div class="gallery_item">
+                        <!-- Gallery  item preview -->
+                        <span class="gallery_item_preview">
+                            <a href="#" id="img_pre">
+                            
+                                <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
+                                    <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
+                                </svg>
+                                    
+                                <img src="{{post.picture}}"/>
+                                <!--<img src ="img/profilePic.jpg" class ="img-circle">-->
+                                <span>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <img class ="img-circle" src ="{% static 'img/profilePic.jpg' %}" >
+                                        </div>
+                                        
+                                        <div class="col-lg-2 col-lg-offset-1">
+                                            <h3>{{post.user_id.name}}</h3>
+                                        </div>
+                                    </div>
+                                </span>
+                                
+                                <div>
+                                    <iframe class="gallery_item_full " id="{% url 'instival_database.views.post_detail' pk=post.pk %}" src="{% url 'instival_database.views.post_detail' pk=post.pk %}" height="0" width="0" frameborder="0" ></iframe>
+                                </div>
+                            </a>
+                        </span>  
+                    </div>
                 
-                <!-- Gallery  item -->
-                <div class="gallery_item">
-                    <!-- Gallery  item preview -->
-                    <span class="gallery_item_preview">
-                        <a href="#" id="img_pre">
-                        
-                        <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-                        <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-                        </svg>
-                        
-                        <img src="{% static 'img/moonFestival_sq.jpg' %}">
-                        
-                        <span>
-                            <h3>Moon Festival</h3>
-                        </span>
-                        
-                        </a>
-                    </span>  
-                </div>
                 
-                <!-- Gallery  item -->
-                <div class="gallery_item">
-                    <!-- Gallery  item preview -->
-                    <span class="gallery_item_preview">
-                        <a href="#" id="img_pre">
-                        
-                        <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-                        <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-                        </svg>
-                        
-                        <img src="{% static 'img/patrick_sq.jpg' %}">
-                        
-                        <span>
-                            <h3>Sant Patrick</h3>
-                        </span>
-                        
-                        </a>
-                    </span>  
-                </div>
-                
-                <!-- Gallery  item -->
-                <div class="gallery_item">
-                    <!-- Gallery  item preview -->
-                    <span class="gallery_item_preview">
-                        <a href="#" id="img_pre">
-                        
-                        <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-                        <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-                        </svg>
-                        
-                        <img src="{% static 'img/newYear_sq.jpg' %}">
-                        
-                        <span>
-                            <h3>New Year's Eve</h3>
-                        </span>
-                        
-                        </a>
-                    </span>  
-                </div>
-                
-                <!-- Gallery  item -->
-                <div class="gallery_item">
-                    <!-- Gallery  item preview -->
-                    <span class="gallery_item_preview">
-                        <a href="#" id="img_pre">
-                        
-                        <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
-                        <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
-                        </svg>
-                        
-                        <img src="{% static 'img/christmas＿sq2.jpg' %}">
-                        
-                        <span>
-                            <h3>Christmas</h3>
-                        </span>
-                        
-                        </a>
-                    </span>  
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
+    <a id="closeImg" href="#" id="" src="">X</a>
     
     
-    <div>
-        <iframe class="gallery_item_full " id="img_full" src="{% url 'instival_database.views.post_document'%}" height="0" width="0" frameborder="0" ></iframe>
-        <iframe class="gallery_item_full " id="img_full_pic" src="{% url 'instival_database.views.post_detail' pk=1 %}" height="0" width="0" frameborder="0" ></iframe>
-    </div>
-    <a id="closeImg" href="{% url 'instival_database.views.showPersonal'%}">X</a>
+    
     
     <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/personal_menu.js' %}"></script>
+    <script src="{% static 'js/festival_each.js' %}"></script>
+    
     <script>
-        $('body').on('click','#upload',function(){
-    
-            $('#img_full').addClass('animated zoomIn');
-            document.getElementById("img_full").style.width = "800px";
-            document.getElementById("img_full").style.height = "600px";
-            document.getElementById("closeImg").style.visibility="visible";
-            var stateObj = { foo: "{% url 'instival_database.views.post_document'%}" };
-            window.history.pushState(stateObj, "page 2", "{% url 'instival_database.views.post_document'%}");
-    
-            $('body').css("background-color","#fff");
-            $('body').css("background-color","rgba(255, 255, 255, 0.6)");
-             
-            // hide scroll
-        });
-        $('body').on('click','#img_pre',function(){
-    
-            $('#img_full_pic').addClass('animated zoomIn');
-            document.getElementById("img_full_pic").style.width = "800px";
-            document.getElementById("img_full_pic").style.height = "600px";
-            document.getElementById("closeImg").style.visibility="visible";
-            var stateObj = { foo: "{% url 'instival_database.views.post_detail' pk=1 %}" };
-            window.history.pushState(stateObj, "page 2", "{% url 'instival_database.views.post_detail' pk=1 %}");
-    
-            $('body').css("background-color","#fff");
-            $('body').css("background-color","rgba(255, 255, 255, 0.6)");
-             
-            // hide scroll
+        $(document).ready(function() {
+            var url;
+            var iframe_url;
+            $('body').on('click','#img_pre',function(){
+                url = document.location.href;
+                
+                iframe_url = $('iframe',this).attr('src');
+                
+                $('iframe').addClass('animated zoomIn');
+                document.getElementById(iframe_url).style.width = "800px";
+                document.getElementById(iframe_url).style.height = "600px";
+                document.getElementById("closeImg").style.visibility="visible";
+                
+               
+              
+              var stateObj = { page: iframe_url };
+              window.history.pushState(stateObj, "", iframe_url);
+                $('body').css("background-color","#fff");
+                $('body').css("background-color","rgba(255, 255, 255, 0.6)");
+                 
+            });
+            
+            $('body').on('click','#closeImg',function(){
+                document.getElementById(iframe_url).style.width = "0px";
+                document.getElementById(iframe_url).style.height = "0px";
+                document.getElementById("closeImg").style.visibility="hidden";
+                
+                var stateObj = { page: url };
+                window.history.pushState(stateObj, "", url);
+            });
         });
   </script>
 </body>

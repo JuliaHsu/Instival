@@ -21,6 +21,8 @@
 	<link rel="stylesheet" href="{% static 'css/style_personal_menu.css' %}">
     <link rel="stylesheet" href="{% static 'css/style_personal.css' %}">
  	<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+ 	<link rel="stylesheet" type="text/css" href="../static/css/animate.css"/>
+ 	<link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -71,8 +73,8 @@
     		<li>
     			<div class="link"><i class="fa fa-paint-brush"></i>Profile<i class="fa fa-chevron-down"></i></div>
     			<ul class="submenu">
-    				<li><a href="{% url 'instival_database.views.showPersonal'%}">Home</a></li>
-    				<li><a href="{% url 'instival_database.views.showCalendar'%}">Calendar</a></li>
+    				<li><a href="{% url 'instival_database.views.showPersonal' user=7 %}">Home</a></li>
+    				<li><a href="{% url 'instival_database.views.setProfile_view' user=7 %}">Calendar</a></li>
     			</ul>
     		</li>
     		<!--li>
@@ -103,38 +105,52 @@
     	</ul>
 	</div>
 	<!--menu-->
-	
+    <form role="form">
+    	<!-- document -->
+                    <div class="row control-group">
+                        <div class="form-group col-md-8 col-md-offset-2 floating-label-form-group controls">
+                                <textarea rows="5" name="content" class="form-control" placeholder="Message" id="content" required data-validation-required-message="Please enter a message." disabled="disabled"></textarea>
+                               
+                        </div>
+                    </div>
+    </form>
+    
     <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/personal_menu.js' %}"></script>
+    <script src="{% static 'js/festival_each.js' %}"></script>
+    
     <script>
-        $('body').on('click','#upload',function(){
-    
-            $('#img_full').addClass('animated zoomIn');
-            document.getElementById("img_full").style.width = "800px";
-            document.getElementById("img_full").style.height = "600px";
-            document.getElementById("closeImg").style.visibility="visible";
-            var stateObj = { foo: "{% url 'instival_database.views.post_document'%}" };
-            window.history.pushState(stateObj, "page 2", "{% url 'instival_database.views.post_document'%}");
-    
-            $('body').css("background-color","#fff");
-            $('body').css("background-color","rgba(255, 255, 255, 0.6)");
-             
-            // hide scroll
-        });
-        $('body').on('click','#img_pre',function(){
-    
-            $('#img_full_pic').addClass('animated zoomIn');
-            document.getElementById("img_full_pic").style.width = "800px";
-            document.getElementById("img_full_pic").style.height = "600px";
-            document.getElementById("closeImg").style.visibility="visible";
-            var stateObj = { foo: "{% url 'instival_database.views.post_detail' pk=1 %}" };
-            window.history.pushState(stateObj, "page 2", "{% url 'instival_database.views.post_detail' pk=1 %}");
-    
-            $('body').css("background-color","#fff");
-            $('body').css("background-color","rgba(255, 255, 255, 0.6)");
-             
-            // hide scroll
+        $(document).ready(function() {
+            var url;
+            var iframe_url;
+            $('body').on('click','#img_pre',function(){
+                url = document.location.href;
+                
+                iframe_url = $('iframe',this).attr('src');
+                
+                $('iframe').addClass('animated zoomIn');
+                document.getElementById(iframe_url).style.width = "800px";
+                document.getElementById(iframe_url).style.height = "600px";
+                document.getElementById("closeImg").style.visibility="visible";
+                
+               
+              
+              var stateObj = { page: iframe_url };
+              window.history.pushState(stateObj, "", iframe_url);
+                $('body').css("background-color","#fff");
+                $('body').css("background-color","rgba(255, 255, 255, 0.6)");
+                 
+            });
+            
+            $('body').on('click','#closeImg',function(){
+                document.getElementById(iframe_url).style.width = "0px";
+                document.getElementById(iframe_url).style.height = "0px";
+                document.getElementById("closeImg").style.visibility="hidden";
+                
+                var stateObj = { page: url };
+                window.history.pushState(stateObj, "", url);
+            });
         });
   </script>
 </body>
