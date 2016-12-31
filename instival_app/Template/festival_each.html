@@ -12,9 +12,11 @@
  
 
   <link rel="stylesheet" type="text/css" href="../static/css/animate.css"/>
+  
+  <script src="{% static 'js/fbsdk.js' %}"></script>
 </head>
 
-<body>
+<body onload = "init();">
   <!-- google fonts-->
 
 
@@ -31,7 +33,8 @@
           <span class="icon-bar"></span>
         </button>
               <!--Logo-->
-        <a class="navbar-brand" href="{% url 'instival_database.views.showHomePage' %}" style="margin-left: 3px;">LOGO</a> 
+        <a class="navbar-brand" href="{% url 'instival_database.views.showHomePage' %}" style="margin-left: 3px;">LOGO</a>
+        <h4 id = "user"></h4>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->

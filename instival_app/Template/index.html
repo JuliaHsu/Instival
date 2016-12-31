@@ -13,7 +13,7 @@
     <title>Instival</title>
 
  	<!-- Bootstrap Core CSS -->
-    	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
     <!-- Custom CSS -->
@@ -22,9 +22,13 @@
     <link href="{% static 'css/iframe.css' %}" rel="stylesheet">
     <link href="{% static 'css/jquery.qtip.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    
+    <script src="{% static 'js/fbsdk.js' %}"></script>
 </head>
 
-<body>
+<body onload = "init();">
+    
+    
 	<!--Navbar-->
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
@@ -44,8 +48,9 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> 
 			    
     			<!--Login Button-->
-      			<button id="btn_sign" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px;">Sign in</button>
-    			
+    			<h4 id = "user"></h4>
+      			<button id="sign-btn" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px;" onclick="location='login.html';">Sign in</button>
+                
     			<!--Search-->
     			<form class="navbar-form" role="search" style="display:block;text-align:center;">
     				<div class="form-group">
@@ -188,7 +193,7 @@
     <br><br><br><br>
    
 	
-	<iframe class="signIn_full" id="sign_full" src="login.html" height="0" width="0" frameborder="0" >
+	<iframe class="signIn_full" id="sign_full" src="{% url 'instival_database.views.showLogin'%}" height="0" width="0" frameborder="0" >
     </iframe>
 	<a id="closeImg" href="{% url 'instival_database.views.showHomePage'%}">X</a>
 	
@@ -215,9 +220,12 @@
             document.getElementById("sign_full").style.width = "800px";
             document.getElementById("sign_full").style.height = "600px";
             document.getElementById("closeImg").style.visibility="visible";
+            
+            
             var stateObj = { foo: "{% url 'instival_database.views.showLogin'%}" };
             window.history.pushState(stateObj, "page 2", "{% url 'instival_database.views.showLogin'%}");
-    
+        
+        
             $('body').css("background-color","#fff");
             $('body').css("background-color","rgba(255, 255, 255, 0.6)");
              

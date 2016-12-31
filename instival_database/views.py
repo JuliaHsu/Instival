@@ -143,7 +143,7 @@ def country_each_festival_album(request,name,pk):
 #login
 def login(request):
     if request.method == 'GET':
-        return render(request, 'login.html')
+        return render(request, 'index.html')
     
 def getuserid(request):
     if request.method == 'GET':

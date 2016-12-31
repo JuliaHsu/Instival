@@ -21,9 +21,10 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+    <script src="{% static 'js/fbsdk.js' %}"></script>
 </head>
 
-<body>
+<body onload = "init();">
   <!--Facebook Login-->
   <script>
   window.fbAsyncInit = function() {
@@ -48,6 +49,7 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
   
+  
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -58,7 +60,14 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+      var uid = response.authResponse.userID;
+      var accessToken = response.authResponse.accessToken;
+      
       testAPI();
+      // var stateObj = { page: "{% url 'instival_database.views.showHomePage'%}" };
+      // window.history.pushState(stateObj, "", "{% url 'instival_database.views.showHomePage'%}");
+      // window.history.go(-1);
+      window.location.replace("{% url 'instival_database.views.showHomePage'%}");
       //get_my_profile();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -80,8 +89,8 @@
       statusChangeCallback(response);
     });
   }
-
-
+  
+  
   // Now that we've initialized the JavaScript SDK, we call 
   // FB.getLoginStatus().  This function gets the state of the
   // person visiting this page and can return one of three states to
@@ -126,7 +135,8 @@
       console.log('Successful login for: ' + response.id);
       console.log('Successful login for: ' + response.email);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + response.email + '!';
+        'Thanks for logging in, ' + response.name + '!';
+      // document.getElementById('state').href = "{% url 'instival_database.views.showHomePage'%}";
     });
     
     FB.api('/me', {fields:"id,name,email"}, function(response) {
@@ -182,7 +192,7 @@
               <input type="checkbox">
               Remember me </label>
           </div>
-          <input type="button" class="btn btn btn-primary" value="Log In" onclick="">
+          <input type="submit" class="btn btn btn-primary" value="Log In" onclick="">
         </form>
       </div>
     </div>
