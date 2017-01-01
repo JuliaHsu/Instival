@@ -1,4 +1,14 @@
 function init() {
+    window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '389702174703368',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.8' // use graph api version 2.8
+    });
+
+  
    function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
@@ -9,9 +19,10 @@ function init() {
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       testAPI();
+      var uid = response.authResponse.userID; // 取得 UID
       
       document.getElementById('sign-btn').style.display = 'none'
-      document.getElementById('user').innerHTML = name;
+      // document.getElementById('user').innerHTML = response.name;
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -32,15 +43,6 @@ function init() {
       statusChangeCallback(response);
     });
   }
-
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '389702174703368',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.8' // use graph api version 2.8
-  });
 
   // Now that we've initialized the JavaScript SDK, we call 
   // FB.getLoginStatus().  This function gets the state of the
@@ -75,16 +77,13 @@ function init() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+      document.getElementById('user-name').innerHTML = response.name;
+      // document.getElementById('status').innerHTML =
+      //   'Thanks for logging in, ' + response.name + '!';
     });
-    FB.api('/me', {fields:"id,name,email"}, function(response) {
-            // Insert your code here
-            userId = response.id;
-            name = response.name;
-            email = response.email;
-            
-      });
+    FB.api("/me/picture?width=40", function(response){
+      $("#user-picture").attr("src", response.data.url);
+    });
   } 
 }
 
