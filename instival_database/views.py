@@ -16,7 +16,7 @@ from django.utils import timezone
 # Create your views here.
 def showHomePage(request):
     time_thresholdAfter = datetime.now() + timedelta(days=20)
-    time_thresholdBefore = datetime.now() - timedelta(days=14)
+    time_thresholdBefore = datetime.now() - timedelta(days=20)
     festivals = Festival.objects.filter(Q(date__lt=time_thresholdAfter) | Q(date__lt=time_thresholdBefore) )
     countries = Country.objects.all()
     today = datetime.now()
@@ -57,7 +57,6 @@ def post_detail(request,pk):
     # pk_url_kwarg = 'post_id'
     post = get_object_or_404(Post,pk=pk)
     post_id = post.pk
-    global liked
     liked=False
     if request.session.get('has_liked_'+str(post_id), liked):
         liked = True

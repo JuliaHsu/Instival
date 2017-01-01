@@ -803,13 +803,13 @@ body {
 
 .heart {
   border: 3px solid #fff;
-  border-radius: 40px;
-  width: 40px;
-  height: 40px;
-  background: rgba(0, 0, 0, 0.2);
-  opacity: .3;
-  color: #fff;
-  font-size: 22px;
+  border-radius: 35px;
+  width: 35px;
+  height: 35px;
+  background: rgba(255,255,255,0.2);
+  opacity: .5;
+  color: #a6a6a6;
+  font-size: 20px;
   text-align: center;
   padding-top: 2px;
   box-sizing: border-box;
@@ -843,6 +843,15 @@ body {
 
 .img_middle{
   vertical-align: middle;
+}
+
+.like_count_blog{
+  position: absolute;
+  
+  right:20px;
+  margin-top: 25px;
+  font-size: 15px;
+  
 }
 
 

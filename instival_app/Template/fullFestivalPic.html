@@ -8,9 +8,9 @@
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/style_festival_each.css' %}" >
-
+	<link href="{%static 'css/font-awesome.css' %}">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>
+
   
 </head>
 <body>
@@ -22,19 +22,27 @@
           		<div class="box">
           			
             		<img src="{{post.picture}}"/>
-            		<div id='heart-icon{{post.id}}'>
-            			 <button class="heart post-likes" id='' data-post-id="{{ post.id }}">
-                	
-	                	 {% if liked %}
-	                		<i class="fa fa-heart clicked" id="heart_clicked" ></i>
-	                	{% else %}
-	                		<i class="fa fa-heart" id="heart_not_clicked"></i>
-	                	{% endif %}
-                	
-                </button>
+            		<div class="row" >
+						<div class="col-lg-6 col-lg-offset-6">
+							<button class="heart post-likes" id='' data-post-id="{{ post.id }}">
+
+			               	{% if liked %}
+			               		<i class="fa fa-heart clicked " id="heart_clicked" ></i>
+			               	{% else %}
+			               		<i class="fa fa-heart" id="heart_not_clicked"></i>
+			               	{% endif %}
+	                		</button>
+	                		<div class="like_count_blog" id="heart-counter{{post.id}}">{{ post.like_number }}</div>
+						</div>
+            			
+                		<div class="col-lg-6 col-lg-offset-6 ">
+                			
+                		</div>
+						
+            			 
+                		
+
             		</div>
-               
-                <div class="like_count_blog" id="heart-counter{{post.id}}">{{ post.like_number }}</div>
             		<div class="row">
             			<div class="col-lg-4">
             				<h3>{{post.festival_id.festival.name}}, {{post.location.name}}</h3>
@@ -120,7 +128,13 @@
             	
            
          });
-        
+         //$.get('/heart/', {
+         //   post_id: id
+         // }, function(data) {
+         //   $('#heart-icon'+ id ).html(data);
+            	
+           
+         //});
     	});
 
           
