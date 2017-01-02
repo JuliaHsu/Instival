@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponseRedirect
-from .models import Post,User,Festival,Country,Festival_Country
+from .models import Post,User,Festival,Country,Festival_Country,Profile
 
 from .forms import PostForm
 from .forms import CommentForm
@@ -41,9 +41,11 @@ def showPersonal(request,user):
     # }
     
     users=User.objects.get(id=user)
+    profiles=Profile.objects.get(user_id__id=user)
     posts=Post.objects.filter(user_id__id=user).order_by('-date')
     content ={
         'posts': posts,
+        'profiles': profiles,
         'users':users,
     }
     
@@ -60,15 +62,32 @@ def setProfile_view(request,user):
     # }
     
     users=User.objects.get(id=user)
+    profiles=Profile.objects.get(user_id__id=user)
     posts=Post.objects.filter(user_id__id=user).order_by('-date')
     content ={
         'posts': posts,
+        'profiles': profiles,
         'users':users,
     }
+    
+    if request.method == "POST":
+        if 'intro' in request.POST:
+            Profile.objects.filter(user_id=user).update(self_introduction=request.POST['intro'])
     
     return render(request,'setProfile.html',content)
     
     ######################
+    
+def upload_personalPhoto(request,user):
+    users=User.objects.get(id=user)
+    content ={
+        'users':users,
+    }
+    
+    if request.method == "POST":
+        if 'picture' in request.POST:
+            Profile.objects.filter(user_id=user).update(profile_picture=request.POST['picture'])
+    return render(request,'upload_photo.html',content)
     
 def showCalendar(request):
     return render(request,'calendar.html',{})

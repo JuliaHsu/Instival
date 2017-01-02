@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^getuserid/$', views.getuserid, name='getuserid'),
     url(r'^profile/(?P<user>\w+)/$',views.showPersonal),
     url(r'^setProfile/(?P<user>\w+)/$',views.setProfile_view),
+    url(r'^setProfile/(?P<user>\w+)/photo/$',views.upload_personalPhoto),
    
 ]

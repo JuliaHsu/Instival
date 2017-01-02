@@ -20,8 +20,9 @@
 	<link rel="stylesheet" href="{% static 'css/style_festival_each.css' %}">
 	<link rel="stylesheet" href="{% static 'css/style_personal_menu.css' %}">
     <link rel="stylesheet" href="{% static 'css/style_personal.css' %}">
+     <link rel="stylesheet" href="{% static 'css/style_setprofile.css' %}">
  	<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
- 	<link rel="stylesheet" type="text/css" href="../static/css/animate.css"/>
+ 	<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}"/>
  	<link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>
 
 </head>
@@ -105,14 +106,49 @@
     	</ul>
 	</div>
 	<!--menu-->
-    <form role="form">
-    	<!-- document -->
-                    <div class="row control-group">
-                        <div class="form-group col-md-8 col-md-offset-2 floating-label-form-group controls">
-                                <textarea rows="5" name="content" class="form-control" placeholder="Message" id="content" required data-validation-required-message="Please enter a message." disabled="disabled"></textarea>
-                               
+	
+	
+    <form role="form" method="POST">
+        {% csrf_token %}
+    	<div class="col-md-8 col-md-offset-2">
+            <table>
+                <tr>
+                    <td width=20%><font size="3">Replace profile picture</font></td>
+                    <td width=70%>
+                       <img src="{{profiles.profile_picture}}" class="img-responsive img-circle" width="150">
+                    </td>
+                    <td>
+                        <input id="iphotoButton" class="btn btn-default" type="button" value='Edit' onclick="ChangePhoto()">
+                        <!--<a id="photoUpload" class="btn btn-default">Upload</a>-->
+                        <iframe class="gallery_item_full " id="photoIframe" src="{% url 'instival_database.views.upload_personalPhoto' user=users.id %}" height="0" width="0" frameborder="0" ></iframe>    
+                        <a id="closeImg" href="#" id="" src="" onclick="ClosePhoto()">X</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><font size="3">Update introduction</font></td>
+                    <td>
+                        <div class="form-group col-md-10 floating-label-form-group controls">
+                            <textarea rows="5" name="intro" class="form-control" id="content" required data-validation-required-message="Please enter a message." disabled="disabled">{{profiles.self_introduction}}</textarea>
                         </div>
-                    </div>
+                    </td>
+                    <td>
+                        <input id="introductionButton" class="btn btn-default" type="button" value='Edit' onclick="ChangeDisabled(1)">
+                        <input id="introductionSubmit" type="submit" class="btn btn-default dropdown-toggle" style="display:none;" value="Submit">
+                        <input id="introductionButtonCancel" class="btn btn-default" type="button" value='Cancel' style="display:none;" onclick="ChangeDisabled(2)">
+                    </td>
+                </tr>
+                <!--<tr>-->
+                <!--    <td>Joe</td>-->
+                <!--    <td>Swanson</td>-->
+                <!--    <td>$300</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--    <td>Cleveland</td>-->
+                <!--    <td>Brown</td>-->
+                <!--    <td>$250</td>-->
+                <!--</tr>-->
+            </table>
+        </div>
     </form>
     
     <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
@@ -124,24 +160,6 @@
         $(document).ready(function() {
             var url;
             var iframe_url;
-            $('body').on('click','#img_pre',function(){
-                url = document.location.href;
-                
-                iframe_url = $('iframe',this).attr('src');
-                
-                $('iframe').addClass('animated zoomIn');
-                document.getElementById(iframe_url).style.width = "800px";
-                document.getElementById(iframe_url).style.height = "600px";
-                document.getElementById("closeImg").style.visibility="visible";
-                
-               
-              
-              var stateObj = { page: iframe_url };
-              window.history.pushState(stateObj, "", iframe_url);
-                $('body').css("background-color","#fff");
-                $('body').css("background-color","rgba(255, 255, 255, 0.6)");
-                 
-            });
             
             $('body').on('click','#closeImg',function(){
                 document.getElementById(iframe_url).style.width = "0px";
@@ -153,5 +171,48 @@
             });
         });
   </script>
+  
+  <script language="javascript">
+        var url;
+        var iframe_url;
+        function ChangePhoto(){
+            url = document.location.href;
+                
+            iframe_url = document.getElementById('photoIframe').src; 
+            
+            $('iframe').addClass('animated zoomIn');
+            document.getElementById('photoIframe').style.width = "800px";
+            document.getElementById('photoIframe').style.height = "600px";
+            document.getElementById("closeImg").style.visibility="visible";
+            
+            var stateObj = { page: iframe_url };
+            window.history.pushState(stateObj, "", iframe_url);
+            $('body').css("background-color","#fff");
+            $('body').css("background-color","rgba(255, 255, 255, 0.6)");
+        }
+  
+        function ClosePhoto(){
+            document.getElementById('photoIframe').style.width = "0px";
+            document.getElementById('photoIframe').style.height = "0px";
+            document.getElementById("closeImg").style.visibility="hidden";
+            
+            var stateObj = { page: url };
+            window.history.pushState(stateObj, "", url);
+        }
+        
+        function ChangeDisabled(value){
+            if(document.getElementById('content').disabled==true){
+                document.getElementById('content').disabled=false;　// 變更欄位為可用
+                document.getElementById('introductionButton').style.display='none'; 
+                document.getElementById('introductionButtonCancel').style.display=''; 
+                document.getElementById('introductionSubmit').style.display=''; 
+            }else{
+                document.getElementById('content').disabled=true;　// 變更欄位為禁用
+                document.getElementById('introductionButton').style.display=''; 
+                document.getElementById('introductionButtonCancel').style.display='none'; 
+                document.getElementById('introductionSubmit').style.display='none'; 
+            }
+        }
+    </script>
 </body>
 </html>
