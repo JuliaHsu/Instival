@@ -49,6 +49,7 @@
 			    
     			<!--Login Button-->
       			<button id="sign-btn" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px;" onclick="location='login.html';">Sign in</button>
+      			<button id="logout-btn" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px; display: none;" onclick="javascript:fb_logout();">Log out</button>
       			<h4 id ="user-name" class="navbar-right"></h4>
                 <img id="user-picture" class="img-rounded navbar-right" src="">
                 
@@ -275,6 +276,14 @@
     })
     </script>
     
+    <script>
+    function fb_logout() {
+        FB.logout(function(response) {
+          // user is now logged out
+          window.location.replace("{% url 'instival_database.views.showHomePage'%}");
+        });
+    }
+    </script>
     
 </body>
 

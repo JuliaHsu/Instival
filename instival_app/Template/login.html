@@ -64,9 +64,6 @@
       var accessToken = response.authResponse.accessToken;
       
       testAPI();
-      // var stateObj = { page: "{% url 'instival_database.views.showHomePage'%}" };
-      // window.history.pushState(stateObj, "", "{% url 'instival_database.views.showHomePage'%}");
-      // window.history.go(-1);
       window.location.replace("{% url 'instival_database.views.showHomePage'%}");
       //get_my_profile();
     } else if (response.status === 'not_authorized') {
@@ -124,7 +121,9 @@
         }
         
     });
-}
+  }
+  
+  
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.

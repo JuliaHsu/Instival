@@ -50,6 +50,7 @@
           </form>
         </div>
   		  <!-- /.navbar-collapse -->
+  		  <button id="logout-btn" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px; display: none;" onclick="javascript:fb_logout();">Log out</button>
   		  <h4 id= "user-name" class="navbar-right" style="margin-right: 5px;"></h4>
   		  <img id="user-picture" class="img-rounded navbar-right" src="">
 		</div>
@@ -217,6 +218,15 @@
     
   });
   
+  </script>
+  
+  <script>
+  function fb_logout() {
+      FB.logout(function(response) {
+        // user is now logged out
+        window.location.replace("{% url 'instival_database.views.showHomePage'%}");
+      });
+  }
   </script>
   
 <script type="" src="{% static 'js/festival_each.js' %}"></script>
