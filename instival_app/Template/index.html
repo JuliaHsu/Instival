@@ -24,7 +24,7 @@
     
 </head>
 
-<body>
+<body data-spy="scroll">
 	<!--Navbar-->
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
@@ -80,7 +80,7 @@
                             	</p>
                             </div>
                             <div class="top-big-link wow fadeInUp">
-                            	<a class="btn btn-link-2 scroll-link" href="#features">Learn more</a>
+                            	<a class="btn btn-link-2 scroll-link" href="#map_img">Learn more</a>
                             </div>
                         </div>
                     </div>
@@ -152,13 +152,7 @@
     {% endfor %}
     
     
-    <br>
     
-    <div style="text-align:center">
-      <span class="dot" onclick="currentSlide(1)"></span> 
-      <span class="dot" onclick="currentSlide(2)"></span> 
-      <span class="dot" onclick="currentSlide(3)"></span> 
-    </div>
     
     
     <!--album-->
@@ -202,6 +196,7 @@
     
     <script src="{% static 'js/jquery.rwdImageMaps.min.js' %}"></script>
     <script src="{% static 'js/jquery.qtip.min.js' %}"></script>
+    <script src="{% static 'js/scroll.js' %}"></script>
     <script src="{% static 'js/jquery.backstretch.js' %}"></script>
     
     <script>
