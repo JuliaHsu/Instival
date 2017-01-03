@@ -21,11 +21,20 @@
     <link href="{% static 'css/style_login.css' %}" rel="stylesheet">
     <link href="{% static 'css/iframe.css' %}" rel="stylesheet">
     <link href="{% static 'css/jquery.qtip.min.css' %}" rel="stylesheet">
+<<<<<<< HEAD
     
+=======
+>>>>>>> 533378d6b4ade421c8995c1c2ff25a2af5dd8e3a
     <script src="{% static 'js/fbsdk.js' %}"></script>
 </head>
 
-<body onload = "init();">
+<body data-spy="scroll"  onload = "init();">
+    
+    
+    
+
+
+
     
 	<!--Navbar-->
 	    {% include 'navbar.html' %}
@@ -47,7 +56,7 @@
                             	</p>
                             </div>
                             <div class="top-big-link wow fadeInUp">
-                            	<a class="btn btn-link-2 scroll-link" href="#features">Learn more</a>
+                            	<a class="btn btn-link-2 scroll-link" href="#map_img">Learn more</a>
                             </div>
                         </div>
                     </div>
@@ -109,32 +118,24 @@
         <h4>{{country.name}} {{user_id.name}} {{user_id.email}}</h4>
         
         {% for festival_on_map in festivals_on_map %}
-        
             {% ifequal festival_on_map.location.name country.name %}
-        <a href="{% url 'instival_database.views.country_each_festival_album' name=country.name pk=festival_on_map.pk  %}">{{festival_on_map.festival.name}}</a>
-        <br><br>
+                <a href="{% url 'instival_database.views.country_each_festival_album' name=country.name pk=festival_on_map.pk  %}">{{festival_on_map.festival.name}}</a>
+                <br><br>
             {% endifequal %}
         {% endfor %}
         
-    
     </div>
     {% endfor %}
     
     
-    <br>
     
-    <div style="text-align:center">
-      <span class="dot" onclick="currentSlide(1)"></span> 
-      <span class="dot" onclick="currentSlide(2)"></span> 
-      <span class="dot" onclick="currentSlide(3)"></span> 
-    </div>
     
     
     <!--album-->
     <div class="container">
         <div class="row">
             {% for festival in festivals %}
-            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
+            <div class="col-lg-3 col-sm-3 text-center portfolio-item">
                 <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}" class="portfolio-link">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content">
@@ -171,6 +172,7 @@
     
     <script src="{% static 'js/jquery.rwdImageMaps.min.js' %}"></script>
     <script src="{% static 'js/jquery.qtip.min.js' %}"></script>
+    <script src="{% static 'js/scroll.js' %}"></script>
     <script src="{% static 'js/jquery.backstretch.js' %}"></script>
     
     <script>

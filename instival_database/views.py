@@ -16,7 +16,7 @@ from django.utils import timezone
 # Create your views here.
 def showHomePage(request):
     time_thresholdAfter = datetime.now() + timedelta(days=20)
-    time_thresholdBefore = datetime.now() - timedelta(days=14)
+    time_thresholdBefore = datetime.now() - timedelta(days=20)
     festivals = Festival.objects.filter(Q(date__lt=time_thresholdAfter) | Q(date__lt=time_thresholdBefore) )
     countries = Country.objects.all()
     today = datetime.now()
@@ -38,8 +38,26 @@ def showHomePage(request):
 def showLogin(request):
     return render(request,'login.html',{})
     
-def showPersonal(request):
-    return render(request,'personal.html',{})
+    ################################################
+    
+def showPersonal(request,user):
+    
+    # profiledataas=Users.objects.filter()
+    
+    # content ={
+    #     'profiledata': profiledatas,
+    # }
+    
+    users=User.objects.get(id=user)
+    posts=Post.objects.filter(user_id__id=user).order_by('-date')
+    content ={
+        'posts': posts,
+        'users':users,
+    }
+    
+    return render(request,'personal.html',content)
+    
+    ################################################
     
 def showCalendar(request):
     return render(request,'calendar.html',{})
@@ -60,7 +78,6 @@ def post_detail(request,pk):
     # pk_url_kwarg = 'post_id'
     post = get_object_or_404(Post,pk=pk)
     post_id = post.pk
-    global liked
     liked=False
     if request.session.get('has_liked_'+str(post_id), liked):
         liked = True
@@ -107,24 +124,41 @@ def like_count_blog(request):
     post.save()
     return HttpResponse(likes, liked)
 
-def post_document(request):
-    u=User.objects.request.session.get(uid)
-    festivals=Festival.objects.order_by('id')
+
+
+
+def post_document(request,user):
+    u=User.objects.get(id=user)
+    festivals=Festival_Country.objects.order_by('id')
+    Countrys=Country.objects.order_by('id')
+    
+    context = {
+        'users' : u,
+        'festivals' : festivals,
+        'Countrys' : Countrys,
+    }
+    
+
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.user_id = u
-            f=form.data.get("festival")
-            post.festival_id = Festival.objects.get(name = f)
+            f=form.data.get("getfestival")
+            f_f=Festival.objects.get(name =f.split('.')[0])
+            f_c=Country.objects.get(name =f.split('.')[1])
+            paa=Festival_Country.objects.get(festival=f_f,location=f_c)
+            post.festival_id = paa
             p=form.data.get("picture")
-            post.picture=p
+            c=form.data.get("getlocation")
+            post.location=Country.objects.get(name = c)
+            post.picture = p
             post.date = timezone.now()
             post.like_id_group = ""
             post.comment_id_group = ""
             post.like_number = 0
             post.save()
-    return render(request, 'upload.html', {'festivals':festivals})
+    return render(request, 'upload.html', context)
 
 
 def add_comment_to_post(request, pk):
@@ -156,7 +190,8 @@ def createAccount(request):
     
     return render(request, 'signup.html')
 
-    
+   ############################################
+   
 def country_each_festival_album(request,name,pk):
     festival=Festival_Country.objects.get(pk=pk)
     
@@ -168,7 +203,7 @@ def country_each_festival_album(request,name,pk):
     }
     return render(request,'festival_each.html',content)
 
-
+    ##############################################
 
 
 #login
