@@ -48,7 +48,7 @@ def showPersonal(request,user):
     #     'profiledata': profiledatas,
     # }
     
-    users=User.objects.get(id=user)
+    users=request.session.get("uid")
     posts=Post.objects.filter(user_id__id=user).order_by('-date')
     content ={
         'posts': posts,
@@ -128,7 +128,7 @@ def like_count_blog(request):
 
 
 def post_document(request,user):
-    u=User.objects.get(id=user)
+    u=request.session.get("uid")
     festivals=Festival_Country.objects.order_by('id')
     Countrys=Country.objects.order_by('id')
     
@@ -138,7 +138,6 @@ def post_document(request,user):
         'Countrys' : Countrys,
     }
     
-
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
@@ -159,6 +158,7 @@ def post_document(request,user):
             post.like_number = 0
             post.save()
     return render(request, 'upload.html', context)
+
 
 
 def add_comment_to_post(request, pk):
