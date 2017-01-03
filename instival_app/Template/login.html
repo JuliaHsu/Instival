@@ -62,6 +62,7 @@
       // Logged into your app and Facebook.
       var uid = response.authResponse.userID;
       var accessToken = response.authResponse.accessToken;
+      var e = response.email;
       
       testAPI();
       window.location.replace("{% url 'instival_database.views.showHomePage'%}");

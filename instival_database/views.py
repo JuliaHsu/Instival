@@ -151,6 +151,7 @@ def getuserid(request):
         email = request.GET['email']
         userId = request.GET['userId']
         print(userId)
+        
         if User.objects.filter(userId = userId).exists():
             print name + " is using"
             user = User.objects.filter(userId = userId)[0]
@@ -163,7 +164,6 @@ def getuserid(request):
             )
         
     return HttpResponseRedirect(userId)
-
 
             
 

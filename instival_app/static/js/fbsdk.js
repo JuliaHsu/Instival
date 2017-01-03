@@ -18,11 +18,13 @@ function init() {
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+      document.getElementById('sign-btn').style.display = 'none';
+      document.getElementById('show_logout').style.display = '';
       var uid = response.authResponse.userID; // 取得 UID
       
-      document.getElementById('sign-btn').style.display = 'none';
-      // document.getElementById('logout-btn').style.display = '';
+      testAPI();
+      
+      
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -74,15 +76,16 @@ function init() {
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    document.getElementById('logout-btn').style.display = '';
+    // document.getElementById('logout-btn').style.display = '';
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me', {fields:"id,name,email"},  function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('user-name').innerHTML = response.name;
+      // var e = response.email;
       // document.getElementById('status').innerHTML =
       //   'Thanks for logging in, ' + response.name + '!';
     });
-    FB.api("/me/picture?width=50", function(response){
+    FB.api("/me/picture?width=40", function(response){
       $("#user-picture").attr("src", response.data.url);
     });
   }
