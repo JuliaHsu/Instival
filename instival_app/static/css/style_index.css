@@ -122,13 +122,13 @@ body {
 }
 
 .portfolio-item {
-    padding-top: 200px;
+    padding-top: 50px;
     margin-bottom: 25px;
 }
 
 .box {
-  width: 100%;
-  height: 400px;
+  width: 200px%;
+  height: 200px;
   margin: auto;
   display: block;
   border: 0.1px solid #DADADA;
@@ -142,7 +142,7 @@ body {
 .portfolio-item .portfolio-link {
   display: block;
   position: relative;
-  width: 400px;
+  width: 200px;
   margin: 0 auto;
 }
 
@@ -160,8 +160,8 @@ body {
 .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3 {
   color: white;
   /*padding-top: 150px;*/
-  line-height: 350px;
-  font-size: 32px;
+  line-height: 200px;
+  font-size: 20px;
 }
 
 .portfolio-item .portfolio-hover:hover {

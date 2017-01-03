@@ -13,7 +13,7 @@
     <title>Instival</title>
 
  	<!-- Bootstrap Core CSS -->
-    	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
     <!-- Custom CSS -->
@@ -21,10 +21,18 @@
     <link href="{% static 'css/style_login.css' %}" rel="stylesheet">
     <link href="{% static 'css/iframe.css' %}" rel="stylesheet">
     <link href="{% static 'css/jquery.qtip.min.css' %}" rel="stylesheet">
-    
+    <script src="{% static 'js/fbsdk.js' %}"></script>
 </head>
 
-<body data-spy="scroll">
+<body data-spy="scroll"  onload = "init();">
+    
+    
+    
+
+
+
+    
+    
 	<!--Navbar-->
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
@@ -44,8 +52,11 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> 
 			    
     			<!--Login Button-->
-      			<button id="btn_sign" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px;">Sign in</button>
-    			
+      			<button id="sign-btn" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px;" onclick="location='login.html';">Sign in</button>
+      			<button id="logout-btn" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px; display: none;" onclick="javascript:fb_logout();">Log out</button>
+      			<h4 id ="user-name" class="navbar-right"></h4>
+                <img id="user-picture" class="img-rounded navbar-right" src="">
+                
     			<!--Search-->
     			<form class="navbar-form" role="search" style="display:block;text-align:center;">
     				<div class="form-group">
@@ -159,7 +170,7 @@
     <div class="container">
         <div class="row">
             {% for festival in festivals %}
-            <div class="col-lg-6 col-sm-6 text-center portfolio-item">
+            <div class="col-lg-3 col-sm-3 text-center portfolio-item">
                 <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}" class="portfolio-link">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content">
@@ -180,7 +191,7 @@
     <br><br><br><br>
    
 	
-	<iframe class="signIn_full" id="sign_full" src="login.html" height="0" width="0" frameborder="0" >
+	<iframe class="signIn_full" id="sign_full" src="{% url 'instival_database.views.showLogin'%}" height="0" width="0" frameborder="0" >
     </iframe>
 	<a id="closeImg" href="{% url 'instival_database.views.showHomePage'%}">X</a>
 	
@@ -208,9 +219,12 @@
             document.getElementById("sign_full").style.width = "800px";
             document.getElementById("sign_full").style.height = "600px";
             document.getElementById("closeImg").style.visibility="visible";
+            
+            
             var stateObj = { foo: "{% url 'instival_database.views.showLogin'%}" };
             window.history.pushState(stateObj, "page 2", "{% url 'instival_database.views.showLogin'%}");
-    
+        
+        
             $('body').css("background-color","#fff");
             $('body').css("background-color","rgba(255, 255, 255, 0.6)");
              
@@ -259,6 +273,14 @@
     })
     </script>
     
+    <script>
+    function fb_logout() {
+        FB.logout(function(response) {
+          // user is now logged out
+          window.location.replace("{% url 'instival_database.views.showHomePage'%}");
+        });
+    }
+    </script>
     
 </body>
 
