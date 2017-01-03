@@ -1,0 +1,11 @@
+<div id ="heart-icon{{post.id}}">
+    <button class="heart post-likes" id="" data-post-id="{{ post.id }}">
+                	
+                	 {% if liked %}
+                	<i class="fa fa-heart clicked" id="heart_clicked" ></i>
+                	{% else %}
+                	<i class="fa fa-heart" id="heart_not_clicked"></i>
+                	{% endif %}
+                	
+    </button>
+</div>

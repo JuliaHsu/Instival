@@ -1,4 +1,3 @@
-
 {% load staticfiles %}
 <!DOCTYPE html>
 
@@ -9,9 +8,9 @@
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/style_festival_each.css' %}" >
-
+	<link href="{%static 'css/font-awesome.css' %}">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>
+
   
 </head>
 <body>
@@ -21,8 +20,29 @@
 		<div class="">
 			<div class="gallery_item_full ">
           		<div class="box">
+          			
             		<img src="{{post.picture}}"/>
-                <div class="heart"><i class="fa fa-heart"></i></div>
+            		<div class="row" >
+						<div class="col-lg-6 col-lg-offset-6">
+							<button class="heart post-likes" id='' data-post-id="{{ post.id }}">
+
+			               	{% if liked %}
+			               		<i class="fa fa-heart clicked " id="heart_clicked" ></i>
+			               	{% else %}
+			               		<i class="fa fa-heart" id="heart_not_clicked"></i>
+			               	{% endif %}
+	                		</button>
+	                		<div class="like_count_blog" id="heart-counter{{post.id}}">{{ post.like_number }}</div>
+						</div>
+            			
+                		<div class="col-lg-6 col-lg-offset-6 ">
+                			
+                		</div>
+						
+            			 
+                		
+
+            		</div>
             		<div class="row">
             			<div class="col-lg-4">
             				<h3>{{post.festival_id.festival.name}}, {{post.location.name}}</h3>
@@ -94,28 +114,32 @@
 	<script>
 		$(document).ready(function() {
           // pulse heart button
-          $('.heart').click(function() {
-            $(this).toggleClass("liked");
-          });
-         
-    //     $('body').on('click','#add_comment',function(){
-    // 	var url = $(this).attr("href");
-      
-    //     alert(url );
-    // 	var stateObj = { page: url };
-    // 	window.history.pushState(stateObj, "", url);
-     
-     
-       
         
-       
-      
-      
-       
+          $('.post-likes').click(function() {
+          	
+          		 $('i').toggleClass("clicked");
+          	
+        	var id;
+        	id = $(this).attr('data-post-id');
+    		 $.get('/like-blog/', {
+            post_id: id
+          }, function(data) {
+            $('#heart-counter'+ id ).html(data);
+            	
+           
+         });
+         //$.get('/heart/', {
+         //   post_id: id
+         // }, function(data) {
+         //   $('#heart-icon'+ id ).html(data);
+            	
+           
+         //});
+    	});
+
+          
          
-    //   // hide scroll
-      
-    // });
+    
     });
     
 	</script>
