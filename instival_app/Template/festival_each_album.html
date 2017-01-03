@@ -1,0 +1,220 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> {{festival.name}}</title>
+  
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style_festival_each.css' %}" >
+  <link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>
+ 
+
+  <link rel="stylesheet" type="text/css" href="../static/css/animate.css"/>
+</head>
+
+<body>
+  <!-- google fonts-->
+
+
+
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+              <!--Logo-->
+        <a class="navbar-brand" href="{% url 'instival_database.views.showHomePage' %}" style="margin-left: 3px;">LOGO</a> 
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="col-lg-7 col-lg-offset-2">
+          <!--Search-->
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" style="width: 250px;" placeholder="Search Festival">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" style="width: 250px;" placeholder="Search Country">
+
+            </div>
+  		    <!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!--Navbar-->
+	
+  <!--Festival-->
+  <section id="festival_intro" >
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-12 text-center">
+            
+            <h1 class="section-heading">
+              
+                {{festival.name}}
+              </h1>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+            </div>
+                    
+            <div class="col-lg-4 text-center">
+                <button class="introduction">Introduction:<br></button>
+                <p class="intro_more">{{festival.introduction}}
+                </p>
+            </div>
+          </div>
+      </div>
+            
+    </div>
+  </section>
+
+  <!-- Ｔab  -->
+
+ <div class ="col-md-8 col-md-offset-2">
+  <ul class="nav nav-tabs" role="tablist" id="example-one">
+          <li role="presentation" class="active">
+            <a href="" role="tab" data-toggle="tab">2016</a>
+          </li>
+          <li role="presentation">
+            <a href="" role="tab" data-toggle="tab">2015</a>
+          </li>
+          <li role="presentation">
+            <a href="" role="tab" data-toggle="tab">2014</a>
+          </li>
+          <li role="presentation">
+            <a href="" role="tab" data-toggle="tab">2013</a>
+          </li>
+        </ul>
+ </div>
+
+<div class="wrapper">
+  <div class="wrapper_inner">
+    <!-- Gallery -->
+    <div class="gallery">
+      <!-- Gallery  item -->
+    	{% for post in posts %}
+    	
+      <div class="gallery_item">
+        <!-- Gallery  item preview -->
+        <span class="gallery_item_preview">
+          <a href="#" id="img_pre">
+           
+            <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
+              <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
+            </svg>
+            
+             <img src="{{post.picture}}"/>
+              <!--<img src ="img/profilePic.jpg" class ="img-circle">-->
+              <span>
+                <div class="row">
+                  <div class="col-lg-2">
+                    <img class ="img-circle" src ="{% static 'img/profilePic.jpg' %}" >
+                  </div>
+                  <div class="col-lg-2 col-lg-offset-1">
+                    <h3>{{post.user_id.name}}</h3>
+                  </div>
+                </div>
+                
+                
+              </span>
+              <div>
+                <iframe class="gallery_item_full " id="{% url 'instival_database.views.post_detail' pk=post.pk %}" src="{% url 'instival_database.views.post_detail' pk=post.pk %}" height="0" width="0" frameborder="0" >
+    
+                </iframe>
+   
+              </div>
+          </a>
+        </span>  
+      </div>
+
+      
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+<a id="closeImg" href="#" >X</a>
+
+  
+   
+
+  <script src="{% static 'bootstrap/js/jquery-3.1.1.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  
+
+
+
+
+
+  <script>
+ 
+  $(document).ready(function() {
+    var url;
+    var iframe_url;
+    $(".introduction").click(function() {
+      $(".intro_more").slideToggle("slow");
+    });
+    $('body').on('click','#img_pre',function(){
+        url = document.location.href;
+        
+        iframe_url = $('iframe',this).attr('src');
+        
+        $('iframe').addClass('animated zoomIn');
+        document.getElementById(iframe_url).style.width = "800px";
+        document.getElementById(iframe_url).style.height = "600px";
+        document.getElementById("closeImg").style.visibility="visible";
+        
+       
+      
+      var stateObj = { page: iframe_url };
+      window.history.pushState(stateObj, "", iframe_url);
+        $('body').css("background-color","#fff");
+        $('body').css("background-color","rgba(255, 255, 255, 0.6)");
+         
+      
+      
+    });
+    $('body').on('click','#closeImg',function(){
+        
+        
+        
+        document.getElementById(iframe_url).style.width = "0px";
+        document.getElementById(iframe_url).style.height = "0px";
+        document.getElementById("closeImg").style.visibility="hidden";
+        
+        var stateObj = { page: url };
+        window.history.pushState(stateObj, "", url);
+      
+      
+      
+      
+    });
+   
+    
+    
+     
+    // var currentState = history.state;
+    // $(window).on('popstate', function(e){
+    //     window.location.href = window.location.href;
+        
+  
+    // });
+    
+  });
+  
+  </script>
+  
+<script type="" src="{% static 'js/festival_each.js' %}"></script>
+
+</body>
+</html>

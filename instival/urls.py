@@ -28,8 +28,9 @@ urlpatterns = [
     url(r'^signup/', views.createAccount),
     url(r'^post/',views.post_document),
 
+    url(r'^like-blog/$', views.like_count_blog, name='like_count_blog'),
    
-     url(r'^login/', views.login),
-     url(r'^getuserid/$', views.getuserid, name='getuserid'),
+    url(r'^login/', views.login),
+    url(r'^getuserid/$', views.getuserid, name='getuserid'),
    
 ]
