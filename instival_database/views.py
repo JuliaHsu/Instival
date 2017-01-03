@@ -22,6 +22,9 @@ def showHomePage(request):
     today = datetime.now()
      
     festivals_on_map = Festival_Country.objects.filter(festival__date__month=today.month)
+    
+    
+    
     context={
         'festivals':festivals,
         'countries':countries,
@@ -77,7 +80,7 @@ def post_detail(request,pk):
             
 
 def post_document(request):
-    u=User.objects.get(name ='Julia2')
+    u=User.objects.request.session.get(uid)
     festivals=Festival.objects.order_by('id')
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -147,11 +150,13 @@ def login(request):
     
 def getuserid(request):
     if request.method == 'GET':
+        if request.session['uid']:
+            print request.session['uid']
         name = request.GET['name']
         email = request.GET['email']
         userId = request.GET['userId']
-        print(userId)
-        
+        uid = User.objects.get(email=email).id
+        request.session['uid'] = uid
         if User.objects.filter(userId = userId).exists():
             print name + " is using"
             user = User.objects.filter(userId = userId)[0]
@@ -163,7 +168,7 @@ def getuserid(request):
                 email = email
             )
         
-    return HttpResponseRedirect(userId)
+    return HttpResponseRedirect(uid)
 
             
 

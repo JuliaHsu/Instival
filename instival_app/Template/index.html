@@ -106,7 +106,7 @@
     
    {% for country in countries %}
     <div id="statesMap-{{country.name}}" class="tooltip-content">
-        <h4>{{country.name}}</h4>
+        <h4>{{country.name}} {{user_id.name}} {{user_id.email}}</h4>
         
         {% for festival_on_map in festivals_on_map %}
         
