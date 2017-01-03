@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404,redirect,render_to_response
 from django.http import HttpResponseRedirect,HttpResponse
-from .models import Post,User,Festival,Country,Festival_Country
+from .models import Post,User,Festival,Country,Festival_Country,Profile
 
 from .forms import PostForm
 from .forms import CommentForm
@@ -32,13 +32,33 @@ def showHomePage(request):
     }
     return render(request,'index.html',context)
 
-
-    
-    
 def showLogin(request):
     return render(request,'login.html',{})
-    
-    ################################################
+
+def getuserid(request):
+    if request.method == 'GET':
+        if request.session['uid']:
+            print request.session['uid']
+        name = request.GET['name']
+        email = request.GET['email']
+        userId = request.GET['userId']
+        uid = User.objects.get(email=email).id
+        request.session['uid'] = uid
+        
+        if User.objects.filter(userId = userId).exists():
+            print name + " is using"
+            user = User.objects.filter(userId = userId)[0]
+            user.save()
+        else:
+            User.objects.create (
+                userId = userId,
+                name = name,
+                email = email
+            )
+        
+
+    return HttpResponseRedirect(uid)
+
     
 def showPersonal(request,user):
     
@@ -48,16 +68,47 @@ def showPersonal(request,user):
     #     'profiledata': profiledatas,
     # }
     
-    users=request.session.get("uid")
+
+    users=User.objects.get(id=user)
+
+    profiles=Profile.objects.get(user_id__id=user)
+
     posts=Post.objects.filter(user_id__id=user).order_by('-date')
     content ={
         'posts': posts,
+        'profiles': profiles,
         'users':users,
     }
     
     return render(request,'personal.html',content)
     
-    ################################################
+def setProfile_view(request,user):
+    
+    users=User.objects.get(id=user)
+    profiles=Profile.objects.get(user_id__id=user)
+    posts=Post.objects.filter(user_id__id=user).order_by('-date')
+    content ={
+        'posts': posts,
+        'profiles': profiles,
+        'users':users,
+    }
+    
+    if request.method == "POST":
+        if 'intro' in request.POST:
+            Profile.objects.filter(user_id=user).update(self_introduction=request.POST['intro'])
+    
+    return render(request,'setProfile.html',content)
+    
+def upload_personalPhoto(request,user):
+    users=User.objects.get(id=user)
+    content ={
+        'users':users,
+    }
+    
+    if request.method == "POST":
+        if 'picture' in request.POST:
+            Profile.objects.filter(user_id=user).update(profile_picture=request.POST['picture'])
+    return render(request,'upload_photo.html',content)
     
 def showCalendar(request):
     return render(request,'calendar.html',{})
@@ -86,6 +137,10 @@ def post_detail(request,pk):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
+            uid = request.session.get('uid')
+            user_id = User.objects.get(pk=uid)
+            comment.user_id=user_id
+            print request.session['uid']
             comment.post = post
             comment.save()
             return  render(request, 'fullFestivalPic.html',{'post':post})
@@ -128,12 +183,12 @@ def like_count_blog(request):
 
 
 def post_document(request,user):
-    u=request.session.get("uid")
+    users=User.objects.get(id=user)
     festivals=Festival_Country.objects.order_by('id')
     Countrys=Country.objects.order_by('id')
     
     context = {
-        'users' : u,
+        'users' : users,
         'festivals' : festivals,
         'Countrys' : Countrys,
     }
@@ -142,7 +197,7 @@ def post_document(request,user):
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user_id = u
+            post.user_id = users
             f=form.data.get("getfestival")
             f_f=Festival.objects.get(name =f.split('.')[0])
             f_c=Country.objects.get(name =f.split('.')[1])
@@ -166,7 +221,11 @@ def add_comment_to_post(request, pk):
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
+            if request.session['uid']:
+                print request.session['uid']
+            
             comment = form.save(commit=False)
+            comment.user_id__pk = request.session.get('uid')
             comment.post = post
             comment.save()
             return redirect('post_detail.html', pk=post.pk)
@@ -189,8 +248,6 @@ def createAccount(request):
                 User.objects.create(name=n,email=e,password=p)
     
     return render(request, 'signup.html')
-
-   ############################################
    
 def country_each_festival_album(request,name,pk):
     festival=Festival_Country.objects.get(pk=pk)
@@ -203,36 +260,13 @@ def country_each_festival_album(request,name,pk):
     }
     return render(request,'festival_each.html',content)
 
-    ##############################################
-
-
 #login
 def login(request):
     if request.method == 'GET':
         return render(request, 'index.html')
     
-def getuserid(request):
-    if request.method == 'GET':
-        if request.session['uid']:
-            print request.session['uid']
-        name = request.GET['name']
-        email = request.GET['email']
-        userId = request.GET['userId']
-        uid = User.objects.get(email=email).id
-        request.session['uid'] = uid
-        if User.objects.filter(userId = userId).exists():
-            print name + " is using"
-            user = User.objects.filter(userId = userId)[0]
-            user.save()
-        else:
-            User.objects.create (
-                userId = userId,
-                name = name,
-                email = email
-            )
-        
-    return HttpResponseRedirect(uid)
 
-            
+    
+
 
 

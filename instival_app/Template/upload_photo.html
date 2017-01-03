@@ -1,0 +1,70 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+	<meta charset="UTF-8">
+	<title>upload_photo</title>
+	
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/jquery.Jcrop.min.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/style_upload_photo.css' %}">
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' type='text/css'>
+
+<body>
+    
+     <form method="POST">
+        {% csrf_token %}
+    
+        <div class="wrapper_inner">
+        	<div class="gallery ">
+          		<div class="box">
+              		<div id="photo"  style="">
+              		    <!-- load image -->
+                        <input type="file" name="file" id="FileUpload1" style = "display:none" accept=".jpg,.png,.gif"  class="ifile"
+                         onchange="
+                            this.form.upfile.value=this.value.substr(this.value.lastIndexOf('\\')+1);
+                          "	>
+                        <input type="text" name="upfile" size="20" style = "display:none" readonly>
+                        <input type="button" class="btn btn-default dropdown-toggle" id = "load" value="upload a photo" onclick="this.form.file.click(); showCancel()">
+                        <input type="button" class="btn btn-default dropdown-toggle" id = "cancel" style = "display:none" value="cancel" onclick="window.location.href='{% url 'instival_database.views.upload_personalPhoto' user=users.id %}'">
+                      
+                        <br/>
+                        <br/>
+                        
+                        <img  id="Image1" src="" alt="" style="display: none" />
+                        
+                        <br/>
+                        <!-- crop button-->
+                        <input type="button" class="btn btn-default dropdown-toggle" id="btnCrop" value="Crop" style="display: none" />
+                        <br/>
+                        <br/>
+                        <!-- canvas and save image-->
+                        <canvas id="canvas" style="display:none" ></canvas>
+                        <img id="saveimage"   />
+                        <textarea  name = "picture"   style="display: none" id="get_dataURL"  >
+                        </textarea>
+                        <br/>
+                        <br/>
+                        <input type="button" id="btnCrop" value="Crop" style="display: none" />
+                        <input type="hidden" name="imgX1" id="imgX1" />
+                        <input type="hidden" name="imgY1" id="imgY1" />
+                        <input type="hidden" name="imgWidth" id="imgWidth" />
+                        <input type="hidden" name="imgHeight" id="imgHeight" />
+                        <input type="hidden" name="imgCropped" id="imgCropped" />
+                        <input type="submit" id="btnNext" class="btn btn-default dropdown-toggle" style="display: none" value="Submit">
+                    </div>
+                </div>
+        	</div>
+    	</div>
+	
+	</form>
+	
+
+
+    <script type="text/javascript" src="{% static 'js/jquery-3.1.1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.Jcrop.min.js' %}"></script>
+    <script src="{% static 'js/upload_photo.js' %}"></script>
+</body>
+</html>
