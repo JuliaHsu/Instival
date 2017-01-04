@@ -37,14 +37,12 @@ def showLogin(request):
 
 def getuserid(request):
     if request.method == 'GET':
-        if request.session['uid']:
+        if 'uid' in request.session:
             print request.session['uid']
+        
         name = request.GET['name']
         email = request.GET['email']
         userId = request.GET['userId']
-        uid = User.objects.get(email=email).id
-        request.session['uid'] = uid
-        
         if User.objects.filter(userId = userId).exists():
             print name + " is using"
             user = User.objects.filter(userId = userId)[0]
@@ -53,11 +51,13 @@ def getuserid(request):
             User.objects.create (
                 userId = userId,
                 name = name,
-                email = email
+                email = email,
             )
-        
+        uid = User.objects.get(email=email).id
+        request.session['uid'] = uid
+            
 
-    return HttpResponseRedirect(uid)
+    return HttpResponseRedirect('/index')
 
     
 def showPersonal(request,user):

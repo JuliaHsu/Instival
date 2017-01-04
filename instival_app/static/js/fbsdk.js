@@ -81,10 +81,11 @@ function init() {
     FB.api('/me', {fields:"id,name,email"},  function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('user-name').innerHTML = response.name;
-      // var e = response.email;
+      
       // document.getElementById('status').innerHTML =
       //   'Thanks for logging in, ' + response.name + '!';
     });
+    
     FB.api("/me/picture?width=40", function(response){
       $("#user-picture").attr("src", response.data.url);
     });

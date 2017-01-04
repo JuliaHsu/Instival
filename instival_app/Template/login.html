@@ -26,6 +26,7 @@
 
 <body onload = "init();">
   <!--Facebook Login-->
+  <div id="fb-root"></div>
   <script>
   window.fbAsyncInit = function() {
   FB.init({
@@ -65,8 +66,7 @@
       
       testAPI();
     
-      window.location.replace("{% url 'instival_database.views.showHomePage'%}");
-      //get_my_profile();
+      
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -101,9 +101,9 @@
   //
   // These three cases are handled in the callback function.
 
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
+  // FB.getLoginStatus(function(response) {
+  //   statusChangeCallback(response);
+  // });
 
   function login() {
     FB.login(function(response) {
@@ -130,7 +130,7 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me',{fields:"id,name,email"}, function(response) {
       console.log('Successful login for: ' + response.name);
       console.log('Successful login for: ' + response.id);
       console.log('Successful login for: ' + response.email);
@@ -140,20 +140,21 @@
     });
     
     FB.api('/me', {fields:"id,name,email"}, function(response) {
-            // Insert your code here
-            userId = response.id;
-            name = response.name;
-            email = response.email;
-            
-            $.get('/getuserid/', {
-              name:name,
-              email:email,
-              userId:userId
-            }, function(data) {
-              
-            });
-            console.log(userId + " " + name + " " + email)
-      });
+      // Insert your code here
+      userId = response.id;
+      name = response.name;
+      email = response.email;
+    $.get('/getuserid/', {
+        name:name,
+        email:email,
+        userId:userId
+      }, function(data) {
+      window.location.replace("{% url 'instival_database.views.showHomePage'%}");
+    });  
+      
+      console.log(userId + " " + name + " " + email)
+    });
+    
   }
   </script>
   <!--Facebook Login-->

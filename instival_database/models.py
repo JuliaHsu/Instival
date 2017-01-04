@@ -27,6 +27,9 @@ class Festival(models.Model):
     name = models.CharField(max_length=30)
     date = models.DateTimeField(default=timezone.now)
     
+    def festival(self) :
+        return "Festival"
+    
     
 class Festival_Country(models.Model):
     location = models.ForeignKey(Country)
@@ -34,7 +37,8 @@ class Festival_Country(models.Model):
     
     introduction = models.TextField(blank=True)
    
-    
+    def festival_country(self) :
+        return "Festival_Country"
     
     
     
