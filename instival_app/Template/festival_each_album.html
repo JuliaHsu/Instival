@@ -177,6 +177,15 @@
   });
   
   </script>
+
+ <script>
+  function fb_logout() {
+      FB.logout(function(response) {
+        // user is now logged out
+        window.location.reload(true);
+      });
+  }
+  </script>
   
 <script type="" src="{% static 'js/festival_each.js' %}"></script>
 

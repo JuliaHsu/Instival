@@ -57,11 +57,14 @@ def getuserid(request):
             
         uid = User.objects.get(email=email)
         request.session['uid'] = uid.id
-            
-        Profile.objects.create (
-            user_id = uid,
-            profile_picture = userPicture,
-        )
+        
+        if Profile.objects.filter(user_id = uid).exists():
+            print name + " picture exist"
+        else:
+            Profile.objects.create (
+                user_id = uid,
+                profile_picture = userPicture,
+            )
 
     return HttpResponseRedirect('/index')
 

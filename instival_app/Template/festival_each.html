@@ -189,7 +189,7 @@
   function fb_logout() {
       FB.logout(function(response) {
         // user is now logged out
-        window.location.replace("{% url 'instival_database.views.showHomePage'%}");
+        window.location.reload(true);
       });
   }
   </script>
