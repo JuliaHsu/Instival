@@ -43,6 +43,7 @@ def getuserid(request):
         name = request.GET['name']
         email = request.GET['email']
         userId = request.GET['userId']
+        userPicture = request.GET['userPicture']
         if User.objects.filter(userId = userId).exists():
             print name + " is using"
             user = User.objects.filter(userId = userId)[0]
@@ -53,9 +54,14 @@ def getuserid(request):
                 name = name,
                 email = email,
             )
-        uid = User.objects.get(email=email).id
-        request.session['uid'] = uid
             
+        uid = User.objects.get(email=email)
+        request.session['uid'] = uid.id
+            
+        Profile.objects.create (
+            user_id = uid,
+            profile_picture = userPicture,
+        )
 
     return HttpResponseRedirect('/index')
 

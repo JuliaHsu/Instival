@@ -19,9 +19,6 @@ class Country(models.Model):
     name = models.CharField(max_length=30)
 
 
-    
-    
-    
 
 class Festival(models.Model):
     name = models.CharField(max_length=30)
