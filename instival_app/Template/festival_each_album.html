@@ -103,8 +103,10 @@
                 </iframe>
    
               </div>
+              <a id="share_album"><img class ="" id ="{% url 'instival_database.views.post_detail' pk=post.pk %}" src="{% static 'img/share.png' %}"  alt=""></a>
           </a>
-        </span>  
+        </span> 
+        
       </div>
 
       
@@ -154,6 +156,20 @@
       
       
     });
+    
+    $('body').on('click','#share_album',function(){
+      
+        iframe_url = $('img',this).attr('id');
+        iframe_url = "http://fb-login-peggyyu.c9users.io:8080/" + iframe_url;
+        alert(iframe_url);
+        FB.ui({
+          method: 'share',
+          href: iframe_url,
+        }, function(response){});
+        
+      
+      
+    });
     $('body').on('click','#closeImg',function(){
         
         
@@ -186,6 +202,8 @@
       });
   }
   </script>
+  
+  
   
 <script type="" src="{% static 'js/festival_each.js' %}"></script>
 

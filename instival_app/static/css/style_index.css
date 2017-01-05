@@ -21,6 +21,7 @@ body {
 
 .inner-bg {
     padding: 280px 0;
+    width: 100%;
 }
 
 .top-content .text {
@@ -70,23 +71,6 @@ body {
   -o-background-size: cover;
 }
 
-/* instant picture */
-.slideshow-container {
-  position: relative;
-  top: 100px;
-  bottom: 100px;
-  width: 400px;
-  height: 400px;
-  margin: auto;
-  display: block;
-  border: 0.1px solid #DADADA;
-}
-
-.mySlides img{
-  display: block;
-  width: 100%;
-  margin: auto;
-}
 
 /* Fading animation */
 .fade {
@@ -159,8 +143,8 @@ body {
 
 .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3 {
   color: white;
-  /*padding-top: 150px;*/
-  line-height: 200px;
+  padding-top: 40px;
+  /*line-height: 150px;*/
   font-size: 20px;
 }
 
