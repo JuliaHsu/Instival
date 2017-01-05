@@ -12,6 +12,9 @@
 
     <title>Instival</title>
 
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
  	<!-- Bootstrap Core CSS -->
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
@@ -142,7 +145,8 @@
                         <img class="img-thumbnail img-responsive img-center" src="{% static 'img/christmas_1.jpg' %}" alt="">
                     </div>
                 </a>
-                <a><img id="share_album" src="{% static 'img/share.png' %}" onclick="javascript:sharing();" alt=""></a>
+                <!--<a><img id="share_album" src="{% static 'img/share.png' %}" onclick="javascript:sharing();" alt=""></a>-->
+                <a id="share_album"><img class ="" id ="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}" src="{% static 'img/share.png' %}"  alt=""></a>
             </div>
             
             {% endfor %}
@@ -224,6 +228,21 @@
             }
         });
     });
+    
+    $('body').on('click','#share_album',function(){
+      
+        share_url = $('img',this).attr('id');
+        share_url = "http://fb-login-peggyyu.c9users.io:8080/" + share_url;
+        alert(share_url);
+        FB.ui({
+          method: 'share',
+          href: share_url,
+        }, function(response){});
+        
+      
+      
+    });
+    
     
     });
     </script>

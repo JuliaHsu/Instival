@@ -19,7 +19,7 @@ function init() {
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       document.getElementById('sign-btn').style.display = 'none';
-      document.getElementById('show_logout').style.display = '';
+      // document.getElementById('show_logout').style.display = '';
       var uid = response.authResponse.userID; // 取得 UID
       
       testAPI();
@@ -86,7 +86,7 @@ function init() {
       //   'Thanks for logging in, ' + response.name + '!';
     });
     
-    FB.api("/me/picture?width=40", function(response){
+    FB.api("/me/picture?width=35", function(response){
       $("#user-picture").attr("src", response.data.url);
     });
   }

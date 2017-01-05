@@ -17,13 +17,18 @@
 		    
 			<!--Login Button-->
   			<button id="sign-btn" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px;" onclick="location='login.html';">Sign in</button>
-  			<!--<button id="logout-btn" type="button" class="btn btn-default navbar-btn navbar-right" style="margin-right: 5px; display: none;" onclick="javascript:fb_logout();">Log out</button>-->
-  			<div id="show_logout" class="navbar-right" style="display: none; padding-top: 30px; margin-left: 5px;">
-  				<a id="logout-btn" style="cursor: pointer;" onclick="javascript:fb_logout();">Logout</a>
-  			</div>
-  			<h4 id ="user-name" class="navbar-right" style="padding-top: 3px; margin-left: 5px;"></h4>
-            <img id="user-picture" class="img-circle navbar-right" style="padding-top: 2px;" src="">
-            
+            <!-- Single button -->
+			<div class="btn-group navbar-right">
+			  <button type="button" class="btn navbar-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <h4 id ="user-name" class="navbar-right" style="padding-top: 2px; margin-left: 5px; margin-right:5px;"></h4>
+		        <img id="user-picture" class="img-circle navbar-right" style="padding-top: 1px;" src="">
+			  </button>
+			  <ul class="dropdown-menu right">
+			    <li><a href="#">Profile</a></li>
+			    <li><a style="cursor: pointer;" onclick="javascript:fb_logout();">Logout</a></li>
+			  </ul>
+			</div>
+			
 			<!--Search-->
 			<form class="navbar-form" role="search" style="display:block;text-align:center;">
 				<div class="form-group">

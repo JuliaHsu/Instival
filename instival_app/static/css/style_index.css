@@ -4,6 +4,12 @@ body {
   height: 100%;
   
 }
+
+.navbar-dropdown {
+  /*margin-top: 20px;*/
+  background-color: #fdfdfd;
+}
+
 #map_img{
   padding-top:70px;
 }
