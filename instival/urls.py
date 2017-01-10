@@ -31,6 +31,7 @@ urlpatterns = [
    
     url(r'^post/(?P<user>\w+)/$',views.post_document),
     url(r'^login/', views.login),
+    url(r'^logout/', views.logout),
     url(r'^getuserid/$', views.getuserid, name='getuserid'),
     url(r'^profile/(?P<user>\w+)/$',views.showPersonal),
     url(r'^setProfile/(?P<user>\w+)/$',views.setProfile_view),

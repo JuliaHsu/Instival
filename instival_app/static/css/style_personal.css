@@ -604,22 +604,3 @@ body {
 
 }
 
-#closeImg{
-  visibility: hidden;
-  padding-top: 55px;
-  position: fixed;
-  top: 0.5em;
-  right: 8em;
-  color: #777;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 2em;
-  z-index: 21;
-}
-
-#closeImg:hover {
-  color: #F88484;
-}
-
-
-

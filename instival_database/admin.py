@@ -9,7 +9,7 @@ from .models import Comment
 from .models import Country
 from .models import Festival_Country
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('userId', 'name', 'email', 'password')
+    list_display = ('userId', 'name', 'email', 'password','profile_picture')
    
 
 

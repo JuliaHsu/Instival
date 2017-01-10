@@ -24,15 +24,18 @@
             		<img src="{{post.picture}}"/>
             		<div class="row" >
 						<div class="col-lg-6 col-lg-offset-6">
+							{% if logined %}
 							<button class="heart post-likes" id='' data-post-id="{{ post.id }}">
-
-			               	{% if liked %}
-			               		<i class="fa fa-heart clicked " id="heart_clicked" ></i>
-			               	{% else %}
-			               		<i class="fa fa-heart" id="heart_not_clicked"></i>
-			               	{% endif %}
-	                		</button>
-	                		<div class="like_count_blog" id="heart-counter{{post.id}}">{{ post.like_number }}</div>
+								
+					               	{% if liked %}
+					               		<i class="fa fa-heart clicked " id="heart_clicked" ></i>
+					               	{% else %}
+					               		<i class="fa fa-heart" id="heart_not_clicked"></i>
+					               	{% endif %}
+				            
+		                		</button>
+		                		<div class="like_count_blog" id="heart-counter{{post.id}}">{{ post.like_number }}</div>
+							{% endif %}
 						</div>
             			
                 		<div class="col-lg-6 col-lg-offset-6 ">
@@ -45,7 +48,7 @@
             		</div>
             		<div class="row">
             			<div class="col-lg-4">
-            				<h3>{{post.festival_id.festival.name}}, {{post.location.name}}</h3>
+            				<h3>{{post.festival_id.festival.name}}</h3>
             			</div>
             		
             		</div>
@@ -72,7 +75,7 @@
             			
             			<section>
             			{% for comment in post.comments.all %}	
-            				<img src="{% static 'img/profilePic.jpg' %}" alt=""/>
+            				<img src="{{comment.user_id.profile_picture}}" alt=""/>
 					     	<article>
 					       		<h4>
 					        		{{comment.user_id.name}}
@@ -82,20 +85,20 @@
 						       	</p>
 					     	</article>
 					     	<br>
-					     	{% empty %}
-    							<p>No comments here yet :(</p>
+					     	
             			 	
                 		{% endfor %}
             			</section>
-            		
-            			<div class="row">
-                  	<div class="col-lg-4">
-             			<form method="POST" class="post-form">{% csrf_token %}
-        					{{ form.as_p }}
-        				<button type="submit" class="save btn btn-default">Send</button>
-						
-                		</div>
-            			</div>
+            			{% if logined %}
+						<div class="row">
+	                  		<div class="col-lg-4">
+	             			<form method="POST" class="post-form">{% csrf_token %}
+	        				 <input type="textarea" id="content_txtField" name="content">
+	        				<button type="submit" class="save btn btn-default">Comment</button>
+							
+	                		</div>
+        				</div>
+        				{% endif %}
             		
             		
 

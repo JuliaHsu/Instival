@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <title> {{festival.name}}</title>
   
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
@@ -49,23 +50,22 @@
   </section>
 
   <!-- Ｔab  -->
-
- <div class ="col-md-8 col-md-offset-2">
-  <ul class="nav nav-tabs" role="tablist" id="example-one">
-          <li role="presentation" class="active">
-            <a href="" role="tab" data-toggle="tab">2016</a>
-          </li>
-          <li role="presentation">
-            <a href="" role="tab" data-toggle="tab">2015</a>
-          </li>
-          <li role="presentation">
-            <a href="" role="tab" data-toggle="tab">2014</a>
-          </li>
-          <li role="presentation">
-            <a href="" role="tab" data-toggle="tab">2013</a>
-          </li>
-        </ul>
- </div>
+ <!--<div class ="col-md-8 col-md-offset-2">-->
+ <!-- <ul class="nav nav-tabs" role="tablist" id="example-one">-->
+ <!--   <li role="presentation" class="active">-->
+ <!--     <a href="" role="tab" data-toggle="tab">2017</a>-->
+ <!--   </li>-->
+ <!--   <li role="presentation">-->
+ <!--     <a href="" role="tab" data-toggle="tab">2016</a>-->
+ <!--   </li>-->
+ <!--   <li role="presentation">-->
+ <!--     <a href="" role="tab" data-toggle="tab">2015</a>-->
+ <!--   </li>-->
+ <!--   <li role="presentation">-->
+ <!--     <a href="" role="tab" data-toggle="tab">2014</a>-->
+ <!--   </li>-->
+ <!-- </ul>-->
+ <!--</div>-->
 
 <div class="wrapper">
   <div class="wrapper_inner">
@@ -79,7 +79,7 @@
         <span class="gallery_item_preview">
           <a href="#" id="img_pre">
            
-            <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
+            <svg fill="#0c284d" class="gallery_top" viewbox="0 3 60 20">
               <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
             </svg>
             
@@ -88,10 +88,10 @@
               <span>
                 <div class="row">
                   <div class="col-lg-2">
-                    <img class ="img-circle" src ="{% static 'img/profilePic.jpg' %}" >
+                    <img class ="img-circle" id="profile_pic" src ="{{post.user_id.profile_picture}}">
                   </div>
-                  <div class="col-lg-2 col-lg-offset-1">
-                    <h3>{{post.user_id.name}}</h3>
+                  <div class="col-lg-9">
+                    <h3 id="user_name">{{post.user_id.name}}</h3>
                   </div>
                 </div>
                 
@@ -101,13 +101,15 @@
                 <iframe class="gallery_item_full " id="{% url 'instival_database.views.post_detail' pk=post.pk %}" src="{% url 'instival_database.views.post_detail' pk=post.pk %}" height="0" width="0" frameborder="0" >
     
                 </iframe>
-   
+
               </div>
-              <a id="share_album"><img class ="" id ="{% url 'instival_database.views.post_detail' pk=post.pk %}" src="{% static 'img/share.png' %}"  alt=""></a>
+              
+              
           </a>
         </span> 
-        
+        <a id="share_album"><img class ="" id ="{% url 'instival_database.views.post_detail' pk=post.pk %}" src="{% static 'img/share.png' %}"  alt=""></a>
       </div>
+      <a id="closeImg" href="#" >X</a>
 
       
       {% endfor %}
@@ -115,7 +117,7 @@
     </div>
   </div>
 </div>
-<a id="closeImg" href="#" >X</a>
+
 
   
    
@@ -142,8 +144,8 @@
         iframe_url = $('iframe',this).attr('src');
         
         $('iframe').addClass('animated zoomIn');
-        document.getElementById(iframe_url).style.width = "800px";
-        document.getElementById(iframe_url).style.height = "600px";
+        document.getElementById(iframe_url).style.width = "1000px";
+        document.getElementById(iframe_url).style.height = "700px";
         document.getElementById("closeImg").style.visibility="visible";
         
        
@@ -159,12 +161,11 @@
     
     $('body').on('click','#share_album',function(){
       
-        iframe_url = $('img',this).attr('id');
-        iframe_url = "http://fb-login-peggyyu.c9users.io:8080/" + iframe_url;
-        alert(iframe_url);
+        share_url = $('img',this).attr('id');
+        share_url = "http://instival-juliahsu.c9users.io:8080/" + share_url;
         FB.ui({
           method: 'share',
-          href: iframe_url,
+          href: share_url,
         }, function(response){});
         
       
@@ -198,7 +199,7 @@
   function fb_logout() {
       FB.logout(function(response) {
         // user is now logged out
-        window.location.reload(true);
+        window.location.replace("{% url 'instival_database.views.logout'%}");
       });
   }
   </script>

@@ -1,3 +1,24 @@
+h1{
+ font-family: 'Leckerli One', cursive; 
+}
+/*navbar*/
+.navbar-costume {
+  background-color: #0c284d;
+}
+
+.navbar-brand {
+  padding-top: 5px;
+}
+
+.navbar-dropdown {
+  /*margin-top: 20px;*/
+  background-color: #0c284d;
+}
+
+.navbar-dropdown h5 {
+  color: #fff;
+}
+
 p.intro_more{
 	display: none;
 }
@@ -221,7 +242,6 @@ body {
   border-radius: 5px;
 }
 
-
 .gallery_item_preview {
   background: #fff;
 
@@ -296,6 +316,7 @@ body {
 
 .gallery_item_preview a h3 {
   font-family: 'Leckerli One', cursive;
+  font-size:1.5em;
 }
 
 .gallery_item_preview a img{
@@ -312,6 +333,7 @@ body {
   border-radius:50%;
   height:50px;
   width:50px;
+  vertical-align:middle;	
 }
 
 .gallery_item_full {
@@ -322,16 +344,16 @@ body {
   right: 0;
   bottom: 0;
   margin: auto;
-  background-color: #fff;
-  background-color: rgba(255, 255, 255, 0.6);
-  z-index: 100;
+  
+  background-color: #91989F;
+  z-index: 20;
   overflow: hidden;
 }
 
 .gallery_item_full img {
   display: block;
   margin:auto;
-  max-width: 500px;
+  width: 500px;
 }
 
 .gallery_item_full .img-circle{
@@ -358,7 +380,7 @@ body {
 
 .box h3 {
   font-family: 'Leckerli One', cursive;
-  color: #F88484;
+  color: #6690CD;
 }
 
 
@@ -373,9 +395,7 @@ body {
   font-size: 2em;
 }
 
-.cl:hover {
-  color: #F88484;
-}
+
 /*  Responsive video 
 =============================*/
 .video {
@@ -453,6 +473,10 @@ body {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
+
+
+
+
 /*	Simple animation
 =======================*/
 .efIn {
@@ -558,13 +582,14 @@ body {
   }
 }
 
-@media (max-width: 1200px) {
+@media (min-width:1441px) {
   .gallery_item_list {
     width: 50% !important;
   }
 
   .gallery_item {
-    width: 12.45%;
+    width: 24.59%;
+   
    
   }
 
@@ -577,21 +602,41 @@ body {
   border-radius:50%;
   height:50px;
   width:50px;
+  vertical-align:middle;
+ 
 }
 
 .gallery_item_full .img-circle{
   border-radius:50%;
-  height:50px;
-  width:50px;
+  height:40px;
+  width:40px;
 }
   .box {
     width: 60%;
     max-height: 550px;
   }
+  #closeImg{
+  visibility: hidden;
+  padding-top: 100px;
+  position: fixed;
+  top: 60px;
+  right: 470px;
+  color: #777;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2em;
+  z-index: 21;
+  
+  }
+  
+  #share_album {
+    position: relative;
+    padding-left: 280px;
+  }
 }
 
 /* Large desktop */
-@media (min-width: 980px) {
+@media (min-width: 980px) and (max-width:1440px) {
   .gallery_item_list {
     width: 50% !important;
   }
@@ -608,19 +653,41 @@ body {
   }
   .gallery_item_preview a .img-circle{
   border-radius:50%;
-  height:50px;
-  width:50px;
+  height:40px;
+  width:40px;
+  vertical-align:middle;	
 }
 
 .gallery_item_full .img-circle{
   border-radius:50%;
-  height:50px;
-  width:50px;
+  height:40px;
+  width:40px;
 }
   .box {
-    width: 60%;
-    max-height: 550px;
+    width: 70%;
+    
   }
+  #closeImg{
+  visibility: hidden;
+  
+  position: fixed;
+  top: 55px;
+  right: 150px;
+  color: #777;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2em;
+  z-index: 21;
+  
+  }  
+  
+  #share_album {
+    cursor: pointer;
+    position: relative;
+    padding-left: 180px;
+  }
+
+
 }
 
 
@@ -643,17 +710,20 @@ body {
   border-radius:50%;
   height:50px;
   width:50px;
+  vertical-align:middle;	
 }
 
 .gallery_item_full .img-circle{
   border-radius:50%;
-  height:50px;
-  width:50px;
+  height:40px;
+  width:40px;
+  
 }
   .box {
     width: 70%;
     max-height: 550px;
   }
+  
 }
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
@@ -672,14 +742,16 @@ body {
 
   .gallery_item_preview a .img-circle{
   border-radius:50%;
-  height:50px;
-  width:50px;
+  height:40px;
+  width:40px;
+  vertical-align:middle;	
 }
 
 .gallery_item_full .img-circle{
   border-radius:50%;
-  height:50px;
-  width:50px;
+  height:40px;
+  width:40px;
+  	
 }
   .box {
     margin: auto;
@@ -692,6 +764,7 @@ body {
     top: 0;
     right: 0.5em;
   }
+  
 }
 /* Landscape phones and down */
 @media (max-width: 480px) {
@@ -712,12 +785,13 @@ body {
   border-radius:50%;
   height:50px;
   width:50px;
+  vertical-align:middle;	
 }
 
 .gallery_item_full .img-circle{
   border-radius:50%;
-  height:50px;
-  width:50px;
+  height:40px;
+  width:40px;
 }
 
   .box {
@@ -735,30 +809,19 @@ body {
   .gallery_item_list {
     width: 100% !important;
   }
-
+  
 }
 
-#closeImg{
-  visibility: hidden;
-  padding-top: 55px;
-  position: fixed;
-  top: 0.5em;
-  right: 8em;
-  color: #777;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 2em;
-  z-index: 21;
-}
+
 
 #closeImg:hover {
-  color: #F88484;
+  color: #000;
 }
 
 
 #comments section img {
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   float: left;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -853,5 +916,17 @@ body {
   font-size: 15px;
   
 }
+#profile_pic{
+  margin-top:10px;
+  width:40px;
+  height:40px;
+}
 
+#user_name{
+ margin-left: 10px;
+}
 
+#content_txtField{
+  width:250px;
+  margin: 50px 0 0 100px;
+}

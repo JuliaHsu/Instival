@@ -2,15 +2,55 @@
 html,
 body {
   height: 100%;
+  background-color: #eee;
+}
+
+h1{
+ font-family: 'Leckerli One', cursive; 
+ font-size:5em;
+ 
+ 
+ }
+ .redbox{
+   display:inline-block;
+   width:30px;
+
+}
+/*navbar*/
+.navbar-costume {
+  background-color: #0c284d;
+}
+
+.navbar-brand {
+  padding-top: 5px;
+}
+
+.navbar-dropdown {
+  /*margin-top: 20px;*/
+  background-color: #0c284d;
+}
+
+.navbar-dropdown h5 {
+  color: #fff;
+}
+
+#map_img{
+  
+  height:100%;
   
 }
-#map_img{
-  padding-top:70px;
+#world_map{
+  width:80%;
+  
+}
+.map_div{
+  padding-top:150px;
 }
 .carousel,
 .item,
 .active {
-  height: 100%;
+  height:100%;
+ 
 }
 
 .carousel-inner {
@@ -20,7 +60,7 @@ body {
 /***** Top content *****/
 
 .inner-bg {
-    padding: 280px 0;
+    padding: 400px 0;
     width: 100%;
 }
 
@@ -40,14 +80,16 @@ body {
 	margin-top: 35px;
 	margin:auto;
 }
-
+.top-content{
+  height:100%;
+}
 .btn-link-2 {
 	display: inline-block;
 	height: 50px;
 	margin: 0 5px;
 	padding: 16px 20px 0 20px;
 	background: #444;
-	background: rgba(0, 0, 0, 0.3);
+	background: rgba(11, 118,139, 0.5);
 	font-size: 16px;
     font-weight: 300;
     line-height: 16px;
@@ -55,7 +97,7 @@ body {
     -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
 }
 .btn-link-2:hover, .btn-link-2:focus, 
-.btn-link-2:active, .btn-link-2:active:focus { outline: 0; opacity: 0.6; background: rgba(0, 0, 0, 0.3); color: #fff; }
+.btn-link-2:active, .btn-link-2:active:focus { outline: 0; opacity: 0.6; background: rgba(11, 118, 139,1); color: #fff; }
 
 
 
@@ -100,7 +142,7 @@ body {
   transition: background-color 0.6s ease;
 }
 
-/*show picture*/
+/*portfolio-album*/
 body {
     padding-top: 0px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
@@ -111,7 +153,7 @@ body {
 }
 
 .box {
-  width: 200px%;
+  width: 200px;
   height: 200px;
   margin: auto;
   display: block;
@@ -128,10 +170,11 @@ body {
   position: relative;
   width: 200px;
   margin: 0 auto;
+  z-index: 10;
 }
 
 .portfolio-item .portfolio-hover {
-  background: rgba(254, 209, 54, 0.9);
+  background-color: #546a77;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -143,7 +186,7 @@ body {
 
 .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3 {
   color: white;
-  padding-top: 40px;
+  padding-top: 50px;
   /*line-height: 150px;*/
   font-size: 20px;
 }
@@ -151,6 +194,22 @@ body {
 .portfolio-item .portfolio-hover:hover {
   opacity: 1;
 }
+
+.share_pic {
+  cursor: pointer;
+  position: relative;
+  bottom: 60px;
+  opacity: 0;
+  z-index: 100;
+}
+
+.share_pic:hover {
+  background-color: #546a77;
+  width: 25px;
+	border-radius: 20%;
+  opacity: 1;
+}
+
 
 /*Login Button show up*/
 .signIn_full {

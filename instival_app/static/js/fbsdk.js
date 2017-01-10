@@ -19,8 +19,7 @@ function init() {
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
       document.getElementById('sign-btn').style.display = 'none';
-      document.getElementById('show_logout').style.display = '';
-      var uid = response.authResponse.userID; // 取得 UID
+      // document.getElementById('show_logout').style.display = '';
       
       testAPI();
       
@@ -32,6 +31,7 @@ function init() {
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
+      document.getElementById('show-user').style.display = 'none';
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
     }
@@ -76,17 +76,16 @@ function init() {
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
-    // document.getElementById('logout-btn').style.display = '';
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', {fields:"id,name,email"},  function(response) {
-      console.log('Successful login for: ' + response.name);
+    // FB.api('/me', {fields:"id,name,email"},  function(response) {
+    //   console.log('Successful login for: ' + response.name);
       document.getElementById('user-name').innerHTML = response.name;
       
-      // document.getElementById('status').innerHTML =
-      //   'Thanks for logging in, ' + response.name + '!';
-    });
+    //   document.getElementById('status').innerHTML =
+    //     'Thanks for logging in, ' + response.name + '!';
+    // });
     
-    FB.api("/me/picture?width=40", function(response){
+    FB.api("/me/picture?width=40&&height=40", function(response){
       $("#user-picture").attr("src", response.data.url);
     });
   }

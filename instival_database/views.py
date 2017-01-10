@@ -10,6 +10,13 @@ from django.db.models import Q
 from .forms import PostForm,UserForm
 from .forms import CommentForm
 from django.utils import timezone
+import random
+
+
+from django.contrib.sessions.backends.db import SessionStore as DatabaseSession
+session = DatabaseSession()
+session.clear()
+session.delete(session.session_key)
 
 
 
@@ -17,19 +24,38 @@ from django.utils import timezone
 def showHomePage(request):
     time_thresholdAfter = datetime.now() + timedelta(days=20)
     time_thresholdBefore = datetime.now() - timedelta(days=20)
-    festivals = Festival.objects.filter(Q(date__lt=time_thresholdAfter) | Q(date__lt=time_thresholdBefore) )
+    festivals = Festival.objects.filter(Q(date__lt=time_thresholdAfter) | Q(date__lt=time_thresholdBefore) ).order_by('-date')
     countries = Country.objects.all()
     today = datetime.now()
-     
+    logined = False
     festivals_on_map = Festival_Country.objects.filter(festival__date__month=today.month)
-    
-    
-    
-    context={
+   
+    if 'uid' in request.session:
+        logined = True
+        userlogin = request.session.get('uid')
+        username = User.objects.get(id=userlogin).name
+        userpic = User.objects.get(id=userlogin).profile_picture
+        # profiles = Profile.objects.get(user_id__id=userlogin)
+        
+        context={
+        # 'profiles': profiles,
+        'userpic': userpic,
+        'username': username,
+        'userlogin': userlogin,
         'festivals':festivals,
         'countries':countries,
         'festivals_on_map': festivals_on_map,
-    }
+        'logined':logined,
+        }
+    else:
+        context={
+        'festivals':festivals,
+        'countries':countries,
+        'festivals_on_map': festivals_on_map,
+        'logined':logined,
+        }
+   
+    
     return render(request,'index.html',context)
 
 def showLogin(request):
@@ -53,6 +79,7 @@ def getuserid(request):
                 userId = userId,
                 name = name,
                 email = email,
+                profile_picture = userPicture,
             )
             
         uid = User.objects.get(email=email)
@@ -65,7 +92,7 @@ def getuserid(request):
                 user_id = uid,
                 profile_picture = userPicture,
             )
-
+    
     return HttpResponseRedirect('/index')
 
     
@@ -76,31 +103,65 @@ def showPersonal(request,user):
     # content ={
     #     'profiledata': profiledatas,
     # }
-    
-
+   
+    userlogin = request.session.get('uid')
     users=User.objects.get(id=user)
-
     profiles=Profile.objects.get(user_id__id=user)
-
+    logined = False
     posts=Post.objects.filter(user_id__id=user).order_by('-date')
-    content ={
-        'posts': posts,
-        'profiles': profiles,
-        'users':users,
-    }
+    if 'uid' in request.session:
+        logined = True
+        username = User.objects.get(id=userlogin).name
+        userpic = User.objects.get(id=userlogin).profile_picture
+        content ={
+            'userlogin': userlogin,
+            'posts': posts,
+            'profiles': profiles,
+            'users':users,
+            'username':username,
+            'userpic': userpic,
+            'logined':logined,
+        }
+    else:
+        content ={
+            'userlogin': userlogin,
+            'posts': posts,
+            'profiles': profiles,
+            'users':users,
+            # 'username':username,
+            'logined':logined,
+        }
     
     return render(request,'personal.html',content)
     
 def setProfile_view(request,user):
-    
+    userlogin = request.session.get('uid')
     users=User.objects.get(id=user)
+    username = User.objects.get(id=userlogin).name
+    userpic = User.objects.get(id=userlogin).profile_picture
     profiles=Profile.objects.get(user_id__id=user)
+    logined = False
     posts=Post.objects.filter(user_id__id=user).order_by('-date')
-    content ={
-        'posts': posts,
-        'profiles': profiles,
-        'users':users,
-    }
+    if 'uid' in request.session:
+        logined = True
+        content ={
+            'userlogin': userlogin,
+            'posts': posts,
+            'profiles': profiles,
+            'users':users,
+            'username':username,
+            'userpic': userpic,
+            'logined':logined,
+        }
+    else:
+        content ={
+            'userlogin': userlogin,
+            'posts': posts,
+            'profiles': profiles,
+            'users':users,
+            'username':username,
+            'logined':logined,
+        }
     
     if request.method == "POST":
         if 'intro' in request.POST:
@@ -117,6 +178,7 @@ def upload_personalPhoto(request,user):
     if request.method == "POST":
         if 'picture' in request.POST:
             Profile.objects.filter(user_id=user).update(profile_picture=request.POST['picture'])
+            User.objects.filter(id=users.id).update(profile_picture=request.POST['picture'])
     return render(request,'upload_photo.html',content)
     
 def showCalendar(request):
@@ -126,10 +188,29 @@ def showCalendar(request):
 def festival_each_post_gallery(request,pk):
     festival=Festival.objects.get(pk=pk)
     posts=Post.objects.filter(festival_id__festival=pk).order_by('-date')
-    content ={
-        'posts': posts,
-        'festival':festival,
-    }
+    logined = False
+    if 'uid' in request.session:
+        logined = True
+        userlogin = request.session.get('uid')
+        username = User.objects.get(id=userlogin).name
+        userpic = User.objects.get(id=userlogin).profile_picture
+        # profiles=Profile.objects.get(user_id__id=userlogin)
+      
+        content ={
+            # 'profiles': profiles,
+            'userlogin': userlogin,
+            'posts': posts,
+            'festival':festival,
+            'username': username,
+            'userpic': userpic,
+            'logined':logined,
+        }
+    else:
+        content ={
+            'posts': posts,
+            'festival':festival,
+            'logined':logined,
+        }
     return render(request,'festival_each_album.html',content)
     
 
@@ -139,27 +220,43 @@ def post_detail(request,pk):
     post = get_object_or_404(Post,pk=pk)
     post_id = post.pk
     liked=False
+    logined = False
     if request.session.get('has_liked_'+str(post_id), liked):
         liked = True
         print("liked {}_{}".format(liked, post_id))
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            uid = request.session.get('uid')
-            user_id = User.objects.get(pk=uid)
-            comment.user_id=user_id
-            print request.session['uid']
-            comment.post = post
-            comment.save()
-            return  render(request, 'fullFestivalPic.html',{'post':post})
+    if 'uid' in request.session:
+        logined=True
+        if request.method == "POST":
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                uid = request.session.get('uid')
+                user_id = User.objects.get(pk=uid)
+                comment.user_id=user_id
+                print request.session['uid']
+                comment.post = post
+                comment.save()
+                context = {
+                'post' : post,
+                'form' : form,
+                'liked':liked,
+                'logined':logined,
+                }
+                return  render(request, 'fullFestivalPic.html',context)
+        else:
+             form = CommentForm()
+        context = {
+                'post' : post,
+                'form' : form,
+                'liked':liked,
+                'logined':logined,
+            }
     else:
-         form = CommentForm()
-    context = {
-            'post' : post,
-            'form' : form,
-            'liked':liked,
-        }
+         context = {
+                'post' : post,
+                'liked':liked,
+                'logined':logined,
+            }
     return render(request, 'fullFestivalPic.html', context)
    
 
@@ -221,6 +318,7 @@ def post_document(request,user):
             post.comment_id_group = ""
             post.like_number = 0
             post.save()
+            # return redirect('/profile/'+user)
     return render(request, 'upload.html', context)
 
 
@@ -262,11 +360,28 @@ def country_each_festival_album(request,name,pk):
     festival=Festival_Country.objects.get(pk=pk)
     
     posts=Post.objects.filter(Q(festival_id=pk))
-    
-    content ={
-        'posts': posts,
-        'festival':festival,
-    }
+    logined = False
+    if 'uid' in request.session:
+        logined = True
+        userlogin = request.session.get('uid')
+        username = User.objects.get(id=userlogin).name
+        userpic = User.objects.get(id=userlogin).profile_picture
+        # profiles=Profile.objects.get(user_id__id=userlogin)
+      
+        content ={
+            # 'profiles': profiles,
+            'userlogin': userlogin,
+            'posts': posts,
+            'festival':festival,
+            'username': username,
+            'userpic': userpic,
+            'logined':logined,
+        }
+    else:
+        content ={
+            'posts': posts,
+            'festival':festival,
+        }
     return render(request,'festival_each.html',content)
 
 #login
@@ -275,7 +390,12 @@ def login(request):
         return render(request, 'index.html')
     
 
-    
-
+def logout(request):
+    try:
+        del request.session['uid']
+    except KeyError:
+        pass
+    # return HttpResponse("You're logged out.")
+    return redirect('/index')
 
 

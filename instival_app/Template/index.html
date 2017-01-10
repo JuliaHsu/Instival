@@ -12,6 +12,9 @@
 
     <title>Instival</title>
 
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
  	<!-- Bootstrap Core CSS -->
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
@@ -21,7 +24,7 @@
     <link href="{% static 'css/style_login.css' %}" rel="stylesheet">
     <link href="{% static 'css/iframe.css' %}" rel="stylesheet">
     <link href="{% static 'css/jquery.qtip.min.css' %}" rel="stylesheet">
-
+     
     <script src="{% static 'js/fbsdk.js' %}"></script>
 </head>
 
@@ -40,15 +43,13 @@
                 	
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1 class="wow fadeInLeftBig">Beautiful <strong>Landing Page</strong></h1>
+                            <h1 class="wow fadeInLeftBig"> <strong>Share your Own Celebrating Experiences here~ </strong></h1>
                             <div class="description wow fadeInLeftBig">
-                            	<p>
-	                            	This is a free responsive landing page made with the Bootstrap framework. 
-	                            	Check it out now. Download it, customize and use it as you like!
-                            	</p>
+
                             </div>
                             <div class="top-big-link wow fadeInUp">
-                            	<a class="btn btn-link-2 scroll-link" href="#map_img">Learn more</a>
+                            	<a class="btn btn-link-2 scroll-link" href="#map_img">Explore more on map</a>
+                            	<a class="btn btn-link-2 scroll-link" href="#album">Explore more on album</a>
                             </div>
                         </div>
                     </div>
@@ -63,41 +64,41 @@
     	    <img src="{% static 'img/map2.png' %}" id="world_map" usemap="#statesMap" hidefocus="true" >
     
             <map name="statesMap" id="statesMap">
-                <area shape="poly" coords="71,40,104,45,103,47,71,75,30,75,32,80,16,75,15,69,38,59,27,60,30,58,28,56,48,53,43,48,44,46,72,71,23,76,157,109,168,114,161,117,175,117,177,121,165,135,170,133,181,121,182,122,177,135,178,136,228,116,193,145,171,190,169,191,165,190,161,175,116,189,111,175,104,177,98,168,76,111,79,111,78,116" href="#map_img" alt="USA" title="USA"/>
+                <area class="area" shape="poly" coords="71,40,104,45,103,47,71,75,30,75,32,80,16,75,15,69,38,59,27,60,30,58,28,56,48,53,43,48,44,46,72,71,23,76,157,109,168,114,161,117,175,117,177,121,165,135,170,133,181,121,182,122,177,135,178,136,228,116,193,145,171,190,169,191,165,190,161,175,116,189,111,175,104,177,98,168,76,111,79,111,78,116" href="#map_img" alt="USA" title="USA"/>
     
-                <area shape="poly" coords="68,166,113,177,122,215,148,204,128,227,79,181,75,170,74,168,73,169,79,196,133,218" href="#map_img" alt="Mexico" title="Mexico"/>
+                <!--<area class="area" shape="poly" coords="68,166,113,177,122,215,148,204,128,227,79,181,75,170,74,168,73,169,79,196,133,218" href="#map_img" alt="Mexico" title="Mexico"/>-->
                 
-                <area shape="poly" coords="134,217,140,226,129,231,129,223,133,218" href="#map_img" alt="Guatemala" title="Guatemala"/>
+                <!--<area class="area" shape="poly" coords="134,217,140,226,129,231,129,223,133,218" href="#map_img" alt="Guatemala" title="Guatemala"/>-->
                 
-                <area shape="poly" coords="142,223,155,228,143,233,138,229,139,224" href="#map_img" alt="Honduras" title="Honduras"/>
+                <!--<area class="area" shape="poly" coords="142,223,155,228,143,233,138,229,139,224" href="#map_img" alt="Honduras" title="Honduras"/>-->
                 
-                <area shape="poly" coords="154,227,153,241,144,233" href="#map_img" alt="Nicaragua" title="Nicaragua"/>
+                <!--<area class="area" shape="poly" coords="154,227,153,241,144,233" href="#map_img" alt="Nicaragua" title="Nicaragua"/>-->
                 
-                <area shape="poly" coords="147,240,154,243,156,249,153,247" href="#map_img" alt="CostaRica" title="CostaRica"/>
+                <!--<area class="area" shape="poly" coords="147,240,154,243,156,249,153,247" href="#map_img" alt="CostaRica" title="CostaRica"/>-->
                 
-                <area shape="poly" coords="163,245,171,246,172,251,169,254,155,246" href="#map_img" alt="Panama" title="Panama"/>
+                <!--<area class="area" shape="poly" coords="163,245,171,246,172,251,169,254,155,246" href="#map_img" alt="Panama" title="Panama"/>-->
                 
-                <area shape="poly" coords="353,9,386,13,371,34,358,35,368,40,368,42,304,70,297,27,280,26,286,23,287,23,277,20,374,14,355,37,360,39,354,41,354,42,362,40" href="#map_img" alt="Greenland" title="Greenland"/>
+                <!--<area class="area" shape="poly" coords="353,9,386,13,371,34,358,35,368,40,368,42,304,70,297,27,280,26,286,23,287,23,277,20,374,14,355,37,360,39,354,41,354,42,362,40" href="#map_img" alt="Greenland" title="Greenland"/>-->
                 
-                <area shape="poly" coords="287,9,305,11,305,12,237,20,240,15,248,13,259,20,255,18,255,17,274,14,270,10,179,25,185,25,191,29,189,30,230,25,253,29,252,31,228,29,199,26,202,27,199,30,158,30,193,36,193,42,158,43,162,39,148,38,148,37,221,31,226,34,223,34,213,37,206,32,209,34,211,38,201,40,200,35,232,32,233,33,235,38,243,33,272,54,268,58,243,41,232,44,227,54,179,76,180,77,201,102,201,101,226,66,244,72,244,77,254,74,266,101,181,131,191,125,77,103,82,74,75,72,72,72,209,45,207,40,215,39,214,45,219,48,217,49,226,43,222,41,225,36,169,34,165,35,232,36,232,41,233,36,225,40,167,42,170,42,141,52,128,54,128,55,133,55,132,58,147,53,205,55,194,61,148,65,143,68,153,66,140,66,139,68,136,71,134,69,131,70,180,83,260,92,157,94,157,100,157,103,256,94" href="#map_img" alt="Canada" title="Canada"/>
+                <area class="area" shape="poly" coords="287,9,305,11,305,12,237,20,240,15,248,13,259,20,255,18,255,17,274,14,270,10,179,25,185,25,191,29,189,30,230,25,253,29,252,31,228,29,199,26,202,27,199,30,158,30,193,36,193,42,158,43,162,39,148,38,148,37,221,31,226,34,223,34,213,37,206,32,209,34,211,38,201,40,200,35,232,32,233,33,235,38,243,33,272,54,268,58,243,41,232,44,227,54,179,76,180,77,201,102,201,101,226,66,244,72,244,77,254,74,266,101,181,131,191,125,77,103,82,74,75,72,72,72,209,45,207,40,215,39,214,45,219,48,217,49,226,43,222,41,225,36,169,34,165,35,232,36,232,41,233,36,225,40,167,42,170,42,141,52,128,54,128,55,133,55,132,58,147,53,205,55,194,61,148,65,143,68,153,66,140,66,139,68,136,71,134,69,131,70,180,83,260,92,157,94,157,100,157,103,256,94" href="#map_img" alt="Canada" title="Canada"/>
                 
-                <area shape="poly" coords="671,99,734,116,646,110,650,107,671,106" href="#map_img" alt="Mongolia" title="Mongolia"/>
+                <!--<area class="area" shape="poly" coords="671,99,734,116,646,110,650,107,671,106" href="#map_img" alt="Mongolia" title="Mongolia"/>-->
                 
-                <area shape="poly" coords="726,94,772,113,774,116,756,141,748,137,742,143,758,150,753,158,709,204,697,193,699,187,637,170,640,155,618,144,643,110,717,130,717,122,735,116,732,116,720,114,770,123" href="#map_img" alt="China" title="China"/>
+                <area class="area" shape="poly" coords="726,94,772,113,774,116,756,141,748,137,742,143,758,150,753,158,709,204,697,193,699,187,637,170,640,155,618,144,643,110,717,130,717,122,735,116,732,116,720,114,770,123" href="#map_img" alt="China" title="China"/>
                 
-                <area shape="poly" coords="768,191,768,201,765,200" href="#map_img" alt="Taiwan" title="Taiwan"/>
+                <area class="area" shape="poly" coords="768,191,768,201,765,200" href="#map_img" alt="Taiwan" title="Taiwan"/>
                 
-                <area shape="poly" coords="770,131,772,146,767,148,763,146,760,139" href="#map_img" alt="NorthKorea" title="NorthKorea"/>
+                <!--<area class="area" shape="poly" coords="770,131,772,146,767,148,763,146,760,139" href="#map_img" alt="NorthKorea" title="NorthKorea"/>-->
                 
-                <area shape="poly" coords="771,145,781,158,774,159,773,158" href="#map_img" alt="SouthKorea" title="SouthKorea"/>
+                <!--<area class="area" shape="poly" coords="771,145,781,158,774,159,773,158" href="#map_img" alt="SouthKorea" title="SouthKorea"/>-->
                 
-                <area shape="poly" coords="798,122,811,129,802,136,802,137,812,155,812,156,791,170,787,169,787,161,804,150,797,161,800,163,795,164" href="#map_img" alt="Japan" title="Japan"/>
+                <area class="area" shape="poly" coords="798,122,811,129,802,136,802,137,812,155,812,156,791,170,787,169,787,161,804,150,797,161,800,163,795,164" href="#map_img" alt="Japan" title="Japan"/>
                 
-                <area shape="poly" coords="771,214,774,231,769,227,780,232,785,236,790,258,786,259,779,245,778,239,767,244" href="#map_img" alt="Philippines" title="Philippines"/>
+                <!--<area class="area" shape="poly" coords="771,214,774,231,769,227,780,232,785,236,790,258,786,259,779,245,778,239,767,244" href="#map_img" alt="Philippines" title="Philippines"/>-->
                 
-                <area shape="poly" coords="839,316,808,409,809,391,799,398,741,397,746,355,791,327,797,330,822,322,818,332,831,338,831,339,815,419,824,419,825,420,817,429,815,429" href="#map_img" alt="Australia" title="Australia"/>
+                <!--<area class="area" shape="poly" coords="839,316,808,409,809,391,799,398,741,397,746,355,791,327,797,330,822,322,818,332,831,338,831,339,815,419,824,419,825,420,817,429,815,429" href="#map_img" alt="Australia" title="Australia"/>-->
                 
-                <area shape="poly" coords="621,22,648,29,639,35,849,54,849,59,828,54,823,58,839,65,812,74,815,77,825,101,823,103,805,65,790,68,790,77,762,78,757,90,782,131,770,127,772,112,727,96,723,96,725,107,669,99,670,106,590,88,570,93,573,103,572,104,535,109,543,136,512,124,518,107,482,81,488,64,507,50,508,53,506,55,487,51,499,61,509,59,508,53,565,47,566,46,561,39,564,35,571,36,579,50,572,53,583,51,574,39,590,37,586,34,585,40,567,46,585,46,589,50,590,50,501,60,484,73,690,89,690,92,683,100,687,100,544,101,547,101" href="#map_img" alt="Rusia" title="Rusia"/>
+                <!--<area class="area" shape="poly" coords="621,22,648,29,639,35,849,54,849,59,828,54,823,58,839,65,812,74,815,77,825,101,823,103,805,65,790,68,790,77,762,78,757,90,782,131,770,127,772,112,727,96,723,96,725,107,669,99,670,106,590,88,570,93,573,103,572,104,535,109,543,136,512,124,518,107,482,81,488,64,507,50,508,53,506,55,487,51,499,61,509,59,508,53,565,47,566,46,561,39,564,35,571,36,579,50,572,53,583,51,574,39,590,37,586,34,585,40,567,46,585,46,589,50,590,50,501,60,484,73,690,89,690,92,683,100,687,100,544,101,547,101" href="#map_img" alt="Rusia" title="Rusia"/>-->
             </map>
         
 	    </div>
@@ -107,7 +108,7 @@
     
    {% for country in countries %}
     <div id="statesMap-{{country.name}}" class="tooltip-content">
-        <h4>{{country.name}} {{user_id.name}} {{user_id.email}}</h4>
+        <h4>{{country.name}} </h4>
         
         {% for festival_on_map in festivals_on_map %}
             {% ifequal festival_on_map.location.name country.name %}
@@ -124,25 +125,32 @@
     
     
     <!--album-->
-    <div class="container">
+    <section id="album">
+        <div class="container">
         <div class="row">
             {% for festival in festivals %}
             <div class="col-lg-3 col-sm-3 text-center portfolio-item">
                 <a href="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}" class="portfolio-link">
-                    <div class="portfolio-hover">
+                    <div id="click_album" class="portfolio-hover">
                         <div class="portfolio-hover-content">
                             <h3>{{festival.name}}</h3>
+                            <img class="fake-share" src="{% static 'img/share.png' %}" alt="">
                         </div>
-                        
-                        <!--<iframe src="https://www.facebook.com/plugins/share_button.php?-->
-                        <!--href=https%3A%2F%2Ffb-login-peggyyu.c9users.io%2Findex%2Ffestival%2F1%2F&layout=button&size=small&mobile_iframe=false&appId=389702174703368&width=52&height=20" -->
-                        <!--width="52" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>-->
                     </div>
                     <div class="box">
-                        <img class="img-thumbnail img-responsive img-center" src="{% static 'img/christmas_1.jpg' %}" alt="">
+                        {% static "" as img_url %}
+                        <img class="img-thumbnail img-responsive img-center" src="{{img_url}}/img/{{festival.name}}.jpg" alt="">
                     </div>
                 </a>
-                <a><img id="share_album" src="{% static 'img/share.png' %}" onclick="javascript:sharing();" alt=""></a>
+                <a id="share_album">
+                    <img class ="share_pic" id ="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}" 
+                    src="{% static 'img/share.png' %}" alt="">
+                </a>
+                <!--<a><img id="share_album" src="{% static 'img/share.png' %}" onclick="javascript:sharing();" alt=""></a>-->
+                <!--<a id="share_album">-->
+                <!--    <img class ="" id ="{% url 'instival_database.views.festival_each_post_gallery' pk=festival.pk %}" -->
+                <!--    src="{% static 'img/share-2.png' %}" style="margin-top: 0px; z-index: 100;" alt="">-->
+                <!--</a>-->
             </div>
             
             {% endfor %}
@@ -150,6 +158,9 @@
         </div>
         <!-- /.row -->
     </div>
+    </section>
+    
+   
     <br><br><br><br>
    
 	
@@ -165,9 +176,9 @@
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     
     <!-- Instant photos pop up -->
-    
-    
     <script src="{% static 'js/jquery.rwdImageMaps.min.js' %}"></script>
+    <script src="{% static 'js/jquery.jquery.maphilight.min.js' %}"></script>
+   
     <script src="{% static 'js/jquery.qtip.min.js' %}"></script>
     <script src="{% static 'js/scroll.js' %}"></script>
     <script src="{% static 'js/jquery.backstretch.js' %}"></script>
@@ -175,7 +186,12 @@
     <script>
     
     $(document).ready(function() {
-        $('.top-content').backstretch("{% static 'img/1.jpg' %}");
+        
+        $('.top-content').backstretch("{% static 'img/festival-1.jpg' %}");
+        
+        $('img[usemap]').rwdImageMaps();
+        
+   
         $('body').on('click', '#btn_sign', function() {
             $('#sign_full').addClass('animated zoomIn');
             document.getElementById("sign_full").style.width = "800px";
@@ -192,12 +208,11 @@
              
             // hide scroll
         });
-        
-        
    
     
     
     $('area[alt]').each(function () {
+        
         var elem = $(this),
             map = elem.parent(),
             image = $('img[usemap="#'+map.attr('name')+'"]');
@@ -211,19 +226,35 @@
                 viewport: image
             },
             show: {
-                event: 'click',
+                event:'mouseover',
+                
                 solo: true
             },
             hide: {
-                // Allow the user to hover on the tooltip
+                
+                event: 'mouseout',
                 fixed: true,
                 delay: 200
             },
           style: {
-               classes: 'qtip-yellow qtip-shadow'
+               classes: 'qtip-blue qtip-shadow'
             }
         });
     });
+    
+    $('body').on('click','#share_album',function(){
+      
+        share_url = $('img',this).attr('id');
+        share_url = "http://instival-juliahsu.c9users.io:8080/" + share_url;
+        FB.ui({
+          method: 'share',
+          href: share_url,
+        }, function(response){});
+        
+      
+      
+    });
+    
     
     });
     </script>
@@ -239,7 +270,7 @@
     function fb_logout() {
         FB.logout(function(response) {
           // user is now logged out
-          window.location.replace("{% url 'instival_database.views.showHomePage'%}");
+          window.location.replace("{% url 'instival_database.views.logout'%}");
         });
     }
     </script>

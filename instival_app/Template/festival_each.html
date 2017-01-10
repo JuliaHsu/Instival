@@ -50,23 +50,22 @@
   </section>
 
   <!-- Ｔab  -->
-
- <div class ="col-md-8 col-md-offset-2">
-  <ul class="nav nav-tabs" role="tablist" id="example-one">
-          <li role="presentation" class="active">
-            <a href="" role="tab" data-toggle="tab">2016</a>
-          </li>
-          <li role="presentation">
-            <a href="" role="tab" data-toggle="tab">2015</a>
-          </li>
-          <li role="presentation">
-            <a href="" role="tab" data-toggle="tab">2014</a>
-          </li>
-          <li role="presentation">
-            <a href="" role="tab" data-toggle="tab">2013</a>
-          </li>
-        </ul>
- </div>
+ <!--<div class ="col-md-8 col-md-offset-2">-->
+ <!-- <ul class="nav nav-tabs" role="tablist" id="example-one">-->
+ <!--   <li role="presentation" class="active">-->
+ <!--     <a href="" role="tab" data-toggle="tab">2017</a>-->
+ <!--   </li>-->
+ <!--   <li role="presentation">-->
+ <!--     <a href="" role="tab" data-toggle="tab">2015</a>-->
+ <!--   </li>-->
+ <!--   <li role="presentation">-->
+ <!--     <a href="" role="tab" data-toggle="tab">2014</a>-->
+ <!--   </li>-->
+ <!--   <li role="presentation">-->
+ <!--     <a href="" role="tab" data-toggle="tab">2013</a>-->
+ <!--   </li>-->
+ <!-- </ul>-->
+ <!--</div>-->
 
 <div class="wrapper">
   <div class="wrapper_inner">
@@ -80,19 +79,19 @@
         <span class="gallery_item_preview">
           <a href="#" id="img_pre">
            
-            <svg fill="#f55" class="gallery_top" viewbox="0 3 60 20">
+            <svg fill="#0c284d" class="gallery_top" viewbox="0 3 60 20">
               <path d="M 0.65359477,1.3817905 C 60.201925,8.44316 121.92863,11.583451 175.81699,28.832771 l 0.6536,-28.10457531 z"></path>
             </svg>
             
              <img src="{{post.picture}}"/>
-              <!--<img src ="img/profilePic.jpg" class ="img-circle">-->
+             
               <span>
                 <div class="row">
                   <div class="col-lg-2">
-                    <img class ="img-circle" src ="{% static 'img/profilePic.jpg' %}" >
+                    <img class ="img-circle" id="profile_pic"src ="{{post.user_id.profile_picture}}" >
                   </div>
-                  <div class="col-lg-2 col-lg-offset-1">
-                    <h3>{{post.user_id.name}}</h3>
+                  <div class="col-lg-9">
+                    <h3 id="user_name">{{post.user_id.name}}</h3>
                   </div>
                 </div>
                 
@@ -141,8 +140,8 @@
         iframe_url = $('iframe',this).attr('src');
         
         $('iframe').addClass('animated zoomIn');
-        document.getElementById(iframe_url).style.width = "800px";
-        document.getElementById(iframe_url).style.height = "600px";
+        document.getElementById(iframe_url).style.width = "1000px";
+        document.getElementById(iframe_url).style.height = "700px";
         document.getElementById("closeImg").style.visibility="visible";
         
        
@@ -189,7 +188,7 @@
   function fb_logout() {
       FB.logout(function(response) {
         // user is now logged out
-        window.location.reload(true);
+        window.location.replace("{% url 'instival_database.views.logout'%}");
       });
   }
   </script>

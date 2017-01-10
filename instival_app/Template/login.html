@@ -21,10 +21,10 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-    <script src="{% static 'js/fbsdk.js' %}"></script>
+    <!--<script src="{% static 'js/fbsdk.js' %}"></script>-->
 </head>
 
-<body onload = "init();">
+<body>
   <!--Facebook Login-->
   <div id="fb-root"></div>
   <script>
@@ -61,11 +61,10 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      var uid = response.authResponse.userID;
-      var accessToken = response.authResponse.accessToken;
+      // var uid = response.authResponse.userID;
+      // var accessToken = response.authResponse.accessToken;
       
       testAPI();
-    
       
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -133,15 +132,15 @@
     FB.api('/me',{fields:"id,name,email"}, function(response) {
       console.log('Successful login for: ' + response.name);
       console.log('Successful login for: ' + response.id);
-      console.log('Successful login for: ' + response.email);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+      // console.log('Successful login for: ' + response.email);
+      // document.getElementById('status').innerHTML =
+      //   'Thanks for logging in, ' + response.name + "  " + response.email +'!';
       userId = response.id;
       name = response.name;
       email = response.email;
     });
     
-    FB.api('/me/picture?width=40', function(response) {
+    FB.api('/me/picture?width=100&height=100', function(response) {
       // Insert your code here
       // userId = response.id;
       // name = response.name;
@@ -154,10 +153,10 @@
         userId: userId,
         userPicture: userPicture,
       }, function(data) {
-        
+      console.log(userId + " " + name + " " + email) 
       window.location.replace("{% url 'instival_database.views.showHomePage'%}");
     });  
-      console.log(userId + " " + name + " " + email)
+      // console.log(userId + " " + name + " " + email)
     });
     
   }
@@ -167,17 +166,24 @@
   <div class="container">
     <div class="row">
       <div class="main">
-        <h3>Please Log In, or <a href="{% url 'instival_database.views.createAccount'%}">Sign Up</a></h3>
+        <!--<h3>Please Log In, or <a href="{% url 'instival_database.views.createAccount'%}">Sign Up</a></h3>-->
+        <h3>Please Log In by Facebook!</h3>
         <div class="row">
-          <div class="col-xs-6 col-sm-6 col-md-6">
-            <!--<a href="https://www.facebook.com" class="facebook">Facebook</a>-->
+          <div class="col-xs-12 col-sm-12 col-md-12 facebook">
             <fb:login-button scope="public_profile,email" data-size="xlarge" onlogin="checkLoginState();">Facebook</fb:login-button>
             <div id="status"></div>
           </div>
-          <div class="col-xs-6 col-sm-6 col-md-6">
-            <a href="https://accounts.google.com/Login?hl=zh-tw" class="google">Google</a>
-          </div>
         </div>
+        <!--<div class="row">-->
+        <!--  <div class="col-xs-6 col-sm-6 col-md-6">-->
+        <!--    <a href="https://www.facebook.com" class="facebook">Facebook</a>-->
+        <!--    <fb:login-button scope="public_profile,email" data-size="xlarge" onlogin="checkLoginState();">Facebook</fb:login-button>-->
+        <!--    <div id="status"></div>-->
+        <!--  </div>-->
+        <!--  <div class="col-xs-6 col-sm-6 col-md-6">-->
+        <!--    <a href="https://accounts.google.com/Login?hl=zh-tw" class="google">Google</a>-->
+        <!--  </div>-->
+        <!--</div>-->
         <div class="login-or">
           <hr class="hr-or">
           <span class="span-or">or</span>
@@ -222,44 +228,6 @@
           });
         }
       });
-    }
-    
-    var loginCheck = function() {
-      FB.getLoginStatus(function(response){
-        if (response.status === 'connected') {
-          FB.logout(function(response){
-            $("#my-button").html("Facebook.Login");
-            $("#my-profile-picture").attr("src", "");
-            $("#user-name").html(null);
-            $(".friend-block").empty();
-          });
-        }
-        else {
-          FB.Login(function(response) {
-            $("#my-button").html("Facebook.Logout");
-          });
-        }
-      });
-    }
-    
-    var get_my_profile = function() {
-      
-      FB.api('/me',{fields:"id,name,email"}, function(response) {
-        userId = response.id;
-        name = response.name;
-        email = response.email;
-        
-        $.get('/getuserid/', {
-          name:name,
-          email:email,
-          userId:userId
-        }, function(data) {
-          
-        });
-        console.log(response.email)
-        console.log(userId + " " + name + " " + email)
-      });
-      
     }
     
   </script>  

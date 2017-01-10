@@ -11,7 +11,7 @@ class User(models.Model):
     email = models.CharField(max_length=50)
 
     password = models.CharField(max_length=20,null=True,blank=True)
-    
+    profile_picture = models.URLField(blank=True)
     def user(self) :
         return "User"
 
@@ -40,7 +40,7 @@ class Festival_Country(models.Model):
     
     
 class Profile(models.Model):
-    user_id = models.ForeignKey(User)
+    user_id = models.ForeignKey(User,related_name="profile_user")
     self_introduction = models.TextField(blank=True)
     past_post_group = models.TextField(blank=True)
     post_number = models.DecimalField(max_digits=10,decimal_places=0,default=0)
@@ -50,6 +50,8 @@ class Profile(models.Model):
     
     def profile(self) :
         return "Profile"
+    def __str__(self):
+        return self.self_introduction.encode('utf8')
     
 class Post(models.Model):
     date = models.DateTimeField(default=timezone.now)
@@ -68,6 +70,10 @@ class Post(models.Model):
     @property
     def total_likes(self):
         return self.like_number.count()
+    
+    def __str__(self):
+        return self.content.encode('utf8')
+    
         
    
    
@@ -86,7 +92,7 @@ class Comment(models.Model):
 
 
     def __str__(self):
-        return self.content
+        return self.content.encode('utf8')
 
 
   

@@ -3,192 +3,154 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>upload</title>
   
-	
-    <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+  <title>upload</title>
+
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
 	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/style_festival_each.css' %}">
     <link rel="stylesheet" href="{% static 'css/style_upload.css' %}">
-    	<link rel="stylesheet" href="{% static 'css/jquery.Jcrop.min.css' %}" type="text/css" />
-    <link rel="stylesheet" href="{% static 'css/style_upload_photo.css' %}">
-     <link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/jquery.Jcrop.min.css' %}" type="text/css" />
+    <!--<link rel="stylesheet" href="{% static 'css/style_upload_photo.css' %}">-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}"/>
+    <!--<link href='http://fonts.googleapis.com/css?family=Leckerli+One|Metrophobic' rel='stylesheet' type='text/css'>-->
 </head>
 
 
 <body>
      <form method="POST">
         {% csrf_token %}
+           
         
-    <div class="wrapper_inner">
-    	<div class="gallery ">
-      		<div class="box">
-      		    <div id="photo"  style="">
-<<<<<<< HEAD
-      		    <!-- load image -->
-                <input type="file" name="file" id="FileUpload1" style = "display:none" accept=".jpg,.png,.gif"  class="ifile"
-                 onchange="
-                    this.form.upfile.value=this.value.substr(this.value.lastIndexOf('\\')+1);
-                  "	>
-                <input type="text" name="upfile" size="20" style = "display:none" readonly>
-                <input type="button" class="btn btn-default dropdown-toggle" id = "load" value="upload a photo" onclick="this.form.file.click(); showCancel()">
-                <input type="button" class="btn btn-default dropdown-toggle" id = "cancel" style = "display:none" value="cancel" onclick="window.location.href='{% url 'instival_database.views.post_document' %}'">
-              
-                <br/>
-                <br/>
-                
-                <img  id="Image1" src="" alt="" style="display: none" />
-                
-                <br/>
-                <!-- crop button-->
-                <input type="button" class="btn btn-default dropdown-toggle" id="btnCrop" value="Crop" style="display: none" />
-                <br/>
-                <br/>
-                <!-- canvas and save image-->
-                <canvas id="canvas" style="display:none" ></canvas>
-                <img id="saveimage"   />
-                <textarea  name = "picture"   style="display: none" id="get_dataURL"  >
-                </textarea>
-                <br/>
-                <br/>
-                <input type="button" id="btnCrop" value="Crop" style="display: none" />
-                <input type="hidden" name="imgX1" id="imgX1" />
-                <input type="hidden" name="imgY1" id="imgY1" />
-                <input type="hidden" name="imgWidth" id="imgWidth" />
-                <input type="hidden" name="imgHeight" id="imgHeight" />
-                <input type="hidden" name="imgCropped" id="imgCropped" />
-                <input type="button" id="btnNext" class="btn btn-default dropdown-toggle" value="Next" style="display: none" onclick="showNext()">
-            </div>
-=======
-          		    <!-- load image -->
-                    <input type="file" name="file" id="FileUpload1" style = "display:none" accept=".jpg,.png,.gif"  class="ifile"
-                     onchange="
-                        this.form.upfile.value=this.value.substr(this.value.lastIndexOf('\\')+1);
-                      "	>
-                    <input type="text" name="upfile" size="20" style = "display:none" readonly>
-                    <input type="button" class="btn btn-default dropdown-toggle" id = "load" value="upload a photo" onclick="this.form.file.click(); showCancel()">
-                    <input type="button" class="btn btn-default dropdown-toggle" id = "cancel" style = "display:none" value="cancel" onclick="window.location.href='{% url 'instival_database.views.post_document' user=users.id %}'">
-                  
-                    <br/>
-                    <br/>
-                    
-                    <img  id="Image1" src="" alt="" style="display: none" />
-                    
-                    <br/>
-                    <!-- crop button-->
-                    <input type="button" class="btn btn-default dropdown-toggle" id="btnCrop" value="Crop" style="display: none" />
-                    <br/>
-                    <br/>
-                    <!-- canvas and save image-->
-                    <canvas id="canvas" style="display:none" ></canvas>
-                    <img id="saveimage"   />
-                    <textarea  name = "picture"   style="display: none" id="get_dataURL"  >
-                    </textarea>
-                    <br/>
-                    <br/>
-                    <input type="button" id="btnCrop" value="Crop" style="display: none" />
-                    <input type="hidden" name="imgX1" id="imgX1" />
-                    <input type="hidden" name="imgY1" id="imgY1" />
-                    <input type="hidden" name="imgWidth" id="imgWidth" />
-                    <input type="hidden" name="imgHeight" id="imgHeight" />
-                    <input type="hidden" name="imgCropped" id="imgCropped" />
-                    <input type="button" id="btnNext" class="btn btn-default dropdown-toggle" value="Next" style="display: none" onclick="showNext()">
-                </div>
->>>>>>> edb490a9276562f328596d8bb82567976313ba24
-            
-            
-            <div id="document" style="display:none">
-
-            	<div class="col-xs-6 col-sm-3">
-            	    
-                    <!-- festival dropdown -->
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="1">
-                            Festival
-                            <span class="caret"></span>
-                        </button>
-                        <ul  class="dropdown-menu" aria-labelledby="dropdownMenu1" >
-                            {% for f_name in festivals %}
-                                <li><a href="#" rel="{{f_name.id}}" >{{f_name.festival.name}}.{{f_name.location.name}}</a></li>
-                            {% endfor %}
-
-                            <!-- <li role="separator" class="divider"></li>
-                            <li><a href="#" >Other Festival</a></li> -->
-                        </ul>
+        <div class="wrapper_inner">
+        	<div class="gallery " >
+          		<div class="box">
+          		    <div id="photo"  style="">
+              		    <!-- load image -->
+                        <input type="file" name="file" id="FileUpload1" style = "display:none" accept=".jpg,.png,.gif"  class="ifile"
+                         onchange="
+                            this.form.upfile.value=this.value.substr(this.value.lastIndexOf('\\')+1);
+                          "	>
+                        <input type="text" name="upfile" size="20" style = "display:none" readonly>
+                        <input type="button" class="btn btn-default dropdown-toggle" id = "load" value="upload a photo" onclick="this.form.file.click(); showCancel()">
+                        <input type="button" class="btn btn-default dropdown-toggle" id = "cancel" style = "display:none" value="cancel" onclick="window.location.href='{% url 'instival_database.views.post_document' user=users.id %}'">
+                      
+                        <br/>
+                        <br/>
                         
-                    </div><!-- festival dropdown-->
-                </div> 
+                        <img  id="Image1" src="" alt="" style="display: none" />
+                        
+                        <br/>
+                        <!-- crop button-->
+                        <input type="button" class="btn btn-default dropdown-toggle" id="btnCrop" value="Crop" style="display: none" />
+                        <br/>
+                        <br/>
+                        <!-- canvas and save image-->
+                        <canvas id="canvas" style="display:none" ></canvas>
+                        <img id="saveimage"   />
+                        <textarea  name = "picture"   style="display: none" id="get_dataURL"  >
+                        </textarea>
+                        <br/>
+                        <br/>
+                        <input type="button" id="btnCrop" value="Crop" style="display: none" />
+                        <input type="hidden" name="imgX1" id="imgX1" />
+                        <input type="hidden" name="imgY1" id="imgY1" />
+                        <input type="hidden" name="imgWidth" id="imgWidth" />
+                        <input type="hidden" name="imgHeight" id="imgHeight" />
+                        <input type="hidden" name="imgCropped" id="imgCropped" />
+                        <input type="button" id="btnNext" class="btn btn-default dropdown-toggle" value="Next" style="display: none" onclick="showNext()">
+                    </div>
                 
-            
                 
-                <div class="col-xs-6 col-sm-3">    
-                    <div id="f_text" style="display:none">                        
-                    <!-- Festival_other textbox -->
-                        <div class="input-group">
-                            
+                    <div id="document" style="display:none">
+        
+                    	<div class="col-xs-6 col-sm-3">
+                    	    
+                            <!-- festival dropdown -->
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="1">
+                                    Festival
+                                    <span class="caret"></span>
+                                </button>
+                                <ul  class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+                                    {% for f_name in festivals %}
+                                        <li><a href="#" rel="{{f_name.id}}" >{{f_name.festival.name}}.{{f_name.location.name}}</a></li>
+                                    {% endfor %}
+        
+                                    <!-- <li role="separator" class="divider"></li>
+                                    <li><a href="#" >Other Festival</a></li> -->
+                                </ul>
                                 
-                                <input type="text" class="form-control" name = "getfestival"  id="input_festival" placeholder="" aria-describedby="basic-addon1" >
-                            
-                        </div>
-                    </div>
-                </div>    
+                            </div><!-- festival dropdown-->
+                        </div> 
+                        
                     
-                                            
-                                            
-                <div class="col-xs-6 col-sm-3">
-                    <!-- Country dropdown -->
-                    <div class="dropdown">
-                        <button class="btn btn-default dropdown-toggle"  type="button" id="dropdownMenu1" 
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="2">
-                            Country
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            {% for c_name in Countrys %}
-                                <li><a href="#">{{c_name.name}}</a></li>
-                            {% endfor %}
-                           <!-- <li role="separator" class="divider"></li>
-                            <li><a href="#">Other Country</a></li> -->
-                        </ul>
-                    </div><!-- Country dropdown -->
-                </div>
-                
-                
-                <div class="col-xs-6 col-sm-3">   
-                    <div id="c_text" style="display:none">                     
-                    <!-- Country_other textbox -->
-                    
-                        <div class="input-group">
-                            <input type="text"  name = "getlocation" value="" id="input_country" class="form-control" >
-                        </div>
-                    </div>
-                </div>
+                        
+                        <div class="col-xs-6 col-sm-3">    
+                            <div id="f_text" style="display:none">                        
+                            <!-- Festival_other textbox -->
+                                <div class="input-group">
                                     
-                <hr>
-                <br/><br/>
-                
-                    
-                    <!-- document -->
-                    <div class="row control-group">
-                        <div class="form-group col-md-8 col-md-offset-2 floating-label-form-group controls">
-                                <textarea rows="5" name="content" class="form-control" placeholder="Message" id="content" required data-validation-required-message="Please enter a message."></textarea>
-                               
-                        </div>
-                    </div>
                                         
-                    <br/>
-                    
-                    <input type="submit" class="btn btn-default dropdown-toggle" value="Submit">
-                
+                                        <input type="text" class="form-control" name = "getfestival"  id="input_festival" placeholder="" aria-describedby="basic-addon1" >
+                                    
+                                </div>
+                            </div>
+                        </div>    
+                            
+                                                    
+                                                    
+                        <div class="col-xs-6 col-sm-3">
+                            <!-- Country dropdown -->
+                            <div class="dropdown" style="display:none">
+                                <button class="btn btn-default dropdown-toggle"  type="button" id="dropdownMenu1" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" value="2">
+                                    Country
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    {% for c_name in Countrys %}
+                                        <li><a href="#">{{c_name.name}}</a></li>
+                                    {% endfor %}
+                                   <!-- <li role="separator" class="divider"></li>
+                                    <li><a href="#">Other Country</a></li> -->
+                                </ul>
+                            </div><!-- Country dropdown -->
+                        </div>
+                        
+                        
+                        <div class="col-xs-6 col-sm-3">   
+                            <div id="c_text" style="display:none">                     
+                            <!-- Country_other textbox -->
+                            
+                                <div class="input-group">
+                                    <input type="text"  name = "getlocation" value="Taiwan" id="input_country" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+                                            
+                        <hr>
+                        <br/><br/>
+                        
+                            
+                            <!-- document -->
+                            <div class="row control-group">
+                                <div class="form-group col-md-8 col-md-offset-2 floating-label-form-group controls">
+                                        <textarea rows="5" name="content" class="form-control" placeholder="Message" id="content" required data-validation-required-message="Please enter a message."></textarea>
+                                       
+                                </div>
+                            </div>
+                                                
+                            <br/>
+                            
+                            <input type="submit" class="btn btn-default dropdown-toggle" value="Submit">
+                        
+                    </div>
                 </div>
-            </div>
-	    </div>
-	</div>
+    	    </div>
+    	</div>
 	
 	</form>
 	
